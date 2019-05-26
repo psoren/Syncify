@@ -1,7 +1,7 @@
 import React from 'react';
 import querystring from 'querystring';
-require('dotenv').config();
 import './login.scss';
+require('dotenv').config();
 
 const generateRandomString = function (length) {
 	let text = '';
