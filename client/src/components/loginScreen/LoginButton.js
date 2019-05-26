@@ -28,7 +28,7 @@ export default class extends React.Component {
 	}
 
 	render() {
-		let redirect_uri = 'https://syncify2.herokuapp.com/roomselect';
+		let redirect_uri = 'https://syncify33.herokuapp.com/roomselect';
 		let client_id = 'd76ab0506f804a148cd10e9671f0aab7';
 		let client_secret = 'dd3f8b6f5f504e86b907109e938c3e25';
 		let scope = 'user-read-private user-read-email user-modify-playback-state user-read-currently-playing user-read-playback-state user-read-birthdate streaming user-library-read playlist-read-private user-library-modify user-read-recently-played';
