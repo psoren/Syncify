@@ -28,17 +28,16 @@ export default class extends React.Component {
 	}
 
 	render() {
+		//According to the docs, we will only have NODE_ENV defined
+		//and any others that begin with REACT_APP_
+		//https://facebook.github.io/create-react-app/docs/adding-custom-environment-variables
+		//It would be better to encode the redirect values
+		//in the .env file, but this will work for now.
 
-		//let prod = process.env.NODE_ENV === 'production';
-		//can't use the .env file because we are in React, not server-side.
-		//If we wanted to use the .env file we would have to
-		//create one in the client folder.
-
-		let prod = false;
-
-		let redirect_uri = prod ? 
-		'https://syncify33.herokuapp.com/roomselect' : 
-		'http://localhost:3000/roomselect';
+		let dev = process.env.NODE_ENV === 'development';
+		let redirect_uri = dev ?
+			'http://localhost:3000/roomselect':
+			'https://syncify33.herokuapp.com/roomselect' ;
 
 		let client_id = 'd76ab0506f804a148cd10e9671f0aab7';
 		let scope = 'user-read-private user-read-email user-modify-playback-state user-read-currently-playing user-read-playback-state user-read-birthdate streaming user-library-read playlist-read-private user-library-modify user-read-recently-played';
