@@ -7,13 +7,8 @@ module.exports = (app) => {
     let code = req.body.code;
     let state = req.body.state;
 
-    let redirect_uri = '';
-    if (process.env.NODE_ENV === 'production') {
-      redirect_uri = process.env.PROD_URI;
-    }
-    else {
-      redirect_uri = process.env.DEV_URI;
-    }
+		let redirect_uri = process.env.NODE_ENV === 'production' ?
+			process.env.PROD_URI : process.env.DEV_URI;
 
     if (state == null) {
       console.log('State mismatch error');
