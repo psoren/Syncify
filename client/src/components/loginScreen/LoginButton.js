@@ -22,7 +22,7 @@ export default class extends React.Component {
 			color: 'white',
 			padding: '0.7em 1.5em',
 			width: '9em',
-			border: '1px solid #00C292',
+			border: '1px solid #174ad6',
 			outline: '0'
 		}
 	}
@@ -55,9 +55,9 @@ export default class extends React.Component {
 			<a href={link}
 				style={this.state}
 				className='loginBtn'
-				onMouseDown={() => this.setState({ background: '#10AC47' })}
-				onMouseUp={() => this.setState({ background: '#43DF7A' })}
-				onMouseOut={() => this.setState({ background: '#43DF7A' })}>
+				onMouseDown={() => this.setState({ background: '#174ad6' })}
+				onMouseUp={() => this.setState({ background: '#436ddf' })}
+				onMouseOut={() => this.setState({ background: '#436ddf' })}>
 				LOGIN
 				</a>
 		);
