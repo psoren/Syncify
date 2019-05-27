@@ -5,6 +5,9 @@ const path = require('path');
 const morgan = require('morgan');
 let mongoose = require('mongoose');
 
+//heroku redirect uri
+//PROD_URI='https://syncify33.herokuapp.com/roomselect'
+
 const mongoURI = 'mongodb+srv://parker:SyncifyTesting9@cluster0-qrjhy.mongodb.net/test?retryWrites=true';
 mongoose.connect(mongoURI, { useNewUrlParser: true });
 
