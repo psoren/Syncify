@@ -5,8 +5,19 @@ const path = require('path');
 const morgan = require('morgan');
 let mongoose = require('mongoose');
 
-const mongoURI = 'mongodb+srv://parker:SyncifyTesting9@cluster0-qrjhy.mongodb.net/test?retryWrites=true';
-mongoose.connect(mongoURI, { useNewUrlParser: true });
+//Separate databases for development and production
+let mongoURI = '';
+if(process.env.NODE_ENV === 'production'){
+    let dbUsername = process.env.PROD_DB_USERNAME;
+    let dbPassword = process.env.PROD_DB_PASSWORD;
+    mongoURI = 'mongodb://' + dbUsername + ':' +dbPassword + '@ds347665.mlab.com:47665/heroku_x65fn12z';
+}
+else {
+    let dbUsername = process.env.DEV_DB_USERNAME;
+    let dbPassword = process.env.DEV_DB_PASSWORD;
+    mongoURI = 'mongodb+srv://' + dbUsername + ':' + dbPassword +'@cluster0-qrjhy.mongodb.net/test?retryWrites=true';
+}
+mongoose.connect(mongoURI, { useNewUrlParser: true });    
 
 const port = process.env.PORT || 5000;
 const app = express();
