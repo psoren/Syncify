@@ -20,7 +20,7 @@ module.exports = (io) => {
             client.broadcast.to(data.roomId).emit('alertNewInfo', data.message);
         });
 
-        client.on('disconnect', (reason) =>
-            console.log('Client ' + client.id + ' disconnected'));
+        //client.on('disconnect', (reason) =>
+          //  console.log('Client ' + client.id + ' disconnected'));
     });
 }
