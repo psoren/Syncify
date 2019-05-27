@@ -5,9 +5,6 @@ const path = require('path');
 const morgan = require('morgan');
 let mongoose = require('mongoose');
 
-//heroku redirect uri
-//PROD_URI='https://syncify33.herokuapp.com/roomselect'
-
 const mongoURI = 'mongodb+srv://parker:SyncifyTesting9@cluster0-qrjhy.mongodb.net/test?retryWrites=true';
 mongoose.connect(mongoURI, { useNewUrlParser: true });
 
@@ -46,12 +43,12 @@ require('./server/checkForRoom')(app);
 
 //Production
 if (process.env.NODE_ENV === 'production') {
-    app.use(express.static(__dirname + 'client/build'));
+    app.use(express.static(path.join(__dirname, 'client/build')));
     app.get('*', (req, res) => res.sendFile(path.join(__dirname, 'client/build/index.html')));
 }
 //Development
 else {
-    app.use(express.static(__dirname + 'client/public'));
+    app.use(express.static(path.join(__dirname, 'client/public')));
     app.get('*', (req, res) => res.sendFile(path.join(__dirname, '/client/public/index.html')));
 }
 
