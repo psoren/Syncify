@@ -15,7 +15,7 @@ module.exports = () => {
                         //If the creator of the room has not checked in in 10 seconds, 
                         //assume that no one is left in the room and delete it
                         let timeDifference = Math.abs(currentTime - room.recentTime); 
-                        if (timeDifference> TIME_TO_DELETE){
+                        if (timeDifference > TIME_TO_DELETE){
                             Room.findByIdAndDelete(room._id, (err, room) => {
                                 if (err) { console.error('Error when deleting room: ' + err); }
                             });
