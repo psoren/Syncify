@@ -6,6 +6,8 @@ const morgan = require('morgan');
 let mongoose = require('mongoose');
 
 //Separate databases for development and production
+
+//fix this, we cannot for some reason connect to this database
 let mongoURI = '';
 if(process.env.NODE_ENV === 'blah'){
     let dbUsername = process.env.PROD_DB_USERNAME;

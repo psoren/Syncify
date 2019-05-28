@@ -9,7 +9,7 @@ module.exports = () => {
                     rooms.forEach(room => {
                         //The number of milliseconds that the room needs to be
                         //later than the current time to delete it
-                        const TIME_TO_DELETE = 15000;
+                        const TIME_TO_DELETE = 10000;
                         let currentTime = new Date();
 
                         //If the creator of the room has not checked in in 10 seconds, 
