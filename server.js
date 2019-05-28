@@ -7,7 +7,7 @@ let mongoose = require('mongoose');
 
 //Separate databases for development and production
 let mongoURI = '';
-if(process.env.NODE_ENV === 'production'){
+if(process.env.NODE_ENV === 'blah'){
     let dbUsername = process.env.PROD_DB_USERNAME;
     let dbPassword = process.env.PROD_DB_PASSWORD;
     mongoURI = 'mongodb://' + dbUsername + ':' + dbPassword + '@ds347665.mlab.com:47665/heroku_x65fn12z';
