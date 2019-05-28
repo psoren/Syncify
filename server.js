@@ -6,37 +6,19 @@ const morgan = require('morgan');
 let mongoose = require('mongoose');
 
 //Separate databases for development and production
-/*let mongoURI = '';
-if (process.env.NODE_ENV === 'production' || true) {
-
-
-
-
-    //let dbUsername = process.env.PROD_DB_USERNAME;
-    //let dbPassword = process.env.PROD_DB_PASSWORD;
-    //mongoURI = 'mongodb://' + dbUsername + ':' + dbPassword + '@ds347665.mlab.com:47665/heroku_x65fn12z';
-
-
-
-
-    mongoURI = 'mongodb://prod456:syncify789!@ds347665.mlab.com:47665/heroku_x65fn12z';
-
+let mongoURI = '';
+if (process.env.NODE_ENV === 'production') {
+    let dbUsername = process.env.PROD_DB_USERNAME;
+    let dbPassword = process.env.PROD_DB_PASSWORD;
+    mongoURI = 'mongodb://' + dbUsername + ':' + dbPassword + '@ds263146.mlab.com:63146/heroku_7nkz6h4b';
 }
 else {
     let dbUsername = process.env.DEV_DB_USERNAME;
     let dbPassword = process.env.DEV_DB_PASSWORD;
     mongoURI = 'mongodb+srv://' + dbUsername + ':' + dbPassword + '@cluster0-qrjhy.mongodb.net/test?retryWrites=true';
 }
-*/
 
-
-let devMongoURI = 'mongodb+srv://parker:testinggg435@cluster0-qrjhy.mongodb.net/test?retryWrites=true';
-let prodMongoURI = 'mongodb://parker:syncify&345@ds263146.mlab.com:63146/heroku_7nkz6h4b';
-
-
-
-mongoose.connect(prodMongoURI,
-    { useNewUrlParser: true });
+mongoose.connect(mongoURI, { useNewUrlParser: true });
 
 const port = process.env.PORT || 5000;
 const app = express();
