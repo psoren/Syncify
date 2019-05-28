@@ -2,7 +2,7 @@
 
 Syncify is a MERN stack application that allows users to listen to songs together.  It uses the Spotify Web API on the server side for authentication, and uses the Spotify Web Playback SDK for client-side playback in the browser.
 
-##Roomselect
+## Roomselect
 
 ![Live Stream Page](client/public/roomselectScreenshot.jpeg)
 
@@ -15,7 +15,7 @@ When a user logs in to the site, they are redirected to the room select screen a
 
 3. Join a current room from the Current Rooms list.  The currently playing rooms are presented in a list in the RoomSelect screen.  If the user clicks the join button by any currently playing room, they will be redirected to the live stream page for that room.
 
-##Livestream
+## Livestream
 
 ![Live Stream Page](client/public/livestreamScreenshot.jpeg)
 
