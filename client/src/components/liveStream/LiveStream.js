@@ -252,15 +252,20 @@ export default class extends React.Component {
 		});
 
 		this.socket.on('creatorLeft', newRoomData => {
+
+			//If we are now the creator
 			if (newRoomData.creator.refreshToken === localStorage.getItem('refreshToken')) {
 				this.setState({ isCreator: true });
+				this.sendCurrentTimeId = setInterval(this.sendCurrentTime, 1000);
 				this.setState({ listeners: newRoomData.roomListeners });
 				toaster.notify('You are now the creator of this room.  You can now control playback', { duration: 3000 })
 			}
+
+			//Someone else was promoted to creator
 			else {
 				let creatorName = newRoomData.creator.name.split(' ')[0];
 				toaster.notify(creatorName + ' is now the creator of this room.  They can control playback now.',
-					{ duration: 3000 })
+					{ duration: 3000 });
 			}
 		});
 	}
