@@ -9,7 +9,7 @@
     "client-install": "npm install --prefix client",
     "start": "node server.js",
     "heroku-postbuild": "cd client && npm install && npm run build",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "dev": "NODE_ENV=development concurrently \"npm run server\" \"npm run client\""
   },
   "author": "Parker Sorenson",
   "license": "MIT",

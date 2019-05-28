@@ -6,10 +6,8 @@ const morgan = require('morgan');
 let mongoose = require('mongoose');
 
 //Separate databases for development and production
-
-//fix this, we cannot for some reason connect to this database
 let mongoURI = '';
-if(process.env.NODE_ENV === 'blah'){
+if(process.env.NODE_ENV === 'production'){
     let dbUsername = process.env.PROD_DB_USERNAME;
     let dbPassword = process.env.PROD_DB_PASSWORD;
     mongoURI = 'mongodb://' + dbUsername + ':' + dbPassword + '@ds347665.mlab.com:47665/heroku_x65fn12z';
