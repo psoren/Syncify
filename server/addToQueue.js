@@ -63,17 +63,14 @@ module.exports = (app) => {
                         }
                     }
                 }
-
-                //The songs part is different from the playlist part because with songs
-                //we are not replacing the upcomings songs
                 else if (type === 'songs') {
                     let songs = [];
                     data.forEach(songObject => {
                         /*
                         Currently, the songs we are getting from the client are saved in the form
-                         * { title, artist, album, imgSrc, uri}
+                        { title, artist, album, imgSrc, uri}
                         They need to be in the form
-                         * {name, artist, album, spotifyURI, albumArtSrc}
+                         {name, artist, album, spotifyURI, albumArtSrc}
                          */
                         let newSong = {
                             name: songObject.props.title,
@@ -84,7 +81,15 @@ module.exports = (app) => {
                         }
                         songs.push(newSong);
                     });
-                    room.upcomingSongs = room.upcomingSongs.concat(songs);
+
+                    //If we should append the songs to the queue
+                    if(req.body.shouldAppend){
+                        room.upcomingSongs = room.upcomingSongs.concat(songs);
+                    }
+                    //If we should play the songs next
+                    else {
+                        room.upcomingSongs = songs.concat(room.upcomingSongs);
+                    }
                     room.save((err, room) => {
                         if (err) {
                             console.error('(addToQueue) playlistSaveError: ' + err);
@@ -101,43 +106,7 @@ module.exports = (app) => {
                             });
                         }
                     });
-                }
-                //Replace all songs with the playlist
-                else if (type === 'playlist') {
-                    let playlistSongs = [];
-                    data.forEach(songObject => {
-                        /*
-                        Currently, the songs we are getting from the client are saved in the form
-                         * { title, artist, album, imgSrc, uri}
-                        They need to be in the form
-                         * {name, artist, album, spotifyURI, albumArtSrc}
-                         */
-                        let newSong = {
-                            name: songObject.props.title,
-                            artist: songObject.props.artist,
-                            album: songObject.props.album,
-                            spotifyURI: songObject.props.uri,
-                            albumArtSrc: songObject.props.imgSrc
-                        }
-                        playlistSongs.push(newSong);
-                    });
-                    room.upcomingSongs = playlistSongs;
-                    room.save((err, room) => {
-                        if (err) {
-                            console.error('(addToQueue) playlistSaveError: ' + err);
-                            res.json({
-                                success: false,
-                                message: 'Sorry, we could not add play that playlist'
-                            });
-                        }
-                        if (room) {
-                            res.json({
-                                success: true,
-                                nextSongs: room.upcomingSongs
-                            });
-                        }
-                    });
-                }
+                }             
                 //They did not specify the correct type, send an error
                 else {
                     res.json({

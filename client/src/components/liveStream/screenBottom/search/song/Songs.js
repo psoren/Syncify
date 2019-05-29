@@ -25,6 +25,12 @@ const buttonDiv = {
     paddingBottom: '15px'
 }
 
+const playAllButtonsStyle = {
+    display: 'flex',
+    justifyContent: 'space-evenly',
+    flexDirection: 'row'
+}
+
 class Songs extends React.Component {
     constructor(props) {
         super(props);
@@ -32,7 +38,8 @@ class Songs extends React.Component {
             socket: props.context.socket,
             loading: true,
             librarySongs: true,
-            btnClicked: false
+            playAllNextClicked: false,
+            playAllLaterClicked: false
         }
         this.setLibrarySongs();
     }
@@ -129,7 +136,7 @@ class Songs extends React.Component {
         }
     }
 
-    playAllSongs = async () => {
+    async playAllSongs(shouldAppend) {
 
         let currentURL = new URL(window.location.href);
         let roomId = currentURL.searchParams.get('roomId');
@@ -143,7 +150,8 @@ class Songs extends React.Component {
                     roomId: roomId,
                     type: 'songs',
                     data: this.state.songs,
-                    name: localStorage.getItem('name')
+                    name: localStorage.getItem('name'),
+                    shouldAppend: shouldAppend
                 })
             });
             let resJSON = await res.json();
@@ -164,24 +172,40 @@ class Songs extends React.Component {
         }
     }
 
-    clicked = () => this.setState({ btnClicked: true });
-    unclicked = () => this.setState({ btnClicked: false });
+    playAllNextClicked = () => this.setState({ playAllNextClicked: true });
+    playAllNextUnclicked = () => this.setState({ playAllNextClicked: false });
+
+    playAllLaterClicked = () => this.setState({ playAllLaterClicked: true });
+    playAllLaterUnclicked = () => this.setState({ playAllLaterClicked: false });
 
     render() {
 
-        let btn_class = this.state.btnClicked ? 'bigBtnClicked' : 'bigBtn';
+        let playAllNextClass = this.state.playAllNextClicked ? 'bigBtnClicked' : 'bigBtn';
+        let playAllLaterClass = this.state.playAllLaterClicked ? 'bigBtnClicked' : 'bigBtn';
 
         return (
             <div style={outer}>
-                <div style={buttonDiv}>
-                    <input type='button'
-                        className={btn_class}
-                        value='Play All'
-                        onClick={this.playAllSongs}
-                        onMouseDown={this.clicked}
-                        onMouseOut={this.unclicked}
-                        onMouseUp={this.unclicked}
-                    />
+                <div style={playAllButtonsStyle}>
+                    <div style={buttonDiv}>
+                        <input type='button'
+                            className={playAllNextClass}
+                            value='Play All Next'
+                            onClick={this.playAllSongs.bind(this, false)}
+                            onMouseDown={this.playAllNextClicked}
+                            onMouseOut={this.playAllNextUnclicked}
+                            onMouseUp={this.playAllNextUnclicked}
+                        />
+                    </div>
+                    <div style={buttonDiv}>
+                        <input type='button'
+                            className={playAllLaterClass}
+                            value='Play All Later'
+                            onClick={this.playAllSongs.bind(this, true)}
+                            onMouseDown={this.playAllLaterClicked}
+                            onMouseOut={this.playAllLaterUnclicked}
+                            onMouseUp={this.playAllLaterUnclicked}
+                        />
+                    </div>
                 </div>
                 <div style={inner}>
                     {this.state.songs}

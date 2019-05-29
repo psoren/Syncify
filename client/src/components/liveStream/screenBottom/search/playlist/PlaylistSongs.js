@@ -99,8 +99,7 @@ class PlaylistSongs extends React.Component {
         }
     }
 
-    playAllSongs = async () => {
-
+    async playAllSongs(shouldAppend) {
         let currentURL = new URL(window.location.href);
         let roomId = currentURL.searchParams.get('roomId');
 
@@ -118,9 +117,10 @@ class PlaylistSongs extends React.Component {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     roomId: roomId,
-                    type: 'playlist',
+                    type: 'songs',
                     data: songList,
-                    name: localStorage.getItem('name')
+                    name: localStorage.getItem('name'),
+                    shouldAppend: shouldAppend
                 })
             });
             let resJSON = await res.json();
@@ -128,8 +128,6 @@ class PlaylistSongs extends React.Component {
             let name = localStorage.getItem('name').split(' ')[0];
             let message = name + ' added the playlist ' +
                 this.props.playlistName + ' to the queue.';
-
-            console.log(message);
 
             if (resJSON.success) {
                 this.state.socket.emit('initUpdateSongs', {
@@ -156,10 +154,16 @@ class PlaylistSongs extends React.Component {
                 <div style={buttonDiv}>
                     <Btn
                         onClick={this.props.goToAllPlaylists}
-                        btnValue='All Playlists' />
+                        btnValue='All Playlists'
+                    />
                     <Btn
-                        onClick={this.playAllSongs}
-                        btnValue='Play All' />
+                        onClick={this.playAllSongs.bind(this, false)}
+                        btnValue='Play All Next'
+                    />
+                    <Btn
+                        onClick={this.playAllSongs.bind(this, true)}
+                        btnValue='Play All Later'
+                    />
                 </div>
                 <div style={filterStyle}>
                     <PlaylistSongsFilter setSearchedSongs={this.setSearchedSongs} />
