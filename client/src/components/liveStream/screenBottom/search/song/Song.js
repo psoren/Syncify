@@ -97,7 +97,10 @@ class Song extends React.Component {
     playLaterUnclicked = () => this.setState({ playLaterClicked: false });
 
     render() {
-        let btn_class = this.state.btnClicked ? 'btnClicked' : 'btn';
+
+        let playNextClass = this.state.playNextClicked ? 'btnClicked' : 'btn';
+        let playLaterClass = this.state.playLaterClicked ? 'btnClicked' : 'btn';
+
         return (
             <table style={tableStyle}>
                 <tbody>
@@ -113,7 +116,7 @@ class Song extends React.Component {
                         </td>
                         <td style={tdStyle}>
                             <input type='button'
-                                className={btn_class}
+                                className={playNextClass}
                                 value='Play Next'
                                 onClick={this.addSong.bind(this, false)}
                                 onMouseDown={this.playNextClicked}
@@ -123,7 +126,7 @@ class Song extends React.Component {
                         </td>
                         <td style={tdStyle}>
                             <input type='button'
-                                className={btn_class}
+                                className={playLaterClass}
                                 value='Play Later'
                                 onClick={this.addSong.bind(this, true)}
                                 onMouseDown={this.playLaterClicked}
