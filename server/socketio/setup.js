@@ -17,7 +17,7 @@ module.exports = (io) => {
         client.on('initUpdateSongs', (data) => {
             io.sockets.in(data.roomId).emit('updateSongs', data);
             //Tell the other users that a user added a song
-            client.broadcast.to(data.roomId).emit('alertNewInfo', data.message);
+            io.in(data.roomId).emit('alertNewInfo', data.message);
         });
 
         //client.on('disconnect', (reason) =>
