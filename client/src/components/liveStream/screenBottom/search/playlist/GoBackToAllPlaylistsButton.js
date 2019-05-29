@@ -1,4 +1,5 @@
 import React from 'react';
+import './playlist.scss';
 
 const buttonStyle = {
 	display: 'inline-block',
@@ -15,6 +16,7 @@ export default class extends React.Component {
 	render() {
 		return (
 			<button
+			className='playlistAlbum'
 				onClick={this.props.onClick}
 				style={buttonStyle}>
 			</button>
