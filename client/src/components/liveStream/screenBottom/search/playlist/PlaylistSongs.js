@@ -1,5 +1,5 @@
 import React from 'react';
-import PlaylistSong from './PlaylistSong';
+import PlaylistSong from '../song/Song';
 import Btn from './Btn';
 import PlaylistSongsFilter from './PlaylistSongsFilter';
 import { LiveStreamContext } from '../../../LiveStream';
