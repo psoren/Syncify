@@ -36,7 +36,16 @@ module.exports = (app) => {
                             });
                         }
                         else {
-                            room.upcomingSongs.push(data);
+                            //Play the song later
+                            if(req.body.shouldAppend){
+                                room.upcomingSongs.push(data);
+                            }
+                            //Play the song now
+                            //Performance may be impacted here since we are adding
+                            //to the beginning of an array
+                            else {
+                                room.upcomingSongs.unshift(data);
+                            }
                             room.save((err, room) => {
                                 if (err) {
                                     console.error('(addToQueue) saving room');
@@ -52,14 +61,12 @@ module.exports = (app) => {
                                 } 
                             });
                         }
-
                     }
                 }
 
                 //The songs part is different from the playlist part because with songs
                 //we are not replacing the upcomings songs
                 else if (type === 'songs') {
-
                     let songs = [];
                     data.forEach(songObject => {
                         /*

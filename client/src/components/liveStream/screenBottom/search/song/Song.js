@@ -44,7 +44,7 @@ class Song extends React.Component {
         }
     }
 
-    addSong = async () => {
+    async addSong (shouldAppend) {
         let currentURL = new URL(window.location.href);
         let roomId = currentURL.searchParams.get('roomId');
 
@@ -62,7 +62,8 @@ class Song extends React.Component {
             body: JSON.stringify({
                 roomId: roomId,
                 type: 'song',
-                data: song
+                data: song,
+                shouldAppend: shouldAppend
             })
         });
         let resJSON = await res.json();
@@ -109,8 +110,18 @@ class Song extends React.Component {
                         <td style={tdStyle}>
                             <input type='button'
                                 className={btn_class}
+                                value='Play Next'
+                                onClick={this.addSong.bind(this, false)}
+                                onMouseDown={this.clicked}
+                                onMouseOut={this.unclicked}
+                                onMouseUp={this.unclicked}
+                            />
+                        </td>
+                        <td style={tdStyle}>
+                            <input type='button'
+                                className={btn_class}
                                 value='Play Later'
-                                onClick={this.addSong}
+                                onClick={this.addSong.bind(this, true)}
                                 onMouseDown={this.clicked}
                                 onMouseOut={this.unclicked}
                                 onMouseUp={this.unclicked}
