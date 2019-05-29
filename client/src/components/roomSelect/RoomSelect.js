@@ -114,9 +114,7 @@ export default class extends React.Component {
 	}
 
 	transferPlaybackToBrowser = async () => {
-
 		console.log('transferPlaybackToBrowser called');
-
 		//Get the user's name
 		let userInfoRes = await fetch('https://api.spotify.com/v1/me', {
 			headers: { 'Authorization': 'Bearer ' + localStorage.getItem('accessToken') }
@@ -156,8 +154,6 @@ export default class extends React.Component {
 		else {
 			console.log('most recent song should be playing');
 		}
-
-
 	}
 
 	constructor(props) {

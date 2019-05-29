@@ -13,7 +13,9 @@ module.exports = (app) => {
                     res.json({ rooms: [] });
                 }
                 else {
-                    res.json({ rooms: rooms });
+                    //Only return the public rooms
+                    let publicRooms = rooms.filter(room =>  room.public);
+                    res.json({ rooms: publicRooms });
                 }
             }
         });
