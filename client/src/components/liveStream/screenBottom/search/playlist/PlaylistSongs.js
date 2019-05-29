@@ -1,6 +1,7 @@
 import React from 'react';
 import PlaylistSong from '../song/Song';
 import Btn from './Btn';
+import GoBackToAllPlaylistsButton from './GoBackToAllPlaylistsButton';
 import PlaylistSongsFilter from './PlaylistSongsFilter';
 import { LiveStreamContext } from '../../../LiveStream';
 import toaster from 'toasted-notes';
@@ -152,9 +153,8 @@ class PlaylistSongs extends React.Component {
         return (
             <div style={outer}>
                 <div style={buttonDiv}>
-                    <Btn
+                    <GoBackToAllPlaylistsButton
                         onClick={this.props.goToAllPlaylists}
-                        btnValue='All Playlists'
                     />
                     <Btn
                         onClick={this.playAllSongs.bind(this, false)}
