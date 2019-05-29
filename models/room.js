@@ -1,10 +1,10 @@
 const mongoose = require('mongoose');
-const shortid = require('shortid');
+const shortestId = require('../server/shortestId');
 const Schema = mongoose.Schema;
 
 //The schema is how the model is defined conceptually
 let roomSchema = new Schema({
-	_id: {type: String, 'default':shortid.generate},
+	_id: {type: String, 'default':shortestId.generate},
 	name: {type: String, required: false, max: 100},
 	public: {type: Boolean},
 	restricted: {type: Boolean},

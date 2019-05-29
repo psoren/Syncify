@@ -4,7 +4,6 @@ const Room = require('../models/room');
 module.exports = (app) => {
   //The method to test if the database is connected
   app.post('/createRoom', async (req, res) => {
-
     //Perform a request to Spotify to get
     //the spotifyURI of this person and their name
     const { isPublic, roomName, accessToken, refreshToken, currentSong } = req.body;
@@ -26,7 +25,7 @@ module.exports = (app) => {
     }
 
     //Now we create the room
-    const room = new Room({
+    let room = new Room({
       name: roomName,
       public: isPublic,
       restricted: false,
@@ -43,17 +42,53 @@ module.exports = (app) => {
       recentSongs: []
     });
 
-    //Save the room in AtlasDB
-    room.save()
-      .then(result => {
+    //Make sure that we do not have any id collisions
+    //since we are creating our own ids
+    let roomIdCollision = true;
+    while (roomIdCollision) {
+      try {
+        await Room.findById(room.id, (existingRoom) => {
+          //Collision
+          if (existingRoom) {
+            room = new Room({
+              name: roomName,
+              public: isPublic,
+              restricted: false,
+              creator: {
+                name: display_name,
+                spotifyURI: id,
+                accessToken: accessToken,
+                refreshToken: refreshToken,
+                pictureSrc: pictureSrc
+              },
+              roomListeners: [],
+              upcomingSongs: [],
+              currentSong: currentSong,
+              recentSongs: []
+            });
+          }
+          else {
+            roomIdCollision = false;
+          }
+        });
+      }
+      catch (e) {
+        console.error(e);
+        res.json({ success: false });
+      }
+    }
+
+    //Save the room in the database
+    room.save((err, room) => {
+      if (err) {
+        res.json({ success: false });
+      }
+      else {
         res.json({
           success: true,
-          roomID: result._id
+          roomID: room._id
         });
-      })
-      .catch(error => {
-        console.log(error);
-        res.json({ success: false });
-      });
+      }
+    });
   });
 }

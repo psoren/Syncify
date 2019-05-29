@@ -1,6 +1,8 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 import 'styling/styles.scss';
+import toaster from 'toasted-notes';
+import 'toasted-notes/src/styles.css';
 
 const formStyle = {
   textAlign: 'center'
@@ -38,7 +40,7 @@ export default class extends React.Component {
     super(props);
 
     let fullName = '';
-    if(localStorage.getItem('name')){
+    if (localStorage.getItem('name')) {
       fullName = localStorage.getItem('name');
     }
     let roomName = 'New Room';
@@ -115,6 +117,7 @@ export default class extends React.Component {
     }
     else {
       this.setState({ roomCreationError: true });
+      toaster.notify('We could not create the room at this time.', { duration: 4000 });
     }
   }
 
@@ -125,17 +128,11 @@ export default class extends React.Component {
   //there is an error.  If neither of those is set, 
   //then the user has not attempted to create a room yet.
   render() {
-
-    if (this.state.roomCreationError) {
-      console.log('Error when creating the room');
-    }
-
-    if (this.state.roomIsCreated) {
+    if (this.state.roomIsCreated && 
+      !this.state.roomCreationError) {
       return (<Redirect to={
         '/livestream?roomId=' + this.state.roomID} />);
     }
-
-
     else {
       return (
         <form onSubmit={this.handleSubmit} style={formStyle}>
