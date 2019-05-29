@@ -58,27 +58,35 @@ export default class extends React.Component {
 	}
 
 	createPlayer = () => {
-		window.onSpotifyWebPlaybackSDKReady = () => {
-
+		window.onSpotifyWebPlaybackSDKReady = async() => {
 			console.log('sdk is ready');
-
 			this.player = new window.Spotify.Player({
 				name: 'Syncify',
 				getOAuthToken: cb => { cb(localStorage.getItem('accessToken')) }
 			});
+			let playerConnected = await this.player.connect();
+			if(playerConnected){
+				console.log('PLAYER CONNECTED');
 
-			this.player.connect();
-			this.createErrorHandlers();
-			this.createReadyHandler();
-			this.createStateChangeHandler();
-			this.props.setWebPlayer(this.player);
+				this.createErrorHandlers();
+				this.createReadyHandler();
+				this.createStateChangeHandler();
+				this.props.setWebPlayer(this.player);
+			}
+			else {
+				console.log('The web player could not connect');
+			}
 		}
 	}
 
 	createErrorHandlers = () => {
 		this.player.on('initialization_error', e => console.error(e));
 		this.player.on('authentication_error', e => console.error(e));
-		this.player.on('account_error', e => console.error(e));
+		this.player.on('account_error', e => {
+			console.error(e);
+			alert('It looks like you do not have a premium Spotify account.\n' + 
+			'You will not be able to use Syncify.');
+		});
 		this.player.on('playback_error', e => console.error(e));
 	}
 
