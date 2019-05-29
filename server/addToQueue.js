@@ -55,7 +55,8 @@ module.exports = (app) => {
                                     if (room) {
                                         res.json({
                                             success: true,
-                                            nextSongs: room.upcomingSongs
+                                            nextSongs: room.upcomingSongs,
+                                            msg: data.name + ' by ' + data.artist
                                         });
                                     }
                                 } 
@@ -92,10 +93,10 @@ module.exports = (app) => {
                     }
                     room.save((err, room) => {
                         if (err) {
-                            console.error('(addToQueue) playlistSaveError: ' + err);
+                            console.error('(addToQueue) : ' + err);
                             res.json({
                                 success: false,
-                                message: 'Sorry, we could not add play that playlist'
+                                message: 'Sorry, we could not add those songs'
                             });
                         }
                         if (room) {

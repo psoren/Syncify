@@ -74,10 +74,7 @@ class Song extends React.Component {
             //The person that added the song/artist's songs/playlist
             let user = localStorage.getItem('name').split(' ')[0];
             let nextSongsLength = resJSON.nextSongs.length;
-            let addedSongName = resJSON.nextSongs[nextSongsLength - 1].name;
-            let addedSongArtist = resJSON.nextSongs[nextSongsLength - 1].artist;
-            let message = user + ' added ' +
-                addedSongName + ' by ' + addedSongArtist + ' to the queue.';
+            let message = user + ' added ' + resJSON.msg + ' to the queue.';
 
             this.state.socket.emit('initUpdateSongs', {
                 roomId: currentURL.searchParams.get('roomId'),
