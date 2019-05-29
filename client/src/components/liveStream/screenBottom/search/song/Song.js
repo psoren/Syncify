@@ -31,7 +31,8 @@ class Song extends React.Component {
         this.state = {
             socket: props.context.socket,
             loading: true,
-            btnClicked: false
+            playNextClicked: false,
+            playLaterClicked: false
         };
     }
 
@@ -89,8 +90,11 @@ class Song extends React.Component {
         }
     }
 
-    clicked = () => this.setState({ btnClicked: true });
-    unclicked = () => this.setState({ btnClicked: false });
+    playNextClicked = () => this.setState({ playNextClicked: true });
+    playNextUnclicked = () => this.setState({ playNextClicked: false });
+
+    playLaterClicked = () => this.setState({ playLaterClicked: true });
+    playLaterUnclicked = () => this.setState({ playLaterClicked: false });
 
     render() {
         let btn_class = this.state.btnClicked ? 'btnClicked' : 'btn';
@@ -112,9 +116,9 @@ class Song extends React.Component {
                                 className={btn_class}
                                 value='Play Next'
                                 onClick={this.addSong.bind(this, false)}
-                                onMouseDown={this.clicked}
-                                onMouseOut={this.unclicked}
-                                onMouseUp={this.unclicked}
+                                onMouseDown={this.playNextClicked}
+                                onMouseOut={this.playNextUnclicked}
+                                onMouseUp={this.playNextUnclicked}
                             />
                         </td>
                         <td style={tdStyle}>
@@ -122,9 +126,9 @@ class Song extends React.Component {
                                 className={btn_class}
                                 value='Play Later'
                                 onClick={this.addSong.bind(this, true)}
-                                onMouseDown={this.clicked}
-                                onMouseOut={this.unclicked}
-                                onMouseUp={this.unclicked}
+                                onMouseDown={this.playLaterClicked}
+                                onMouseOut={this.playLaterUnclicked}
+                                onMouseUp={this.playLaterUnclicked}
                             />
                         </td>
                     </tr>
