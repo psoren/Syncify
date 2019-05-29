@@ -26,7 +26,6 @@ const buttonDiv = {
 }
 
 class Songs extends React.Component {
-
     constructor(props) {
         super(props);
         this.state = {
@@ -36,6 +35,46 @@ class Songs extends React.Component {
             btnClicked: false
         }
         this.setLibrarySongs();
+    }
+
+    setLibrarySongs = async () => {
+        const songs = [];
+        let numItemsToSearchFor = 20;
+        let offset = 0;
+
+        let params = querystring.stringify({
+            offset: offset,
+            limit: numItemsToSearchFor
+        });
+        //Getting the numItemsToSearchFor most recent items
+        let libraryRes = await fetch('https://api.spotify.com/v1/me/tracks?' + params, {
+            headers: { 'Authorization': 'Bearer ' + localStorage.getItem('accessToken') }
+        });
+        let libraryResJSON = await libraryRes.json();
+
+        if (libraryResJSON.items) {
+            libraryResJSON.items.forEach((trackObj) => {
+                let track = trackObj.track;
+                let songArtists = '';
+                track.artists.forEach((artist, i) => {
+                    i === 0 ? songArtists += artist.name :
+                        songArtists += ', ' + artist.name;
+                });
+
+                let newSong = <Song
+                    key={track.id}
+                    title={track.name}
+                    artist={songArtists}
+                    album={track.album.name}
+                    imgSrc={track.album.images[0].url}
+                    uri={track.uri} />
+                songs.push(newSong);
+                this.setState({ songs: songs });
+            });
+        }
+        else {
+            console.error("(Songs) There was an error getting the songs from the user's library.");
+        }
     }
 
     setSearchedSongs = (props) => {
@@ -68,49 +107,7 @@ class Songs extends React.Component {
         });
     }
 
-    setLibrarySongs = async () => {
-        const songs = [];
-        let numItemsToSearchFor = 20;
-        let offset = 0;
-
-        let params = querystring.stringify({
-            offset: offset,
-            limit: numItemsToSearchFor
-        });
-        //Getting the numItemsToSearchFor most recent items
-        let libraryRes = await fetch('https://api.spotify.com/v1/me/tracks?' + params, {
-            headers: { 'Authorization': 'Bearer ' + localStorage.getItem('accessToken') }
-        });
-        let libraryResJSON = await libraryRes.json();
-
-        if (libraryResJSON.items) {
-            libraryResJSON.items.forEach((trackObj) => {
-                let track = trackObj.track;
-
-                let songArtists = '';
-                track.artists.forEach((artist, i) => {
-                    i === 0 ? songArtists += artist.name :
-                        songArtists += ', ' + artist.name;
-                });
-
-                let newSong = <Song
-                    key={track.id}
-                    title={track.name}
-                    artist={songArtists}
-                    album={track.album.name}
-                    imgSrc={track.album.images[0].url}
-                    uri={track.uri} />
-                songs.push(newSong);
-                this.setState({ songs: songs });
-            });
-        }
-        else {
-            console.log('There was an error (Songs)');
-        }
-    }
-
     componentWillReceiveProps = async (nextProps) => {
-
         if (nextProps.context.socket) {
             this.setState({
                 socket: nextProps.context.socket,
@@ -124,7 +121,6 @@ class Songs extends React.Component {
             this.setSearchedSongs(nextProps);
         }
         else if (nextProps.searchResult === '') {
-
             this.setState({ librarySongs: true });
             //only rerender when they deleted their query
             if (!this.state.librarySongs) {

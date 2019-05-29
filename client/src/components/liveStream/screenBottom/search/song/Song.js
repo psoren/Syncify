@@ -88,8 +88,8 @@ class Song extends React.Component {
         }
     }
 
-    clicked = () => this.setState({btnClicked: true});
-    unclicked = () => this.setState({btnClicked: false});
+    clicked = () => this.setState({ btnClicked: true });
+    unclicked = () => this.setState({ btnClicked: false });
 
     render() {
         let btn_class = this.state.btnClicked ? 'btnClicked' : 'btn';
@@ -109,7 +109,7 @@ class Song extends React.Component {
                         <td style={tdStyle}>
                             <input type='button'
                                 className={btn_class}
-                                value='Add Song'
+                                value='Play Later'
                                 onClick={this.addSong}
                                 onMouseDown={this.clicked}
                                 onMouseOut={this.unclicked}

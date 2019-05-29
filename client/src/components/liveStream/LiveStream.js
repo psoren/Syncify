@@ -155,9 +155,6 @@ export default class extends React.Component {
 
 	//Send the current time to the server
 	sendCurrentTime = () => {
-
-		console.log('sending time');
-
 		let today = new Date();
 		if (this.socket) {
 			let currentURL = new URL(window.location.href);

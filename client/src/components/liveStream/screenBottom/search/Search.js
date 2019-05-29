@@ -13,7 +13,7 @@ const searchStyle = {
 	font: 'bold 72px "helvetica neue", helvetica, arial, sans-serif',
 	background: 'none',
 	color: 'white',
-	outline: 'none',
+	outline: 'none'
 }
 
 export default class extends React.Component {
