@@ -1,4 +1,5 @@
 import React from 'react';
+import './playlist.scss';
 
 const outer = {
     display: 'flex',
@@ -23,7 +24,8 @@ export default class extends React.Component {
 
     render() {
         return (
-            <div style={outer}>
+            <div style={outer}
+            className='playlistAlbum'>
                 <div className='imageWrapper'
                     onClick={this.setPlaylist}>
                     <img
