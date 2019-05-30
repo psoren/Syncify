@@ -3,14 +3,14 @@ import Popup from './Popup';
 import './searchStyles.scss';
 
 const mainStyle = {
-	width: '350px'
+	width: '100%'
 }
 
 const searchStyle = {
-	width: '350px',
+	width: '100%',
 	border: 'none',
 	borderBottom: '5px solid white',
-	font: 'bold 72px "helvetica neue", helvetica, arial, sans-serif',
+	font: 'bold 80px "helvetica neue", sans-serif',
 	background: 'none',
 	color: 'white',
 	outline: 'none'
