@@ -25,7 +25,7 @@ export default class extends React.Component {
     render() {
         return (
             <div style={outer}
-            className='playlistAlbum'>
+                className='playlistAlbum'>
                 <div className='imageWrapper'
                     onClick={this.setPlaylist}>
                     <img
@@ -35,7 +35,8 @@ export default class extends React.Component {
                     </img>
                 </div>
                 <div style={nameStyle}>
-                    {this.props.name}</div>
+                    {this.props.name}
+                </div>
             </div>
         );
     }

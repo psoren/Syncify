@@ -3,7 +3,8 @@ import { LiveStreamContext } from '../../../LiveStream';
 import toaster from 'toasted-notes';
 import 'toasted-notes/src/styles.css';
 import 'styling/styles.scss';
-import './song.scss';
+import Btn from '../artist/Btn';
+//import './song.scss';
 
 const tableStyle = {
     borderCollapse: 'collapse',
@@ -45,7 +46,7 @@ class Song extends React.Component {
         }
     }
 
-    async addSong (shouldAppend) {
+    async addSong(shouldAppend) {
         let currentURL = new URL(window.location.href);
         let roomId = currentURL.searchParams.get('roomId');
 
@@ -112,23 +113,17 @@ class Song extends React.Component {
                             <p style={pStyle}>{this.props.artist}</p>
                         </td>
                         <td style={tdStyle}>
-                            <input type='button'
-                                className={playNextClass}
-                                value='Play Next'
+                            <Btn
+                                class={'btn'}
+                                val={'Play Next'}
                                 onClick={this.addSong.bind(this, false)}
-                                onMouseDown={this.playNextClicked}
-                                onMouseOut={this.playNextUnclicked}
-                                onMouseUp={this.playNextUnclicked}
                             />
                         </td>
                         <td style={tdStyle}>
-                            <input type='button'
-                                className={playLaterClass}
-                                value='Play Later'
-                                onClick={this.addSong.bind(this, true)}
-                                onMouseDown={this.playLaterClicked}
-                                onMouseOut={this.playLaterUnclicked}
-                                onMouseUp={this.playLaterUnclicked}
+                            <Btn
+                                class={'btn'}
+                                val={'Play Next'}
+                                onClick={this.addSong.bind(this, false)}
                             />
                         </td>
                     </tr>

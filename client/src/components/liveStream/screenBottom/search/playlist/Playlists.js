@@ -105,7 +105,8 @@ export default class extends React.Component {
                     <PlaylistSongs
                         playlistURI={this.state.selectedPlaylist}
                         playlistName={this.state.selectedPlaylistName}
-                        goToAllPlaylists={this.goToAllPlaylists} />
+                        goToAllPlaylists={this.goToAllPlaylists}
+                    />
                 </div>
             );
         }

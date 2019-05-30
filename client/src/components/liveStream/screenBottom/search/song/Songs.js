@@ -3,7 +3,6 @@ import Song from './Song';
 import { LiveStreamContext } from '../../../LiveStream';
 import querystring from 'querystring';
 import 'styling/styles.scss';
-import './song.scss';
 import toaster from 'toasted-notes';
 import 'toasted-notes/src/styles.css';
 

@@ -1,0 +1,139 @@
+@import "styling/styles.scss";
+
+.artistsTitle {
+  color: white;
+  text-align: center;
+}
+
+.outerGrid {
+  display: grid;
+  height: 500px;
+  overflow: auto;
+  grid-template-columns: auto auto auto;
+  margin: 10px;
+  grid-column-gap: 40px;
+  grid-row-gap: 10px;
+}
+
+.artistBtn {
+  cursor: pointer;
+}
+
+.label {
+  color: #fff;
+  text-align: left;
+  font-size: 40px;
+  font-weight: bold;
+  font-family: "helvetica neue", sans-serif;
+  padding-left: 25px;
+}
+
+.topDiv {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.songs {
+  height: 300px;
+  overflow: auto;
+}
+
+.albums {
+  display: grid;
+  height: 600px;
+  overflow: auto;
+  grid-template-columns: auto auto auto;
+  margin: 10px;
+  grid-column-gap: 20px;
+  grid-row-gap: 10px;
+}
+
+.main {
+  width: 800px;
+  height: 1000px;
+  overflow: auto;
+  padding: 10px;
+}
+
+.middleDiv {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.artistNameOuter {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.artistName {
+  color: #fff;
+  vertical-align: middle;
+  font-size: 50px;
+  font-weight: bold;
+  font-family: "helvetica neue", sans-serif;
+}
+
+.artistImage {
+  margin: 10px;
+  border: 1px solid white;
+  width: 150px;
+  height: 150px;
+}
+
+.albumImageMain {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: space-evenly;
+}
+
+.albumImage {
+  margin: 10px;
+  border: 1px solid white;
+  width: 200px;
+  height: 200px;
+}
+
+.albumImage:hover {
+  cursor: pointer;
+}
+
+.albumImageName {
+  color: #fff;
+  font-size: 20px;
+  font-weight: bold;
+  font-family: "helvetica neue", sans-serif;
+}
+
+.bigBtn {
+  font: bold 18px "helvetica neue";
+  border-radius: 1em;
+  background: $accent;
+  color: white;
+  padding: 0.7em 1.5em;
+  width: 9em;
+  outline: 0;
+  cursor: pointer;
+}
+
+.bigBtnClicked {
+  font: bold 18px "helvetica neue";
+  border-radius: 1em;
+  background: $accentDark;
+  color: white;
+  padding: 0.7em 1.5em;
+  width: 9em;
+  outline: 0;
+  cursor: pointer;
+}
+
+hr {
+  height: 2px;
+  border: 1px solid white;
+  color: white;
+  background: white;
+}

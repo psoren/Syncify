@@ -1,71 +1,96 @@
 import React from 'react';
 import Artist from './Artist';
-//import SelectedArtist from './selectedArtist/SelectedArtist';
-
-const outerGrid = {
-    display: 'grid',
-    height: '500px',
-    overflow: 'auto',
-    gridTemplateColumns: 'auto auto auto',
-    margin: '10px',
-    gridColumnGap: '40px',
-    gridRowGap: '10px'
-}
-
-const noSearchStyle = {
-    margin: 'auto',
-    textAlign: 'center',
-    width: '100%',
-    paddingLeft: '75px',
-    paddingBottom: "75px",
-    font: 'bold 36px "helvetica neue", helvetica, arial, sans-serif',
-}
+import ArtistImage from './ArtistImage';
+import './artists.scss';
 
 export default class extends React.Component {
-
-    //goToArtistPage = (artistURI) => this.setState({ selectedArtist: artistURI });
-    //returnToMainPage = () => this.setState({ selectedArtist: '' });
-
-    setSearchedArtists = (props) => {
-        let artists = [];
-        props.searchResult.artists.items.forEach((artist) => {
-            let imgSrc = '/defaultPerson.png';
-            if (artist.images[0]) {
-                imgSrc = artist.images[0].url
-            }
-
-            let newArtist = <Artist
-                key={artist.id}
-                id={artist.id}
-                name={artist.name}
-                imgSrc={imgSrc}
-                uri={artist.uri}
-                goToArtistPage={this.goToArtistPage}
-            />
-            artists.push(newArtist);
-        });
-        this.setState({ artists: artists });
+    constructor(props) {
+        super(props);
+        this.state = { selectedArtistId: null };
     }
 
     componentWillReceiveProps(nextProps) {
-        if (nextProps.searchResult &&
-            nextProps.searchResult.artists) {
+        if (nextProps.searchResult && nextProps.searchResult.artists) {
             this.setSearchedArtists(nextProps);
         }
         else if (nextProps.searchResult === '') {
-            this.setState({ artists: [] });
+            this.setTopArtists();
         }
     }
 
-    constructor(props) {
-        super(props);
-        this.state = {};
+    //Set the state of this component to be the search result
+    setSearchedArtists = (props) => {
+        let artists = [];
+        props.searchResult.artists.items.forEach((artist) => {
+            let imgSrc = artist.images[0] ?
+                artist.images[0].url : '/defaultPerson.png';
+            let newArtistImage = <ArtistImage
+                key={artist.id}
+                id={artist.id}
+                name={artist.name}
+                src={imgSrc}
+                onClick={this.setSelectedArtistId}
+            />
+            artists.push(newArtistImage);
+        });
+        this.setState({
+            artists: artists,
+            title: 'Results'
+        });
     }
 
-    //We will add in the more complicated artist functionality later
+    //Set the state of this component to be the user's top artists
+    setTopArtists = async () => {
+        let topArtistsRes = await fetch('https://api.spotify.com/v1/me/top/artists', {
+            headers: { 'Authorization': 'Bearer ' + localStorage.getItem('accessToken') }
+        });
+        let topArtistsResJSON = await topArtistsRes.json();
+        let artists = [];
+        topArtistsResJSON.items.forEach((artist) => {
+            let imgSrc = artist.images[0] ?
+                artist.images[0].url : '/defaultPerson.png';
+            let newArtistImage = <ArtistImage
+                key={artist.id}
+                id={artist.id}
+                name={artist.name}
+                src={imgSrc}
+                onClick={this.setSelectedArtistId}
+            />
+            artists.push(newArtistImage);
+        });
+        this.setState({
+            artists: artists,
+            title: 'Your Top Artists'
+        });
+    }
+
+    setSelectedArtistId = (id) =>  this.setState({selectedArtistId: id});
+
+    showArtists = () => this.setState({selectedArtistId: null});
+
     render() {
-        let comp = this.state.artists ? this.state.artists :
-            <div style={noSearchStyle}>Search for an artist</div>;
-        return (<div style={outerGrid}>{comp} </div>);
+        if (this.state.selectedArtistId) {
+            return (
+                <div className='main'>
+                    <Artist
+                        id={this.state.selectedArtistId}
+                        showArtists={this.showArtists}
+                    />
+                </div>
+            );
+        }
+        else {
+            return (
+                <div>
+                    <h2 className='artistsTitle'>
+                        {this.state.title}
+                    </h2>
+                    <div
+                        className='outerGrid'>
+                        {this.state.artists}
+                    </div>
+                </div>
+            );
+        }
     }
 }
