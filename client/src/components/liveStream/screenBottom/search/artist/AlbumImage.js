@@ -15,6 +15,7 @@ export default class AlbumImage extends React.PureComponent {
                     className='albumImage'
                     src={this.props.src}
                     onClick={this.onClick}
+                    alt='Album'
                 >
                 </img>
             </div>

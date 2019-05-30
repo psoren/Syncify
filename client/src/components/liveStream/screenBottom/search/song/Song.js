@@ -95,10 +95,6 @@ class Song extends React.Component {
     playLaterUnclicked = () => this.setState({ playLaterClicked: false });
 
     render() {
-
-        let playNextClass = this.state.playNextClicked ? 'btnClicked' : 'btn';
-        let playLaterClass = this.state.playLaterClicked ? 'btnClicked' : 'btn';
-
         return (
             <table style={tableStyle}>
                 <tbody>

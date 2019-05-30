@@ -5,8 +5,6 @@ import LiveStream from './components/liveStream/LiveStream';
 import LoginScreen from './components/loginScreen/LoginScreen';
 import Error from './components/Error';
 
-import Artists from './components/liveStream/screenBottom/search/artist/Artists';
-
 /**
  * When we create this app, we want to pass a callback to the roomselect screen.
  * When the web player is created in the roomselect screen, the callback will execute and we will
