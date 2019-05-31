@@ -8,10 +8,8 @@ let mainStyle = {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    padding: '0px',
-    margin: '0px',
     position: 'relative',
-    top: '-310px',
+    top: '-350px',
     maxHeight: '0px'
 }
 
@@ -19,7 +17,8 @@ const popupStyle = {
     borderRadius: '10px',
     background: 'rgba(10,10,10,0.85)',
     padding: '0px',
-    margin: '0px'
+    margin: '0px',
+
 }
 
 export default class extends React.Component {
