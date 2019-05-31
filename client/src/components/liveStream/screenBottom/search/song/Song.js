@@ -6,24 +6,6 @@ import 'styling/styles.scss';
 import Btn from '../artist/Btn';
 import './song.scss';
 
-const tableStyle = {
-    borderCollapse: 'collapse',
-    width: '100%'
-}
-
-const imgStyle = {
-    width: '60px',
-    padding: '0px',
-    margin: '0px'
-}
-
-const pStyle = {
-    font: '20px arial, sans-serif',
-    fontWeight: '900',
-    color: '#fff',
-    padding: '0px'
-}
-
 class Song extends React.Component {
 
     constructor(props) {
@@ -86,22 +68,21 @@ class Song extends React.Component {
 
     render() {
         return (
-            <table style={tableStyle}>
+            <table>
                 <tbody>
                     <tr>
                         <td>
                             <img
                                 src={this.props.imgSrc}
-                                style={imgStyle}
                                 alt='Song Art'
                             >
                             </img>
                         </td>
                         <td>
-                            <p style={pStyle}> {this.props.title}</p>
+                            <p> {this.props.title}</p>
                         </td>
                         <td>
-                            <p style={pStyle}>{this.props.artist}</p>
+                            <p>{this.props.artist}</p>
                         </td>
                         <td>
                             <Btn class={'btn'} val={'Play Next'}

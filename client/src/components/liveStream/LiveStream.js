@@ -14,23 +14,10 @@ import updateCreatorAccessToken from './functions/updateCreatorAccessToken.js';
 import checkIfCreator from './functions/checkIfCreator.js';
 import setInitialPlayback from './functions/setInitialPlayback.js';
 
-let mainStyle = {
+let main = {
 	display: 'flex',
 	justifyContent: 'center',
-	alignItems: 'center',
-	padding: '0px',
-	margin: '0px',
-	position: 'relative',
-	top: '-100px',
-	maxHeight: '25px'
-}
-
-let bottomStyle = {
-	maxWidth: '50%',
-	padding: '0px',
-	margin: '0px',
-	paddingBottom: '100px',
-	maxHeight: '25px'
+	marginTop: '-200px'
 }
 
 export const LiveStreamContext = React.createContext();
@@ -484,7 +471,6 @@ export default class extends React.Component {
 		if (this.state.roomDeleted) {
 			return (<Redirect to='/roomselect' />);
 		}
-
 		return (
 			<LiveStreamContext.Provider value={{
 				socket: this.socket,
@@ -500,8 +486,8 @@ export default class extends React.Component {
 					player={this.state.player}
 					listeners={this.state.listeners}
 					upNext={this.state.upNext} />
-				<div style={mainStyle}>
-					<div style={bottomStyle}><ScreenBottom /></div>
+				<div style={main}>
+					<ScreenBottom />
 				</div>
 			</LiveStreamContext.Provider>
 		);

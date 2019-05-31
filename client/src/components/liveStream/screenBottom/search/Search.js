@@ -2,9 +2,9 @@ import React from 'react';
 import Popup from './Popup';
 import './searchStyles.scss';
 
-const main = {
+const outer = {
 	width: '350px'
-}
+};
 
 const search = {
 	width: '100%',
@@ -14,7 +14,7 @@ const search = {
 	background: 'none',
 	color: 'white',
 	outline: 'none'
-}
+};
 
 export default class extends React.Component {
 	constructor(props) {
@@ -66,8 +66,10 @@ export default class extends React.Component {
 
 	render() {
 		return (
-			<div style={main}
-				ref={node => this.node = node}>
+			<div
+				style={outer}
+				ref={node => this.node = node}
+			>
 				{(this.state.showPopup) ? <Popup
 					changeToSearchFor={this.changeToSearchFor}
 					searchResult={this.state.searchResult}
@@ -75,7 +77,8 @@ export default class extends React.Component {
 				/> : null}
 				<form onSubmit={this.handleSubmit}
 					onChange={this.handleChange}>
-					<input placeholder='Search...'
+					<input
+						placeholder='Search...'
 						style={search}
 						type="text"
 						value={this.state.value}

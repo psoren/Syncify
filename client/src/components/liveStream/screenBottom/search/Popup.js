@@ -4,35 +4,16 @@ import Songs from './song/Songs';
 import Artists from './artist/Artists';
 import Playlists from './playlist/Playlists';
 
-let mainStyle = {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
+let popup = {
     position: 'relative',
-    top: '-350px',
-    maxHeight: '0px'
-}
-
-const popupStyle = {
+    top: '-85%',
     borderRadius: '10px',
     background: 'rgba(10,10,10,0.85)',
-    padding: '0px',
-    margin: '0px',
-
+    width: '600px', 
+    height: '600px'
 }
 
 export default class extends React.Component {
-
-    constructor(props) {
-        super(props);
-        this.state = { selected: 'track' };
-    }
-
-    changeOption = (option) => {
-        this.setState({ selected: option });
-        this.props.changeToSearchFor(option);
-    }
-
     render() {
         let selectedComponent;
 
@@ -51,14 +32,21 @@ export default class extends React.Component {
                 searchResult={this.props.searchResult}
                 searchParam={this.props.searchParam} />
         }
-
         return (
-            <div style={mainStyle}>
-                <div style={popupStyle}>
-                    <Header changeOption={this.changeOption} />
-                    {selectedComponent}
-                </div>
+            <div style={popup}>
+                <Header changeOption={this.changeOption} />
+                {selectedComponent}
             </div>
         );
+    }
+
+    constructor(props) {
+        super(props);
+        this.state = { selected: 'track' };
+    }
+
+    changeOption = (option) => {
+        this.setState({ selected: option });
+        this.props.changeToSearchFor(option);
     }
 }

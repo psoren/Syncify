@@ -1,39 +1,57 @@
 import React from 'react';
 import Song from './Song';
+import Btn from '../artist/Btn';
 import { LiveStreamContext } from '../../../LiveStream';
 import querystring from 'querystring';
 import 'styling/styles.scss';
 import toaster from 'toasted-notes';
 import 'toasted-notes/src/styles.css';
-import Btn from '../artist/Btn';
 
 const outer = {
     display: 'flex',
     flexDirection: 'column',
-    textAlign: 'center',
-    justifyContent: 'center',
-    width: '70vw',
-    height: '60vh',
-    marginLeft: '-20px',
-    marginRight: '10px',
-    padding: '0px',
-    marginBottom: '10px'
+    width: '100%',
+    height: '100%',
 }
 
 const playAll = {
     display: 'flex',
     justifyContent: 'space-evenly',
     flexDirection: 'row',
-    padding: '0px',
-    margin: '0px'
+    paddingBottom: '25px'
 }
 
 const inner = {
     height: '90%',
-    overflow: 'auto'
+    overflow: 'auto',
+    textAlign: 'center'
 }
 
 class Songs extends React.Component {
+
+
+    render() {
+        return (
+            <div style={outer}>
+                <div style={playAll}>
+                    <Btn
+                        class={'bigBtn'}
+                        val={'Play All Next'}
+                        onClick={this.playAllSongs.bind(this, false)}
+                    />
+                     <Btn
+                        class={'bigBtn'}
+                        val={'Play All Later'}
+                        onClick={this.playAllSongs.bind(this, true)}
+                    />
+                </div>
+                <div style={inner}>
+                    {this.state.songs}
+                </div>
+            </div>
+        );
+    }
+
     constructor(props) {
         super(props);
         this.state = {
@@ -172,28 +190,6 @@ class Songs extends React.Component {
                 toaster.notify(resJSON.message, { duration: 2000 });
             }
         }
-    }
-
-    render() {
-        return (
-            <div style={outer}>
-                <div style={playAll}>
-                    <Btn
-                        class={'bigBtn'}
-                        val={'Play All Next'}
-                        onClick={this.playAllSongs.bind(this, false)}
-                    />
-                     <Btn
-                        class={'bigBtn'}
-                        val={'Play All Later'}
-                        onClick={this.playAllSongs.bind(this, true)}
-                    />
-                </div>
-                <div style={inner}>
-                    {this.state.songs}
-                </div>
-            </div>
-        );
     }
 }
 
