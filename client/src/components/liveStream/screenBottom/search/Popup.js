@@ -16,13 +16,10 @@ let mainStyle = {
 }
 
 const popupStyle = {
-    minWidth: '600px',
-    height: '600px',
     borderRadius: '10px',
     background: 'rgba(10,10,10,0.85)',
-    maxWidth: '50%',
     padding: '0px',
-    margin: '0px',
+    margin: '0px'
 }
 
 export default class extends React.Component {

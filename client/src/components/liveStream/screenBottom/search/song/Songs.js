@@ -5,29 +5,32 @@ import querystring from 'querystring';
 import 'styling/styles.scss';
 import toaster from 'toasted-notes';
 import 'toasted-notes/src/styles.css';
+import Btn from '../artist/Btn';
 
 const outer = {
-    paddingTop: '0px',
-    marginTop: '0px',
     display: 'flex',
     flexDirection: 'column',
     textAlign: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    width: '70vw',
+    height: '60vh',
+    marginLeft: '-20px',
+    marginRight: '10px',
+    padding: '0px',
+    marginBottom: '10px'
+}
+
+const playAll = {
+    display: 'flex',
+    justifyContent: 'space-evenly',
+    flexDirection: 'row',
+    padding: '0px',
+    margin: '0px'
 }
 
 const inner = {
-    height: '400px',
+    height: '90%',
     overflow: 'auto'
-}
-
-const buttonDiv = {
-    paddingBottom: '15px'
-}
-
-const playAllButtonsStyle = {
-    display: 'flex',
-    justifyContent: 'space-evenly',
-    flexDirection: 'row'
 }
 
 class Songs extends React.Component {
@@ -171,40 +174,20 @@ class Songs extends React.Component {
         }
     }
 
-    playAllNextClicked = () => this.setState({ playAllNextClicked: true });
-    playAllNextUnclicked = () => this.setState({ playAllNextClicked: false });
-
-    playAllLaterClicked = () => this.setState({ playAllLaterClicked: true });
-    playAllLaterUnclicked = () => this.setState({ playAllLaterClicked: false });
-
     render() {
-
-        let playAllNextClass = this.state.playAllNextClicked ? 'bigBtnClicked' : 'bigBtn';
-        let playAllLaterClass = this.state.playAllLaterClicked ? 'bigBtnClicked' : 'bigBtn';
-
         return (
             <div style={outer}>
-                <div style={playAllButtonsStyle}>
-                    <div style={buttonDiv}>
-                        <input type='button'
-                            className={playAllNextClass}
-                            value='Play All Next'
-                            onClick={this.playAllSongs.bind(this, false)}
-                            onMouseDown={this.playAllNextClicked}
-                            onMouseOut={this.playAllNextUnclicked}
-                            onMouseUp={this.playAllNextUnclicked}
-                        />
-                    </div>
-                    <div style={buttonDiv}>
-                        <input type='button'
-                            className={playAllLaterClass}
-                            value='Play All Later'
-                            onClick={this.playAllSongs.bind(this, true)}
-                            onMouseDown={this.playAllLaterClicked}
-                            onMouseOut={this.playAllLaterUnclicked}
-                            onMouseUp={this.playAllLaterUnclicked}
-                        />
-                    </div>
+                <div style={playAll}>
+                    <Btn
+                        class={'bigBtn'}
+                        val={'Play All Next'}
+                        onClick={this.playAllSongs.bind(this, false)}
+                    />
+                     <Btn
+                        class={'bigBtn'}
+                        val={'Play All Later'}
+                        onClick={this.playAllSongs.bind(this, true)}
+                    />
                 </div>
                 <div style={inner}>
                     {this.state.songs}

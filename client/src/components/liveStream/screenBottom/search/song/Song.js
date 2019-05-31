@@ -4,25 +4,24 @@ import toaster from 'toasted-notes';
 import 'toasted-notes/src/styles.css';
 import 'styling/styles.scss';
 import Btn from '../artist/Btn';
-//import './song.scss';
+import './song.scss';
 
 const tableStyle = {
     borderCollapse: 'collapse',
     width: '100%'
 }
 
-const imgStyle = { width: '75px' }
-
-const tdStyle = {
-    width: '25%',
-    height: '75px',
-    textAlign: 'center'
+const imgStyle = {
+    width: '60px',
+    padding: '0px',
+    margin: '0px'
 }
 
 const pStyle = {
     font: '20px arial, sans-serif',
     fontWeight: '900',
-    color: '#fff'
+    color: '#fff',
+    padding: '0px'
 }
 
 class Song extends React.Component {
@@ -31,9 +30,7 @@ class Song extends React.Component {
         super(props);
         this.state = {
             socket: props.context.socket,
-            loading: true,
-            playNextClicked: false,
-            playLaterClicked: false
+            loading: true
         };
     }
 
@@ -74,7 +71,6 @@ class Song extends React.Component {
             //Create the message that we will send to the other users
             //The person that added the song/artist's songs/playlist
             let user = localStorage.getItem('name').split(' ')[0];
-            let nextSongsLength = resJSON.nextSongs.length;
             let message = user + ' added ' + resJSON.msg + ' to the queue.';
 
             this.state.socket.emit('initUpdateSongs', {
@@ -88,38 +84,33 @@ class Song extends React.Component {
         }
     }
 
-    playNextClicked = () => this.setState({ playNextClicked: true });
-    playNextUnclicked = () => this.setState({ playNextClicked: false });
-
-    playLaterClicked = () => this.setState({ playLaterClicked: true });
-    playLaterUnclicked = () => this.setState({ playLaterClicked: false });
-
     render() {
         return (
             <table style={tableStyle}>
                 <tbody>
                     <tr>
-                        <td style={tdStyle}>
-                            <img src={this.props.imgSrc} style={imgStyle} alt='Song Art'></img>
+                        <td>
+                            <img
+                                src={this.props.imgSrc}
+                                style={imgStyle}
+                                alt='Song Art'
+                            >
+                            </img>
                         </td>
-                        <td style={tdStyle}>
+                        <td>
                             <p style={pStyle}> {this.props.title}</p>
                         </td>
-                        <td style={tdStyle}>
+                        <td>
                             <p style={pStyle}>{this.props.artist}</p>
                         </td>
-                        <td style={tdStyle}>
-                            <Btn
-                                class={'btn'}
-                                val={'Play Next'}
+                        <td>
+                            <Btn class={'btn'} val={'Play Next'}
                                 onClick={this.addSong.bind(this, false)}
                             />
                         </td>
-                        <td style={tdStyle}>
-                            <Btn
-                                class={'btn'}
-                                val={'Play Next'}
-                                onClick={this.addSong.bind(this, false)}
+                        <td>
+                            <Btn class={'btn'} val={'Play Later'}
+                                onClick={this.addSong.bind(this, true)}
                             />
                         </td>
                     </tr>

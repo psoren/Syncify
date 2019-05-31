@@ -81,7 +81,7 @@ export default class extends React.Component {
         }
         else {
             return (
-                <div>
+                <div className='artistOuter'>
                     <h2 className='artistsTitle'>
                         {this.state.title}
                     </h2>
