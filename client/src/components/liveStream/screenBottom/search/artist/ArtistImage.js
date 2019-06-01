@@ -1,5 +1,5 @@
 import React from 'react';
-import './artists.scss';
+import './artistImage.scss';
 
 export default class ArtistImage extends React.PureComponent {
 
@@ -7,17 +7,17 @@ export default class ArtistImage extends React.PureComponent {
     
     render() {
         return (
-            <div className='albumImageMain'>
-                <h3 className='albumImageName'>
-                    {this.props.name}
-                </h3>
+            <div className='artistImageMain'>
                 <img
-                    className='albumImage'
+                    className='artistImage'
                     src={this.props.src}
                     onClick={this.onClick}
                     alt='Artist'
                 >
                 </img>
+                <h3 className='artistImageName'>
+                    {this.props.name}
+                </h3>
             </div>
         );
     }

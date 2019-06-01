@@ -5,7 +5,6 @@ import Playlist from './Playlist';
 import './playlists.scss';
 
 export default class extends React.Component {
-
     render() {
         //If we are viewing a single playlist
         if (this.state.selectedPlaylist) {

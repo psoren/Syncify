@@ -4,6 +4,33 @@ import ArtistImage from './ArtistImage';
 import './artists.scss';
 
 export default class extends React.Component {
+
+    render() {
+        if (this.state.selectedArtistId) {
+            return (
+                <div className='main'>
+                    <Artist
+                        id={this.state.selectedArtistId}
+                        showArtists={this.showArtists}
+                    />
+                </div>
+            );
+        }
+        else {
+            return (
+                <div className='artistOuter'>
+                    <h2 className='artistsTitle'>
+                        {this.state.title}
+                    </h2>
+                    <div
+                        className='outerGrid'>
+                        {this.state.artists}
+                    </div>
+                </div>
+            );
+        }
+    }
+
     constructor(props) {
         super(props);
         this.state = { selectedArtistId: null };
@@ -67,30 +94,4 @@ export default class extends React.Component {
     setSelectedArtistId = (id) => this.setState({ selectedArtistId: id });
 
     showArtists = () => this.setState({ selectedArtistId: null });
-
-    render() {
-        if (this.state.selectedArtistId) {
-            return (
-                <div className='main'>
-                    <Artist
-                        id={this.state.selectedArtistId}
-                        showArtists={this.showArtists}
-                    />
-                </div>
-            );
-        }
-        else {
-            return (
-                <div className='artistOuter'>
-                    <div
-                        className='outerGrid'>
-                        {this.state.artists}
-                    </div>
-                    <h2 className='artistsTitle'>
-                        {this.state.title}
-                    </h2>
-                </div>
-            );
-        }
-    }
 }

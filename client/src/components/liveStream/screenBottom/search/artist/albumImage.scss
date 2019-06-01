@@ -1,0 +1,23 @@
+.albumImageMain {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  justify-content: center;
+}
+
+.albumImageName {
+  font: 16px arial, "sans-serif";
+  font-weight: 600;
+  color: #fff;
+  margin-top: 10px;
+}
+
+.albumImage {
+  width: 18vw;
+  height: 18vw;
+  border: 2px solid white;
+}
+
+.albumImage:hover {
+  cursor: pointer;
+}

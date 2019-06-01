@@ -5,34 +5,64 @@ import GoBackBtn from './GoBackBtn';
 import Btn from './Btn';
 import toaster from 'toasted-notes';
 import 'toasted-notes/src/styles.css';
-import './artists.scss';
-//import 'styling/styles.scss';
-
-const buttonsDiv = {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-evenly'
-}
+import './album.scss';
+import 'styling/styles.scss';
 
 class Album extends React.Component {
+
+    render() {
+        return (
+            <React.Fragment>
+                <div className='buttons'>
+                    <GoBackBtn onClick={this.props.showArtist} />
+                    <Btn
+                        class='bigBtn'
+                        val='Play Next'
+                        onClick={this.playSongs.bind(this, false)}
+                    />
+                    <Btn
+                        class='bigBtn'
+                        val='Play Later'
+                        onClick={this.playSongs.bind(this, true)}
+                    />
+                </div>
+                <div className='albumNameOuter'>
+                    <div className='albumName'>
+                        {this.state.albumName}
+                        <hr />
+                        {this.state.artistName}
+                    </div>
+                    <img
+                        className='artistImage'
+                        src={this.state.albumSrc}
+                        alt='Album'>
+                    </img>
+                </div>
+                <h2 className='label'>Songs</h2>
+                <div className='songs'>
+                    {this.state.songs}
+                </div>
+            </React.Fragment>
+        );
+    }
 
     constructor(props) {
         super(props);
         this.state = {
             id: this.props.id,
-            //socket: props.context.socket,
+            socket: props.context.socket,
             albumSrc: '/notPlaying.jpg',
             songs: []
         };
     }
 
-    /*componentWillReceiveProps(nextProps) {
+    componentWillReceiveProps(nextProps) {
         if (nextProps.context.socket) {
             this.setState({
                 socket: nextProps.context.socket,
             });
         }
-    }*/
+    }
 
     //Fetch album data
     componentWillMount = async () => {
@@ -112,44 +142,6 @@ class Album extends React.Component {
                 toaster.notify(resJSON.message, { duration: 2000 });
             }
         }
-    }
-
-    render() {
-        return (
-            <React.Fragment>
-                <div style={buttonsDiv}>
-                    <GoBackBtn onClick={this.props.showArtist} />
-                    <Btn
-                        class={'bigBtn'}
-                        val={'Play Next'}
-                        onClick={this.playSongs.bind(this, false)}
-                    />
-                    <Btn
-                        class={'bigBtn'}
-                        val={'Play Later'}
-                        onClick={this.playSongs.bind(this, true)}
-                    />
-                </div>
-                <div className='middleDiv'>
-                    <div className='artistNameOuter'>
-                        <div className='artistName'>
-                            {this.state.albumName}
-                            <hr />
-                            {this.state.artistName}
-                        </div>
-                    </div>
-                    <img
-                        className='artistImage'
-                        src={this.state.albumSrc}
-                        alt='Album'>
-                    </img>
-                </div>
-                <h2 className='label'>Songs</h2>
-                <div className='songs'>
-                    {this.state.songs}
-                </div>
-            </React.Fragment>
-        );
     }
 }
 

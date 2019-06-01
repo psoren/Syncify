@@ -1,0 +1,59 @@
+.main {
+    height: 550px;
+    overflow: auto;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  padding: 10px;
+}
+
+.artistNameOuter {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.artistName {
+  color: #fff;
+  align-self: center;
+  font-size: 50px;
+  font-weight: bold;
+  font-family: "helvetica neue", sans-serif;
+}
+
+.songs {
+  height: 300px;
+  overflow: auto;
+}
+
+.albums {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+    height: 490px;
+    width: 96%;
+    overflow: auto;
+    padding-left: 10px;
+    margin-left: 10px;
+
+  }
+.artistImage {
+  margin: 10px;
+  border: 1px solid white;
+  width: 150px;
+  height: 150px;
+}
+
+.label {
+  color: #fff;
+  text-align: left;
+  font-size: 40px;
+  font-weight: bold;
+  font-family: "helvetica neue", sans-serif;
+  padding: 25px 0 10px 25px;
+  margin: 0px;
+}

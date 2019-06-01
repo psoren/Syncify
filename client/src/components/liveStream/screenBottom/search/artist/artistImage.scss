@@ -1,0 +1,32 @@
+.artistImageMain {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  align-items: center;
+}
+
+.artistImage {
+  width: 18vw;
+  height: 18vw;
+  border: 2px solid white;
+}
+
+.artistImage:hover {
+  cursor: pointer;
+}
+
+.artistImageName {
+  font: 16px arial, "sans-serif";
+  font-weight: 600;
+  color: #fff;
+  margin-top: 10px;
+}
+
+.artistsTitle {
+  border-bottom: 2px solid white;
+  justify-content: center;
+  width: 200px;
+  margin: auto;
+  padding-top: 10px;
+  padding-bottom: 2px;
+}
