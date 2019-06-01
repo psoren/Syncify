@@ -1,19 +1,19 @@
-.playlistOuter {
+.playlistImageOuter {
   display: flex;
   flex-direction: column;
   cursor: pointer;
+  align-items: center;
+
 }
 
 img.playlist {
   width: 125px;
   height: 125px;
   border: 2px solid white;
-  padding: 0px;
-  margin: 0px;
 }
 
-.name {
-  font: 20px arial, "sans-serif";
+.title {
+  font: 16px arial, "sans-serif";
   font-weight: 600;
   color: #fff;
   margin-top: 10px;

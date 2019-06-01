@@ -1,5 +1,5 @@
 import React from 'react';
-import './playlist.scss';
+import './playlistImage.scss';
 
 export default class extends React.Component {
 
@@ -8,14 +8,14 @@ export default class extends React.Component {
 
     render() {
         return (
-            <div className='playlistOuter'
+            <div className='playlistImageOuter'
                 onClick={this.setPlaylist}>
                 <img
                     src={this.props.imgSrc}
                     className='playlist'
                     alt='Playlist'>
                 </img>
-                <div className='name'>
+                <div className='title'>
                     {this.props.name}
                 </div>
             </div>

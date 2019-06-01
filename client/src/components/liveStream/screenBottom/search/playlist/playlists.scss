@@ -1,17 +1,17 @@
 .playlistMainGrid {
-    display: grid;
-    height: 550px;
-    width: 95vw;
-    overflow: auto;
-    grid-template-columns: auto auto auto;
-    grid-column-gap: 10px;
-    grid-row-gap: 10px;
-  }
-  
-  .playlistSelected {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    justify-content: space-around;
-  }
-  
+  justify-items: center;
+  padding: 10px;
+  display: grid;
+  height: 525px;
+  width: 100%;
+  overflow: auto;
+  grid-template-columns: auto auto auto;
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+}
+
+.playlistSelected {
+  border: 1px solid red;
+  display: flex;
+  flex-direction: column;
+}
