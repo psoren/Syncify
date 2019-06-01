@@ -1,0 +1,25 @@
+ .filter {
+    text-align: center;
+    padding: 5px 0px;
+}
+
+.playlistOuter {
+    padding-top: 0px;
+    margin-top: 0px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+}
+
+.playlistInner {
+    height: 425px;
+    overflow: auto;
+}
+
+.playlistButtons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 10px;
+}

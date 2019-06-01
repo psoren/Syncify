@@ -1,38 +1,48 @@
 import React from 'react';
-import PlaylistSong from '../song/Song';
-import Btn from './Btn';
-import GoBackToAllPlaylistsButton from './GoBackToAllPlaylistsButton';
+import Song from '../song/Song';
+import Btn from '../artist/Btn';
+import GoBackBtn from '../artist/GoBackBtn';
 import PlaylistFilter from './PlaylistFilter';
 import { LiveStreamContext } from '../../../LiveStream';
 import toaster from 'toasted-notes';
 import 'toasted-notes/src/styles.css';
-
-const filterStyle = {
-    textAlign: 'center',
-    paddingTop: '15px'
-}
-
-const outer = {
-    paddingTop: '0px',
-    marginTop: '0px',
-    display: 'flex',
-    flexDirection: 'column',
-    textAlign: 'center',
-    justifyContent: 'center'
-}
-
-const inner = {
-    height: '400px',
-    overflow: 'auto'
-}
-
-const buttonDiv = {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-around'
-}
+import './playlist.scss';
 
 class Playlist extends React.Component {
+
+    render() {
+        //If the user has searched for something, and there is at least one result
+        let songList = this.state.songs;
+        if (this.state.searchText !== '') {
+            songList = this.state.filteredSongs;
+        }
+
+        return (
+            <div className='playlistOuter'>
+                <div className='playlistButtons'>
+                    <GoBackBtn
+                        onClick={this.props.goToAllPlaylists}
+                    />
+                    <Btn
+                        class='bigBtn'
+                        onClick={this.playAllSongs.bind(this, false)}
+                        val='Play All Next'
+                    />
+                    <Btn
+                        class='bigBtn'
+                        onClick={this.playAllSongs.bind(this, true)}
+                        val='Play All Later'
+                    />
+                </div>
+                <div className='filter'>
+                    <PlaylistFilter setSearchedSongs={this.setSearchedSongs} />
+                </div>
+                <div className='playlistInner'>
+                    {songList}
+                </div>
+            </div>
+        );
+    }
 
     constructor(props) {
         super(props);
@@ -71,7 +81,7 @@ class Playlist extends React.Component {
             if (track.album.images.length !== 0) {
                 imgSrc = track.album.images[0].url;
             }
-            let newSong = <PlaylistSong
+            let newSong = <Song
                 key={track.id}
                 title={track.name}
                 artist={songArtists}
@@ -142,38 +152,8 @@ class Playlist extends React.Component {
             }
         }
     }
-    render() {
 
-        //If the user has searched for something, and there is at least one result
-        let songList = this.state.songs;
-        if (this.state.searchText !== '') {
-            songList = this.state.filteredSongs;
-        }
 
-        return (
-            <div style={outer}>
-                <div style={buttonDiv}>
-                    <GoBackToAllPlaylistsButton
-                        onClick={this.props.goToAllPlaylists}
-                    />
-                    <Btn
-                        onClick={this.playAllSongs.bind(this, false)}
-                        btnValue='Play All Next'
-                    />
-                    <Btn
-                        onClick={this.playAllSongs.bind(this, true)}
-                        btnValue='Play All Later'
-                    />
-                </div>
-                <div style={filterStyle}>
-                    <PlaylistFilter setSearchedSongs={this.setSearchedSongs} />
-                </div>
-                <div style={inner}>
-                    {songList}
-                </div>
-            </div>
-        );
-    }
 }
 
 export default props => (<LiveStreamContext.Consumer>
