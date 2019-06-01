@@ -17,7 +17,8 @@ const pStyle = {
 const imgStyle = {
     marginLeft: 'auto',
     marginRight: 'auto',
-    border: '2px solid white'
+    border: '2px solid white',
+    width: '150px'
 }
 
 export default class extends React.Component {

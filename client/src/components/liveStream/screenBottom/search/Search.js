@@ -3,7 +3,10 @@ import Popup from './Popup';
 import './searchStyles.scss';
 
 const outer = {
-	width: '350px'
+	width: '350px',
+	height: '100px',
+	display: 'flex',
+	justifyContent: 'center'
 };
 
 const search = {

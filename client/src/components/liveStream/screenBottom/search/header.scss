@@ -1,0 +1,22 @@
+.outer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 90%;
+  margin: 25px;
+  padding: 10px;
+  border-bottom: 1px solid white;
+}
+
+.unselected {
+  font: bold 32px "helvetica neue", sans-serif;
+  color: rgba(200, 200, 200, 0.65);
+  cursor: pointer;
+}
+
+.selected {
+  font: bold 32px "helvetica neue", sans-serif;
+  border-bottom: 3px solid #2e3192;
+  color: #fff;
+  cursor: pointer;
+}

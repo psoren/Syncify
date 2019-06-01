@@ -5,14 +5,12 @@ import Artists from './artist/Artists';
 import Playlists from './playlist/Playlists';
 
 let popup = {
-    position: 'relative',
-    top: '-85%',
-    borderRadius: '10px',
-    background: 'rgba(10,10,10,0.85)',
-    width: '600px', 
-    height: '600px'
+    position: 'absolute',
+    width: '80%',
+    height: '625px',
+    backgroundColor: 'powderblue',
+    top: '75px'
 }
-
 export default class extends React.Component {
     render() {
         let selectedComponent;
@@ -40,13 +38,13 @@ export default class extends React.Component {
         );
     }
 
-    constructor(props) {
-        super(props);
-        this.state = { selected: 'track' };
-    }
+        constructor(props) {
+            super(props);
+            this.state = { selected: 'track' };
+        }
 
-    changeOption = (option) => {
-        this.setState({ selected: option });
-        this.props.changeToSearchFor(option);
+        changeOption = (option) => {
+            this.setState({ selected: option });
+            this.props.changeToSearchFor(option);
+        }
     }
-}

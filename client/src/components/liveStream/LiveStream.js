@@ -5,6 +5,7 @@ import ScreenTop from './screenTop/ScreenTop.js'
 import ScreenMiddle from './screenMiddle/ScreenMiddle.js'
 import ScreenBottom from './screenBottom/ScreenBottom.js'
 import 'styling/styles.scss';
+import './livestream.scss';
 import toaster from 'toasted-notes';
 import 'toasted-notes/src/styles.css';
 
@@ -13,12 +14,6 @@ import updateTokens from './functions/updateTokens.js';
 import updateCreatorAccessToken from './functions/updateCreatorAccessToken.js';
 import checkIfCreator from './functions/checkIfCreator.js';
 import setInitialPlayback from './functions/setInitialPlayback.js';
-
-let main = {
-	display: 'flex',
-	justifyContent: 'center',
-	marginTop: '-200px'
-}
 
 export const LiveStreamContext = React.createContext();
 
@@ -486,7 +481,7 @@ export default class extends React.Component {
 					player={this.state.player}
 					listeners={this.state.listeners}
 					upNext={this.state.upNext} />
-				<div style={main}>
+				<div className={'bottom'}>
 					<ScreenBottom />
 				</div>
 			</LiveStreamContext.Provider>
