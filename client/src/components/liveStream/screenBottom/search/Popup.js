@@ -8,10 +8,22 @@ let popup = {
     position: 'absolute',
     width: '80%',
     height: '625px',
-    backgroundColor: 'powderblue',
-    top: '75px'
+    top: '75px',
+    borderRadius: '10px',
+    background: 'rgba(10,10,10,0.85)'
 }
 export default class extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = { selected: 'track' };
+    }
+
+    changeOption = (option) => {
+        this.setState({ selected: option });
+        this.props.changeToSearchFor(option);
+    }
+
     render() {
         let selectedComponent;
 
@@ -37,14 +49,4 @@ export default class extends React.Component {
             </div>
         );
     }
-
-        constructor(props) {
-            super(props);
-            this.state = { selected: 'track' };
-        }
-
-        changeOption = (option) => {
-            this.setState({ selected: option });
-            this.props.changeToSearchFor(option);
-        }
-    }
+}

@@ -68,35 +68,22 @@ class Song extends React.Component {
 
     render() {
         return (
-            <table>
-                <tbody>
-                    <tr>
-                        <td>
-                            <img
-                                src={this.props.imgSrc}
-                                alt='Song Art'
-                            >
-                            </img>
-                        </td>
-                        <td>
-                            <p> {this.props.title}</p>
-                        </td>
-                        <td>
-                            <p>{this.props.artist}</p>
-                        </td>
-                        <td>
-                            <Btn class={'btn'} val={'Play Next'}
-                                onClick={this.addSong.bind(this, false)}
-                            />
-                        </td>
-                        <td>
-                            <Btn class={'btn'} val={'Play Later'}
-                                onClick={this.addSong.bind(this, true)}
-                            />
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            <div className='songOuter'>
+                <img
+                    src={this.props.imgSrc}
+                    alt='Song Art'>
+                </img>
+                <p className='songInfo'> {this.props.title}</p>
+                <p className='songInfo'>{this.props.artist}</p>
+                <Btn
+                    class={'mainBtn'} val={'Play Next'}
+                    onClick={this.addSong.bind(this, false)}
+                />
+                <Btn
+                    class={'mainBtn'} val={'Play Later'}
+                    onClick={this.addSong.bind(this, true)}
+                />
+            </div>
         );
     }
 }

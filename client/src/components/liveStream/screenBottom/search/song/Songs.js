@@ -11,20 +11,19 @@ const outer = {
     display: 'flex',
     flexDirection: 'column',
     width: '100%',
-    height: '100%',
+    height: '100%'
 }
 
 const playAll = {
     display: 'flex',
     justifyContent: 'space-evenly',
     flexDirection: 'row',
-    paddingBottom: '25px'
+    padding: '10px'
 }
 
 const inner = {
-    height: '90%',
-    overflow: 'auto',
-    textAlign: 'center'
+    height: '75%',
+    overflow: 'auto'
 }
 
 class Songs extends React.Component {
@@ -33,13 +32,14 @@ class Songs extends React.Component {
     render() {
         return (
             <div style={outer}>
+                
                 <div style={playAll}>
                     <Btn
                         class={'bigBtn'}
                         val={'Play All Next'}
                         onClick={this.playAllSongs.bind(this, false)}
                     />
-                     <Btn
+                    <Btn
                         class={'bigBtn'}
                         val={'Play All Later'}
                         onClick={this.playAllSongs.bind(this, true)}
@@ -48,6 +48,9 @@ class Songs extends React.Component {
                 <div style={inner}>
                     {this.state.songs}
                 </div>
+
+
+                
             </div>
         );
     }

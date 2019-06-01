@@ -14,6 +14,7 @@ export default class extends React.PureComponent {
     render() {
         let btnClass = this.state.clicked ?
             this.props.class + 'Clicked' : this.props.class;
+
         return (
             <input type='button'
                 className={btnClass}

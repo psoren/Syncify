@@ -1,20 +1,23 @@
-td {
-  width: 25%;
-  text-align: center;
+.songOuter {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin: 10px 5px;
+  align-items: center;
+
 }
 
 img {
-  width: 50px;
+  width: 70px;
+  height: 70px;
 }
 
-table {
-  border-collapse: collapse;
-  width: 100%;
-}
-
-p {
+p.songInfo {
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 600;
   color: white;
+  width: 150px;
+  padding: 0px;
+  margin: 0px;
 }
