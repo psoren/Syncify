@@ -302,9 +302,7 @@ export default class extends React.Component {
 		clearInterval(this.updateCreatorAccessTokenIntervalId);
 		clearInterval(this.sendCurrentTimeId);
 		clearInterval(this.checkForRoomId);
-
 		//window.removeEventListener('beforeunload');
-
 		if (this.socket) {
 			this.socket.emit('leaveRoom', {
 				name: localStorage.getItem('name').split(' ')[0],
