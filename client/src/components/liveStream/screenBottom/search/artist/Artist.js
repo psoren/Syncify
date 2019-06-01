@@ -12,56 +12,6 @@ import querystring from 'querystring';
 
 class Artist extends React.Component {
 
-    render() {
-        if (this.state.selectedAlbumId) {
-            return (
-                <div className='main'>
-                    <Album
-                        id={this.state.selectedAlbumId}
-                        showArtist={this.showArtist}
-                    />
-                </div>
-            );
-        }
-        else {
-            return (
-                <div className='main'>
-                    <div className='buttons'>
-                        <GoBackBtn onClick={this.props.showArtists} />
-                        <Btn
-                            class='bigBtn'
-                            val='Play Next'
-                            onClick={this.playTopSongs.bind(this, false)}
-                        />
-                        <Btn
-                            class='bigBtn'
-                            val='Play Later'
-                            onClick={this.playTopSongs.bind(this, true)}
-                        />
-                    </div>
-                    <div className='artistNameOuter'>
-                        <div className='artistName'>
-                            {this.state.name}
-                        </div>
-                        <img
-                            className='artistImage'
-                            src={this.state.image}
-                            alt='Artist'>
-                        </img>
-                    </div>
-                    <h2 className='label'>Top Songs</h2>
-                    <div className='songs'>
-                        {this.state.topSongs}
-                    </div>
-                    <h2 className='label'>Albums</h2>
-                    <div className='albums'>
-                        {this.state.albums}
-                    </div>
-                </div>
-            );
-        }
-    }
-
     constructor(props) {
         super(props);
         this.state = { socket: props.context.socket };
@@ -179,7 +129,7 @@ class Artist extends React.Component {
             }
 
             let message = name + ' added the top songs by ' +
-                this.props.name + ' to the queue.';
+                this.state.name + ' to the queue.';
 
             if (resJSON.success) {
                 this.state.socket.emit('initUpdateSongs', {
@@ -197,6 +147,56 @@ class Artist extends React.Component {
     //This method is called from album when we go back
     //from the album page to the artist page
     showArtist = () => this.setState({ selectedAlbumId: null });
+
+    render() {
+        if (this.state.selectedAlbumId) {
+            return (
+                <div className='main'>
+                    <Album
+                        id={this.state.selectedAlbumId}
+                        showArtist={this.showArtist}
+                    />
+                </div>
+            );
+        }
+        else {
+            return (
+                <div className='main'>
+                    <div className='buttons'>
+                        <GoBackBtn onClick={this.props.showArtists} />
+                        <Btn
+                            class='bigBtn'
+                            val='Play Next'
+                            onClick={this.playTopSongs.bind(this, false)}
+                        />
+                        <Btn
+                            class='bigBtn'
+                            val='Play Later'
+                            onClick={this.playTopSongs.bind(this, true)}
+                        />
+                    </div>
+                    <div className='artistNameOuter'>
+                        <div className='artistName'>
+                            {this.state.name}
+                        </div>
+                        <img
+                            className='artistImage'
+                            src={this.state.image}
+                            alt='Artist'>
+                        </img>
+                    </div>
+                    <h2 className='label'>Top Songs</h2>
+                    <div className='songs'>
+                        {this.state.topSongs}
+                    </div>
+                    <h2 className='label'>Albums</h2>
+                    <div className='albums'>
+                        {this.state.albums}
+                    </div>
+                </div>
+            );
+        }
+    }
 }
 
 export default props => (<LiveStreamContext.Consumer>

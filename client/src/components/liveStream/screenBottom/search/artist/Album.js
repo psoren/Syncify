@@ -10,42 +10,6 @@ import 'styling/styles.scss';
 
 class Album extends React.Component {
 
-    render() {
-        return (
-            <React.Fragment>
-                <div className='buttons'>
-                    <GoBackBtn onClick={this.props.showArtist} />
-                    <Btn
-                        class='bigBtn'
-                        val='Play Next'
-                        onClick={this.playSongs.bind(this, false)}
-                    />
-                    <Btn
-                        class='bigBtn'
-                        val='Play Later'
-                        onClick={this.playSongs.bind(this, true)}
-                    />
-                </div>
-                <div className='albumNameOuter'>
-                    <div className='albumName'>
-                        {this.state.albumName}
-                        <hr />
-                        {this.state.artistName}
-                    </div>
-                    <img
-                        className='artistImage'
-                        src={this.state.albumSrc}
-                        alt='Album'>
-                    </img>
-                </div>
-                <h2 className='label'>Songs</h2>
-                <div className='songs'>
-                    {this.state.songs}
-                </div>
-            </React.Fragment>
-        );
-    }
-
     constructor(props) {
         super(props);
         this.state = {
@@ -129,7 +93,8 @@ class Album extends React.Component {
                 name = localStorage.getItem('name').split(' ')[0];
             }
 
-            let message = name + ' added the album album1 by artist1 to the queue';
+            let message = name + ' added the album ' + this.state.albumName +
+                ' by ' + this.state.artistName + ' to the queue';
 
             if (resJSON.success) {
                 this.state.socket.emit('initUpdateSongs', {
@@ -142,6 +107,42 @@ class Album extends React.Component {
                 toaster.notify(resJSON.message, { duration: 2000 });
             }
         }
+    }
+
+    render() {
+        return (
+            <React.Fragment>
+                <div className='buttons'>
+                    <GoBackBtn onClick={this.props.showArtist} />
+                    <Btn
+                        class='bigBtn'
+                        val='Play Next'
+                        onClick={this.playSongs.bind(this, false)}
+                    />
+                    <Btn
+                        class='bigBtn'
+                        val='Play Later'
+                        onClick={this.playSongs.bind(this, true)}
+                    />
+                </div>
+                <div className='albumNameOuter'>
+                    <div className='albumName'>
+                        {this.state.albumName}
+                        <hr />
+                        {this.state.artistName}
+                    </div>
+                    <img
+                        className='artistImage'
+                        src={this.state.albumSrc}
+                        alt='Album'>
+                    </img>
+                </div>
+                <h2 className='label'>Songs</h2>
+                <div className='songs'>
+                    {this.state.songs}
+                </div>
+            </React.Fragment>
+        );
     }
 }
 
