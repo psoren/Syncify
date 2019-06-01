@@ -1,10 +1,11 @@
 import React from 'react';
+import './albums.scss';
 
-const imgStyle = {
-	height: '300px',
-	width: '300px'
-}
+const AlbumMiddle = (props) => (
+	<img
+		src={props.albumSrc}
+		className='middle'
+		alt='middle album' />
+);
 
-const AlbumMiddle = (props) => (<img src={props.albumSrc} style={imgStyle} alt='middle album'/>);
-
-export default AlbumMiddle
+export default AlbumMiddle;

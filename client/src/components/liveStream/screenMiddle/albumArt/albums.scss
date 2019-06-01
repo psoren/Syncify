@@ -1,0 +1,19 @@
+.middle {
+  height: 30vw;
+  width: 30vw;
+}
+
+.side {
+  height: 20vw;
+  width: 20vw;
+}
+
+img {
+  border: 1.5px solid white;
+}
+
+.albumsOuter {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}

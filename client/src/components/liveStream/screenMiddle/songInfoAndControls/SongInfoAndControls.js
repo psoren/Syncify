@@ -2,19 +2,12 @@ import React from 'react'
 import Listeners from './listener/Listeners';
 import PlaybackInformation from './playbackInformation/PlaybackInformation.js'
 import UpNextSongs from './upNext/UpNextSongs';
-
-const outerStyle = {
-	display: 'flex',
-	flexDirection: 'row',
-	justifyContent: 'space-around',
-	maxHeight: '350px',
-	paddingTop: '10px',
-}
+import './songInfoAndControls.scss';
 
 export default class extends React.Component {
 	render() {
 		return (
-			<div style={outerStyle}>
+			<div className='songInfoOuter'>
 				<Listeners listeners={this.props.listeners} />
 				<div>
 					<PlaybackInformation

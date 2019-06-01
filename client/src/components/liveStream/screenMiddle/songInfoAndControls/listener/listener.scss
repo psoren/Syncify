@@ -1,0 +1,19 @@
+.listenerOuter {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.listenerImg {
+  width: 70px;
+  height: 70px;
+  border: none;
+  border-right: 1px solid white;
+  padding: 10px;
+  margin: 10px;
+}
+
+p {
+  padding-right: 10px;
+}

@@ -1,10 +1,12 @@
 import React from 'react';
+import './albums.scss';
 
-const imgStyle = {
-	height: '200px',
-	width: '200px'
-}
+const AlbumLeft = (props) => (
+	<img
+		className='side'
+		src={props.albumSrc}
+		alt='left album'
+	/>
+);
 
-const AlbumLeft = (props) => (<img style = {imgStyle} src={props.albumSrc} alt='left album'/>);
-
-export default AlbumLeft
+export default AlbumLeft;
