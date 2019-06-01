@@ -8,7 +8,7 @@ const main = {
 }
 
 const pStyle = {
-    font: 'bold 16px "helvetica neue", helvetica, arial, sans-serif',
+    font: 'bold 16px "helvetica neue", sans-serif',
     color: '#fff',
     width: '250px',
     textAlign: 'center'
@@ -18,7 +18,8 @@ const imgStyle = {
     marginLeft: 'auto',
     marginRight: 'auto',
     border: '2px solid white',
-    width: '150px'
+    width: '150px',
+    height: '150px'
 }
 
 export default class extends React.Component {

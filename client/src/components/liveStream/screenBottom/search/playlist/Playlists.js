@@ -1,26 +1,33 @@
 import React from 'react';
-import Playlist from './Playlist';
+import PlaylistImage from './PlaylistImage';
 import querystring from 'querystring';
-import PlaylistSongs from './PlaylistSongs';
-
-const outerGrid = {
-    display: 'grid',
-    height: '450px',
-    overflow: 'auto',
-    gridTemplateColumns: 'auto auto auto',
-    margin: '10px',
-    gridColumnGap: '40px',
-    gridRowGap: '10px'
-}
-
-const selectedPlaylistStyle = {
-    display: 'flex',
-    flexDirection: 'column',
-    textAlign: 'center',
-    justifyContent: 'space-around'
-}
+import Playlist from './Playlist';
+import './playlists.scss';
 
 export default class extends React.Component {
+
+    render() {
+        //If we are viewing a single playlist
+        if (this.state.selectedPlaylist) {
+            return (
+                <div className='playlistSelected'>
+                    <Playlist
+                        playlistURI={this.state.selectedPlaylist}
+                        playlistName={this.state.selectedPlaylistName}
+                        goToAllPlaylists={this.goToAllPlaylists}
+                    />
+                </div>
+            );
+        }
+        //If we are viewing all playlists
+        else {
+            return (
+                <div className='playlistMainGrid'>
+                    {this.state.playlists}
+                </div>
+            );
+        }
+    }
 
     constructor(props) {
         super(props);
@@ -50,7 +57,7 @@ export default class extends React.Component {
             if (playlist.images[0]) {
                 imgSrc = playlist.images[0].url;
             }
-            let newPlaylist = <Playlist
+            let newPlaylist = <PlaylistImage
                 key={playlist.id}
                 name={playlist.name}
                 imgSrc={imgSrc}
@@ -83,7 +90,7 @@ export default class extends React.Component {
             if (playlist.images[0]) {
                 imgSrc = playlist.images[0].url;
             }
-            let newPlaylist = <Playlist
+            let newPlaylist = <PlaylistImage
                 key={playlist.id}
                 name={playlist.name}
                 imgSrc={imgSrc}
@@ -97,27 +104,5 @@ export default class extends React.Component {
 
     goToAllPlaylists = () => this.setState({ selectedPlaylist: null });
 
-    render() {
-        //If we are viewing a single playlist
-        if (this.state.selectedPlaylist) {
-            return (
-                <div style={selectedPlaylistStyle}>
-                    <PlaylistSongs
-                        playlistURI={this.state.selectedPlaylist}
-                        playlistName={this.state.selectedPlaylistName}
-                        goToAllPlaylists={this.goToAllPlaylists}
-                    />
-                </div>
-            );
-        }
-
-        //If we are viewing all playlists
-        else {
-            return (
-                <div style={outerGrid}>
-                    {this.state.playlists}
-                </div>
-            );
-        }
-    }
+    
 }

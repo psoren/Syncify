@@ -64,9 +64,9 @@ export default class extends React.Component {
         });
     }
 
-    setSelectedArtistId = (id) =>  this.setState({selectedArtistId: id});
+    setSelectedArtistId = (id) => this.setState({ selectedArtistId: id });
 
-    showArtists = () => this.setState({selectedArtistId: null});
+    showArtists = () => this.setState({ selectedArtistId: null });
 
     render() {
         if (this.state.selectedArtistId) {
@@ -82,13 +82,13 @@ export default class extends React.Component {
         else {
             return (
                 <div className='artistOuter'>
-                    <h2 className='artistsTitle'>
-                        {this.state.title}
-                    </h2>
                     <div
                         className='outerGrid'>
                         {this.state.artists}
                     </div>
+                    <h2 className='artistsTitle'>
+                        {this.state.title}
+                    </h2>
                 </div>
             );
         }

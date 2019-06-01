@@ -1,23 +1,20 @@
-.btn {
-    font: bold 12px "helvetica neue";
-    border-radius: 4em;
-    background: #2e3192;
-    color: white;
-    padding: 0.7em 1.5em;
-    width: 9em;
-    outline: 0;
+.playlistOuter {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
 }
 
-.btnClicked {
-    font: bold 12px "helvetica neue";
-    border-radius: 4em;
-    background: #161a94;
-    color: white;
-    padding: 0.7em 1.5em;
-    width: 9em;
-    outline: 0;
+img.playlist {
+  width: 125px;
+  height: 125px;
+  border: 2px solid white;
+  padding: 0px;
+  margin: 0px;
 }
 
-.playlistAlbum {
-    cursor: pointer;
+.name {
+  font: 20px arial, "sans-serif";
+  font-weight: 600;
+  color: #fff;
+  margin-top: 10px;
 }
