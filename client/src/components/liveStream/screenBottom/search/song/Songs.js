@@ -27,12 +27,9 @@ const inner = {
 }
 
 class Songs extends React.Component {
-
-
     render() {
         return (
             <div style={outer}>
-                
                 <div style={playAll}>
                     <Btn
                         class={'bigBtn'}
@@ -48,9 +45,6 @@ class Songs extends React.Component {
                 <div style={inner}>
                     {this.state.songs}
                 </div>
-
-
-                
             </div>
         );
     }
