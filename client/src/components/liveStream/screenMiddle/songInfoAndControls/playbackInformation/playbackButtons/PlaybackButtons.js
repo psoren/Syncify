@@ -11,8 +11,7 @@ const outerStyle = {
 	display: 'flex',
 	flexDirection: 'row',
 	textAlign: 'center',
-	justifyContent: 'center',
-	paddingRight: '75px'
+	justifyContent: 'center'
 }
 
 class PlaybackButtons extends React.Component {

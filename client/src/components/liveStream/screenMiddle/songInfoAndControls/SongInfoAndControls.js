@@ -4,24 +4,14 @@ import PlaybackInformation from './playbackInformation/PlaybackInformation.js'
 import UpNextSongs from './upNext/UpNextSongs';
 import './songInfoAndControls.scss';
 
-export default class extends React.Component {
-	render() {
-		return (
-			<div className='songInfoOuter'>
-				<Listeners
-					listeners={this.props.listeners}
-				/>
-				<div>
-					<PlaybackInformation
-						playbackInfo={this.props.playbackInfo}
-						isCreator={this.props.isCreator}
-						player={this.props.player}
-					/>
-				</div>
-				<UpNextSongs
-					upNext={this.props.upNext}
-				/>
-			</div>
-		);
-	}
-}
+export default (props) => (
+	<div className='songInfoOuter'>
+		<Listeners listeners={props.listeners} />
+		<PlaybackInformation
+			playbackInfo={props.playbackInfo}
+			isCreator={props.isCreator}
+			player={props.player}
+		/>
+		<UpNextSongs upNext={props.upNext} />
+	</div>
+);

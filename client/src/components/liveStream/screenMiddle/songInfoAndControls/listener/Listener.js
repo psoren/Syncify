@@ -10,7 +10,9 @@ export default (props) => (
             className='listenerImg'
             alt='Profile Picture' >
         </img>
-        <p>
+        <p
+            className='listenerP'
+        >
             {props.firstName}
         </p>
     </div>
