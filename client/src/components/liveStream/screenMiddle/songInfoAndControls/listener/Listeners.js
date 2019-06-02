@@ -1,7 +1,7 @@
 import React from 'react';
 import Listener from './Listener';
 import Btn from '../../../screenBottom/search/artist/Btn';
-import './listeners.scss';
+import './listener.scss';
 
 export default class extends React.Component {
 

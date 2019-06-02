@@ -1,4 +1,66 @@
+@import 'styling/variables.scss';
 
-.loginBtn{
-background: #436ddf;
+.top {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.syncify {
+  font-size: 70px;
+  font-weight: 700;
+  padding: 25px;
+  margin-left: 25px;
+}
+
+.spotifyLogo {
+  width: 100px;
+  height: 100px;
+  border: none;
+  outline: none;
+  padding: 25px;
+  margin-right: 25px;
+}
+
+.loginBottom {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.loginHr {
+  width: 90%;
+  border: 1px solid white;
+}
+
+.child1 {
+  font-size: 5vw;
+  font-weight: 600;
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 10px 15px;
+}
+
+.child2 {
+  font-size: 3.5vw;
+  font-weight: 600;
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 25px 15px;
+}
+
+.loginBtn {
+  font: bold 25px "helvetica neue", helvetica, arial, sans-serif;
+  border-radius: 4em;
+  color: white;
+  padding: 0.5em 1em;
+  width: 4em;
+  background: $accent;
+  border: 2px solid $accentDarkest;
+  outline: 0;
+  margin: 25px;
+  text-align: center;
+}
+
+.loginBtn:active {
+  background: $accentDark;
 }
