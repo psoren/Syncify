@@ -13,13 +13,13 @@ export default class extends React.Component {
 	render() {
 		return (
 			<div style={outerStyle}>
-				<AlbumArt albumArt={this.props.albumArt}/>
-				<SongInfoAndControls 
-				playbackInfo={this.props.playbackInfo}
-				isCreator={this.props.isCreator}
-				player={this.props.player}
-				upNext={this.props.upNext}
-				listeners={this.props.listeners}/>
+				<AlbumArt albumArt={this.props.albumArt} />
+				<SongInfoAndControls
+					playbackInfo={this.props.playbackInfo}
+					isCreator={this.props.isCreator}
+					player={this.props.player}
+					upNext={this.props.upNext}
+					listeners={this.props.listeners} />
 			</div>
 		)
 	}

@@ -1,26 +1,8 @@
 import React from 'react';
 import Listener from './Listener';
-import Btn from '../../../screenBottom/search/artist/Btn';
-import './listener.scss';
+import './listeners.scss';
 
 export default class extends React.Component {
-
-  render() {
-    return (
-      <div className='surround'>
-        <Btn
-          class='bigBtn'
-          val='Listeners'
-          onClick={this.toggleState}
-        />
-        <div className='listeners'>
-          {this.state.clicked ?
-            this.state.currentListeners : null}
-        </div>
-      </div>);
-  }
-
-  toggleState = () => this.setState({ clicked: !this.state.clicked });
 
   constructor(props) {
     super(props);
@@ -28,11 +10,24 @@ export default class extends React.Component {
       currentListeners: [],
       clicked: false
     };
-
-    console.log('need to add listener for mouse click outside of button');
-
-
   }
+
+  componentWillMount = () =>
+    document.addEventListener('mousedown', this.outsideClick);
+
+  componentWillUnmount = () =>
+    document.removeEventListener('mousedown', this.outsideClick);
+
+  outsideClick = (e) => {
+    if (!this.listenersRef.contains(e.target)
+      && this.state.clicked
+      && !this.buttonRef.contains(e.target)
+    ) {
+      this.setState({ clicked: false });
+    }
+  }
+
+  toggleState = () => this.setState({ clicked: !this.state.clicked });
 
   componentWillReceiveProps = async (nextProps) => {
     let currentListeners = [];
@@ -55,16 +50,9 @@ export default class extends React.Component {
 
       //Each of the listeners
       nextProps.listeners.forEach((listener) => {
-        let pictureSrc = '';
-        if (listener.pictureSrc === '../defaultPerson.png') {
-          pictureSrc = '/defaultPerson.png';
-        }
-        else {
-          pictureSrc = listener.pictureSrc;
-        }
         let newListener =
           <Listener
-            imgSrc={pictureSrc}
+            imgSrc={listener.pictureSrc}
             firstName={listener.name.split(' ')[0]}
             key={listener.spotifyURI}
           />
@@ -77,9 +65,25 @@ export default class extends React.Component {
     }
   }
 
-  componentWillUnmount = () => {
-    console.log('need to remove listener');
-
-
+  render() {
+    return (
+      <div className='surround'>
+        <div
+          className='listeners'
+          ref={listenersRef => this.listenersRef = listenersRef}
+        >
+          {this.state.clicked ? this.state.currentListeners : null}
+        </div>
+        <button
+          ref={buttonRef => this.buttonRef = buttonRef}
+          className={this.state.clicked ?
+            'listenerBtnClicked' :
+            'listenerBtn'}
+          onClick={this.toggleState}
+        >
+          Listeners
+        </button>
+      </div>
+    );
   }
 }

@@ -8,7 +8,9 @@ export default class extends React.Component {
 	render() {
 		return (
 			<div className='songInfoOuter'>
-				<Listeners listeners={this.props.listeners} />
+				<Listeners
+					listeners={this.props.listeners}
+				/>
 				<div>
 					<PlaybackInformation
 						playbackInfo={this.props.playbackInfo}
@@ -16,7 +18,9 @@ export default class extends React.Component {
 						player={this.props.player}
 					/>
 				</div>
-				<UpNextSongs upNext={this.props.upNext} />
+				<UpNextSongs
+					upNext={this.props.upNext}
+				/>
 			</div>
 		);
 	}

@@ -10,13 +10,8 @@ const outerStyle = {
 
 export default class extends React.Component {
 	render() {
-		let isPlaying;
-		if (this.props.playbackInfo) {
-			isPlaying = this.props.playbackInfo.isPlaying;
-		}
-		else {
-			isPlaying = false;
-		}
+		let isPlaying = this.props.playbackInfo ?
+			this.props.playbackInfo.isPlaying : false;
 
 		return (
 			<div style={outerStyle}>
