@@ -1,14 +1,14 @@
 @import "styling/variables.scss";
 
-.surround {
+.listenersOuter,
+.upNextSongsOuter {
   display: flex;
   flex-direction: column;
   justify-content: center;
   position: relative;
-  bottom: 125px;
-  right: -25px;
 }
 
+.listenerBtn,
 .upNextBtn {
   font: bold 18px "helvetica neue";
   border-radius: 1em;
@@ -18,9 +18,9 @@
   width: 9em;
   outline: 0;
   cursor: pointer;
-  border: 1px solid red;
 }
 
+.listenerBtnClicked,
 .upNextBtnClicked {
   font: bold 18px "helvetica neue";
   border-radius: 1em;
@@ -32,16 +32,19 @@
   cursor: pointer;
 }
 
+.listenerBtn:active,
 .upNextBtn:active {
   background: $accentDark;
 }
 
+.listeners,
 .upNextSongs {
   position: absolute;
   width: 180px;
   overflow: auto;
-  bottom: 210px;
+  max-height: 250px;
+  bottom: 125px;
   right: -10px;
-  border-radius: 10px;
+  border-radius: 5px;
   background: rgba(0, 0, 0, 0.65);
 }

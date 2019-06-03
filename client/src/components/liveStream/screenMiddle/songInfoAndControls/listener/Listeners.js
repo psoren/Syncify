@@ -1,6 +1,6 @@
 import React from 'react';
 import Listener from './Listener';
-import './listeners.scss';
+import '../toggleSwitch.scss';
 
 export default class extends React.Component {
 
@@ -22,9 +22,7 @@ export default class extends React.Component {
     if (!this.listenersRef.contains(e.target)
       && this.state.clicked
       && !this.buttonRef.contains(e.target)
-    ) {
-      this.setState({ clicked: false });
-    }
+    ) { this.setState({ clicked: false }); }
   }
 
   toggleState = () => this.setState({ clicked: !this.state.clicked });
@@ -67,11 +65,9 @@ export default class extends React.Component {
 
   render() {
     return (
-      <div className='surround'>
-        <div
-          className='listeners'
-          ref={listenersRef => this.listenersRef = listenersRef}
-        >
+      <div className='listenersOuter'>
+        <div className='listeners'
+          ref={listenersRef => this.listenersRef = listenersRef}>
           {this.state.clicked ? this.state.currentListeners : null}
         </div>
         <button
@@ -79,8 +75,7 @@ export default class extends React.Component {
           className={this.state.clicked ?
             'listenerBtnClicked' :
             'listenerBtn'}
-          onClick={this.toggleState}
-        >
+          onClick={this.toggleState} >
           Listeners
         </button>
       </div>
