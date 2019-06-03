@@ -1,6 +1,66 @@
+@import "styling/variables.scss";
+
 .screenBottomMain {
-    display: flex;
-    flex-direction: row;
-    padding-top: 25px;
-    justify-content: space-around;
+  display: flex;
+  flex-direction: row;
+  padding-top: 25px;
+  justify-content: space-around;
+}
+
+.roomSelectOuterBtn {
+  font: bold 5vw "helvetica neue", helvetica, arial, sans-serif;
+  border-radius: 50%;
+  background: $accent;
+  color: white;
+  width: 30vw;
+  height: 30vw;
+  border: 1px solid white;
+  outline: 0;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+}
+
+.roomSelectForm {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  background: $accentDark;
+  font: bold 5vw "helvetica neue", helvetica, arial, sans-serif;
+  background: $accentDark;
+  border-radius: 50%;
+  color: white;
+  width: 26vw;
+  height: 26vw;
+  border: 1px solid white;
+  outline: 0;
+  padding: 10px;
+}
+
+.roomSelectInput {
+  outline: 0;
+  border-radius: 5px;
+  border: none;
+  height: 25px;
+  font: bold 12px "helvetica neue", helvetica, arial, sans-serif;
+}
+
+.roomSelectBtn {
+  font: bold 12px "helvetica neue", helvetica, arial, sans-serif;
+  border-radius: 4em;
+  background: #fff;
+  color: #000;
+  padding: 0.7em 1.5em;
+  width: 9em;
+  border: 1px solid white;
+  outline: 0;
+  cursor: pointer;
+}
+
+.roomSelectLabel {
+  font: bold 24px "helvetica neue", helvetica, arial, sans-serif;
+  text-align: center;
 }

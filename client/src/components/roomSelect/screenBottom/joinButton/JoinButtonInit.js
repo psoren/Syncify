@@ -1,14 +1,26 @@
 import React from 'react';
-import 'styling/styles.scss';
+import '../screenBottom.scss';
 
 export default class extends React.Component {
+
+    componentWillMount = () =>
+        document.addEventListener('mousedown', this.handleClick);
+
+    componentWillUnmount = () =>
+        document.removeEventListener('mousedown', this.handleClick);
+
+    handleClick = (e) => {
+        if (this.node.contains(e.target)) {
+            this.props.goToForm();
+        }
+    }
+
     render() {
-        return (<button 
-            style = {this.props.style}
-            onClick = {this.props.onClick}
-            className='btn'
-            onMouseDown = {this.props.onMouseDown}
-            onMouseOut={this.props.onMouseOut}
-            >Join</button>);
+        return (
+            <button
+                ref={node => this.node = node}
+                className='roomSelectOuterBtn'>Join
+            </button>
+        );
     }
 }

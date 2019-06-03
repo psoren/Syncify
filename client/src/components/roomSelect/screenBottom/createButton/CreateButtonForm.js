@@ -3,7 +3,7 @@ import { Redirect } from 'react-router-dom';
 import 'styling/styles.scss';
 import toaster from 'toasted-notes';
 import 'toasted-notes/src/styles.css';
-import './createButtonForm.scss';
+import '../screenBottom.scss';
 
 export default class extends React.Component {
 
@@ -114,28 +114,28 @@ export default class extends React.Component {
         <form
           ref={node => this.node = node}
           onClick={this.handleClick}
-          className='createButtonForm'
+          className='roomSelectForm'
           onSubmit={this.handleSubmit}>
-          <label className='createButtonLabel'>
+          <label className='roomSelectLabel'>
             <input type="radio" value="Public"
               checked={this.state.selectedOption === 'Public'}
               onChange={this.handleRadioChange} />
             Public
           </label>
-          <label className='createButtonLabel'>
+          <label className='roomSelectLabel'>
             <input type="radio" value="Private"
               checked={this.state.selectedOption === 'Private'}
               onChange={this.handleRadioChange} />
             Private
           </label>
           <input
-            className='createButtonInput'
+            className='roomSelectInput'
             type="text"
             value={this.state.value}
             onChange={this.handleChange}
             defaultValue={this.state.defValue} />
           <input type="submit"
-            className='createButtonBtn'
+            className='roomSelectBtn'
             value="Create Room"
           />
         </form>

@@ -1,5 +1,5 @@
 import React from 'react';
-import './createButton.scss';
+import '../screenBottom.scss';
 
 export default class extends React.Component {
 
@@ -19,7 +19,7 @@ export default class extends React.Component {
         return (
             <button
                 ref={node => this.node = node}
-                className='createButton'
+                className='roomSelectOuterBtn'
             >
                 Create
             </button>

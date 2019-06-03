@@ -1,7 +1,6 @@
 import React from 'react';
 import CreateButtonForm from './CreateButtonForm';
 import CreateButtonInit from './CreateButtonInit';
-import './createButton.scss';
 
 export default class extends React.Component {
     constructor(props) {
