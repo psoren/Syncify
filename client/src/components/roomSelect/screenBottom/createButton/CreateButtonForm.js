@@ -3,48 +3,57 @@ import { Redirect } from 'react-router-dom';
 import 'styling/styles.scss';
 import toaster from 'toasted-notes';
 import 'toasted-notes/src/styles.css';
-
-const formStyle = {
-  textAlign: 'center'
-}
-
-const inputFieldStyle = {
-  outline: '0',
-  borderRadius: '5px',
-  border: 'none',
-  height: '25px',
-  font: 'bold 12px "helvetica neue", helvetica, arial, sans-serif',
-  margin: '0px'
-}
-
-const btnStyle = {
-  font: 'bold 12px "helvetica neue", helvetica, arial, sans-serif',
-  borderRadius: '4em',
-  background: '#fff',
-  color: '#000',
-  padding: '0.7em 1.5em',
-  width: '9em',
-  border: '1px solid white',
-  outline: '0',
-  margin: '0px'
-}
-
-const labelStyle = {
-  font: 'bold 24px "helvetica neue", helvetica, arial, sans-serif',
-  textAlign: 'center',
-  margin: '0px'
-}
+import './createButtonForm.scss';
 
 export default class extends React.Component {
+
+  //When we attempt to create a room, either it
+  //was created successfully and we should redirect or
+  //there is an error.  If neither of those is set, 
+  //then the user has not attempted to create a room yet.
+  render() {
+    if (this.state.roomIsCreated && !this.state.roomCreationError) {
+      return (<Redirect to={'/livestream?roomId=' + this.state.roomID} />);
+    }
+    else {
+      return (
+        <form
+          className='createButtonForm'
+          onSubmit={this.handleSubmit}>
+          <label className='createButtonLabel'>
+            <input type="radio" value="Public"
+              checked={this.state.selectedOption === 'Public'}
+              onChange={this.handleRadioChange} />
+            Public
+          </label>
+          <label className='createButtonLabel'>
+            <input type="radio" value="Private"
+              checked={this.state.selectedOption === 'Private'}
+              onChange={this.handleRadioChange} />
+            Private
+          </label>
+          <input
+            className='createButtonInput'
+            type="text"
+            value={this.state.value}
+            onChange={this.handleChange}
+            defaultValue={this.state.defValue} />
+          <input type="submit"
+            className='createButtonBtn'
+            value="Create Room"
+          />
+        </form>
+      );
+    }
+  }
+
+
   constructor(props) {
     super(props);
-
-    let fullName = '';
-    if (localStorage.getItem('name')) {
-      fullName = localStorage.getItem('name');
-    }
+    let fullName = localStorage.getItem('name') ?
+      localStorage.getItem('name') : '';
     let roomName = 'New Room';
-    if (fullName) {
+    if (fullName !== '') {
       roomName = fullName.split(' ')[0] + "'s Room"
     }
 
@@ -90,7 +99,6 @@ export default class extends React.Component {
     }
 
     //For default value
-    //This is not a great solution, but it works
     let name = this.state.defValue;
     if (this.state.modified) {
       name = this.state.roomName
@@ -123,48 +131,5 @@ export default class extends React.Component {
 
   handleRadioChange = (e) => this.setState({ selectedOption: e.target.value });
 
-  //When we attempt to create a room, either it
-  //was created successfully and we should redirect or
-  //there is an error.  If neither of those is set, 
-  //then the user has not attempted to create a room yet.
-  render() {
-    if (this.state.roomIsCreated && 
-      !this.state.roomCreationError) {
-      return (<Redirect to={
-        '/livestream?roomId=' + this.state.roomID} />);
-    }
-    else {
-      return (
-        <form onSubmit={this.handleSubmit} style={formStyle}>
 
-          <label style={labelStyle}>
-            <input type="radio" value="Public"
-              checked={this.state.selectedOption === 'Public'}
-              onChange={this.handleRadioChange} />
-            Public
-          </label>
-          <br />
-
-          <label style={labelStyle}>
-            <input type="radio" value="Private"
-              checked={this.state.selectedOption === 'Private'}
-              onChange={this.handleRadioChange} />
-            Private
-          </label>
-          <br />
-
-          <input type="text" value={this.state.value}
-            onChange={this.handleChange}
-            defaultValue={this.state.defValue}
-            style={inputFieldStyle} />
-          <br />
-
-          <input type="submit"
-            className='btn'
-            value="Create Room"
-            style={btnStyle} />
-        </form>
-      );
-    }
-  }
 }

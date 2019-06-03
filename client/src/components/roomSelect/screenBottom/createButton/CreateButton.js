@@ -1,56 +1,43 @@
 import React from 'react';
 import CreateButtonForm from './CreateButtonForm';
 import CreateButtonInit from './CreateButtonInit';
+import './createButton.scss';
 
 export default class extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            clicked: false,
-            style: {
-                font: 'bold 36px "helvetica neue", helvetica, arial, sans-serif',
-                borderRadius: '4em',
-                background: '#2e3192',
-                color: 'white',
-                width: '6em',
-                height: '6em',
-                border: '1px solid white',
-                outline: 0
-            }
-        }
+        this.state = { clicked: false };
     }
 
-    componentWillMount = () => document.addEventListener('mousedown', this.handleClick, false);
-    componentWillUnmount = () => document.removeEventListener('mousedown', this.handleClick, false);
+    componentWillMount = () => document.addEventListener('mousedown', this.handleClick);
+    componentWillUnmount = () => document.removeEventListener('mousedown', this.handleClick);
 
     handleClick = (e) => {
         if (!this.node.contains(e.target)) {
-            this.setState({
-                clicked: false,
-                style: { ...this.state.style, background: '#2e3192' }
-            });
+            this.setState({ clicked: false });
         }
     }
 
     onMouseDown = () => {
         if (!this.state.clicked) {
-            this.setState({style:{...this.state.style,  background: '#00005F'}});
+            this.setState({ clicked: true });
         }
     }
 
-    onMouseOut = () => this.setState({ style: { ...this.state.style, background: '#2e3192' } });
+    onMouseOut = () => this.setState({ clicked: false });
 
-    onClick = () => this.setState({ background: '#00005F', clicked: true });
+    onClick = () => this.setState({ clicked: true });
 
     render() {
-        let comp = this.state.clicked ? <CreateButtonForm /> :
-            <CreateButtonInit
-                style={this.state.style}
-                onClick={this.onClick}
-                onMouseOut={this.onMouseOut}
-                onMouseDown={this.onMouseDown} />
-
         return (<div ref={node => this.node = node}
-            style={this.state.style}>{comp}</div>);
+            style={this.state.style}>
+            {this.state.clicked ?
+                <CreateButtonForm /> :
+                <CreateButtonInit
+                    onClick={this.onClick}
+                    onMouseOut={this.onMouseOut}
+                    onMouseDown={this.onMouseDown}
+                />
+            }</div>);
     }
 }

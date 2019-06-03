@@ -1,14 +1,13 @@
 import React from 'react';
-import 'styling/styles.scss';
+import './createButton.scss';
 
-export default class extends React.Component {
-    render() {
-        return (<button 
-            style = {this.props.style}
-            onClick = {this.props.onClick}
-            className='btn'
-            onMouseDown = {this.props.onMouseDown}
-            onMouseOut={this.props.onMouseOut}
-            >Create</button>);
-    }
-}
+export default (props) => (
+    <button
+        className='createButton'
+        style={props.style}
+        onClick={props.onClick}
+        onMouseDown={props.onMouseDown}
+        onMouseOut={props.onMouseOut}>
+        Create
+    </button>
+);

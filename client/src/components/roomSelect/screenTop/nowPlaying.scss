@@ -1,0 +1,21 @@
+.nowPlayingMain {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 15px;
+}
+
+.nowPlayingP {
+    font: bold 16px "helvetica neue", sans-serif;
+    color: #fff;
+    width: 250px;
+    text-align: center;
+}
+
+.nowPlayingImg {
+    margin-left: auto;
+    margin-right: auto;
+    border: 2px solid white;
+    width: 150px;
+    height: 150px;
+}

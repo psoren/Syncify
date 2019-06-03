@@ -1,60 +1,16 @@
 import React from 'react';
+import './nowPlaying.scss';
 
-const main = {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    marginLeft: '15px'
-}
-
-const pStyle = {
-    font: 'bold 16px "helvetica neue", sans-serif',
-    color: '#fff',
-    width: '250px',
-    textAlign: 'center'
-}
-
-const imgStyle = {
-    marginLeft: 'auto',
-    marginRight: 'auto',
-    border: '2px solid white',
-    width: '150px',
-    height: '150px'
-}
-
-export default class extends React.Component {
-
-    constructor(props) {
-        super(props);
-        this.state = {
-            albumArt: props.albumArt,
-            songName: props.songName,
-            songArtists: props.songArtists
-        };
-    }
-
-    componentWillReceiveProps(nextProps) {
-        if (nextProps.albumArt !== this.props.albumArt) {
-            this.setState({
-                albumArt: nextProps.albumArt,
-                songName: nextProps.songName,
-                songArtists: nextProps.songArtists
-            });
-        }
-    }
-
-    render() {
-        if (this.props.playing) {
-            return (<div style={main}>
-                <p style={pStyle}>{this.state.songName} - {this.state.songArtists}</p>
-                <img src={this.state.albumArt} height='150' width='150' style={imgStyle} alt='Album Art' />
-            </div>);
-        }
-        else {
-            return (<div style={main}>
-                <p style={pStyle}>Nothing is playing</p>
-                <img src='notPlaying.jpg' height='150' width='150' style={imgStyle} alt='Album Art' />
-            </div>);
-        }
-    }
-}
+export default (props) => (
+    <div className='nowPlayingMain'>
+        <p className='nowPlayingP'>
+            {props.songName} -
+            {props.songArtists}
+        </p>
+        <img
+            src={props.albumArt ? props.albumArt : '/notPlaying.jpg'}
+            className='nowPlayingImg'
+            alt='Album Art'
+        />
+    </div>
+);

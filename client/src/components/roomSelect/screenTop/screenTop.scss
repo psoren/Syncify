@@ -1,0 +1,22 @@
+.screenTopMain {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.screenTopBottom {
+  position: relative;
+  top: -50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.screenTopHr {
+  color: #fff;
+  border: 2px solid white;
+  margin: 20px 50px 0 50px;
+  position: relative;
+  top: -50px;
+}

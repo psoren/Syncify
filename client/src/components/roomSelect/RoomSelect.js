@@ -6,8 +6,6 @@ import querystring from 'querystring';
 import './roomSelect.scss';
 
 export default class extends React.Component {
-
-
 	render() {
 		if (this.state.loading) {
 			return (
@@ -35,8 +33,6 @@ export default class extends React.Component {
 		}
 	}
 
-
-	//Note: all of the script stuff is getting attached to the window
 	appendScript = async () => {
 		//If this is the first time the user is logging in
 		if (!localStorage.getItem('accessToken') ||
@@ -45,10 +41,10 @@ export default class extends React.Component {
 			let currentURL = new URL(window.location.href);
 			let code = currentURL.searchParams.get('code');
 			let state = currentURL.searchParams.get('state');
-			if (code == null) {
+			if (code === null) {
 				console.log('code is null');
 			}
-			if (state == null) {
+			if (state === null) {
 				console.log('state is null');
 			}
 			let res = await fetch('/sendInitdata', {
@@ -59,10 +55,9 @@ export default class extends React.Component {
 					state: state
 				})
 			});
-
 			//Something was wrong with the auth code
 			if (res.statusCode === 400) {
-				console.log('something was wrong with the auth code')
+				console.error('Something was wrong with the auth code');
 			}
 
 			let resJSON = await res.json();
@@ -85,15 +80,12 @@ export default class extends React.Component {
 
 	createPlayer = () => {
 		window.onSpotifyWebPlaybackSDKReady = async () => {
-			console.log('sdk is ready');
 			this.player = new window.Spotify.Player({
 				name: 'Syncify',
 				getOAuthToken: cb => { cb(localStorage.getItem('accessToken')) }
 			});
 			let playerConnected = await this.player.connect();
 			if (playerConnected) {
-				console.log('PLAYER CONNECTED');
-
 				this.createErrorHandlers();
 				this.createReadyHandler();
 				this.createStateChangeHandler();
@@ -148,7 +140,6 @@ export default class extends React.Component {
 	}
 
 	transferPlaybackToBrowser = async () => {
-		console.log('transferPlaybackToBrowser called');
 		//Get the user's name
 		let userInfoRes = await fetch('https://api.spotify.com/v1/me', {
 			headers: { 'Authorization': 'Bearer ' + localStorage.getItem('accessToken') }
@@ -173,9 +164,6 @@ export default class extends React.Component {
 
 		//Play the most recent song
 		let params = querystring.stringify({ device_id: this.state.deviceID });
-		//Play the most recent song
-
-		console.log('about to play the most recent song');
 
 		let playRecentSongRes = await fetch('https://api.spotify.com/v1/me/player/play?' + params, {
 			method: 'PUT',
@@ -184,9 +172,6 @@ export default class extends React.Component {
 		});
 		if (playRecentSongRes.status !== 204) {
 			console.error('There was an error playing the most recent song');
-		}
-		else {
-			console.log('most recent song should be playing');
 		}
 	}
 
@@ -201,7 +186,6 @@ export default class extends React.Component {
 	}
 
 	componentDidMount() {
-
 		//Create method to update token every 15 minutes
 		let refreshInterval = 1000 * 20;
 		this.refreshTokenIntervalId = setInterval(updateTokens, refreshInterval);
@@ -213,19 +197,16 @@ export default class extends React.Component {
 		//If we previously created a player, we do not need to create a new one
 		if (this.props.appPlayer) {
 			this.player = this.props.appPlayer;
-
 			//Set the state
 			this.player.getCurrentState().then(state => {
 				if (!state) { this.setState({ playing: false }); }
 				else {
 					let { current_track } = state.track_window;
-
 					let songArtists = '';
 					current_track.artists.forEach((artist, i) => {
 						i === 0 ? songArtists += artist.name :
 							songArtists += ', ' + artist.name;
 					});
-
 					this.setState({
 						playing: true,
 						songName: current_track.name,

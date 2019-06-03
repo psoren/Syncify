@@ -1,0 +1,10 @@
+@import "styling/variables.scss";
+
+.logoMain {
+  color: $accent;
+  font: bold 4.5vw "helvetica neue";
+  text-align: center;
+  justify-content: center;
+  padding-left: 25px;
+  padding-top: 50px;
+}
