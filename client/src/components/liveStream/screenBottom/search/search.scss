@@ -1,0 +1,21 @@
+.searchOuter {
+  width: 350px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  padding-top: 25px;
+}
+
+.searchInput {
+  width: 100%;
+  border: none;
+  border-bottom: 5px solid white;
+  font: bold 80px "helvetica neue", sans-serif;
+  background: none;
+  color: white;
+  outline: none;
+}
+
+.searchInput::placeholder {
+  color: white;
+}

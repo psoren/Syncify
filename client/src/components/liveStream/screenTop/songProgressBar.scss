@@ -1,0 +1,16 @@
+@import "styling/variables.scss";
+
+.barOuter {
+  width: 100%;
+  background: $accentDark;
+  height: 10px;
+  margin: 20px;
+  border-radius: 3px;
+}
+
+.barInner {
+  background: #fff;
+  padding: 0px 0px;
+  height: 10px;
+  border-radius: 3px;
+}

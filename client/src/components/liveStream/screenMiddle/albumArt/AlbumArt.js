@@ -1,36 +1,18 @@
-import AlbumLeft from './AlbumLeft.js';
-import AlbumMiddle from './AlbumMiddle.js';
-import AlbumRight from './AlbumRight.js';
 import React from 'react';
 import './albums.scss';
 
-export default class extends React.Component {
-
-	render() {
-		let albumLeft;
-		let albumMiddle;
-		let albumRight;
-		if (this.props.albumArt) {
-			albumLeft = this.props.albumArt.albumLeft === ''
-				? '../notPlaying.jpg' : this.props.albumArt.albumLeft
-			albumMiddle = this.props.albumArt.albumMiddle === ''
-				? '../notPlaying.jpg' : this.props.albumArt.albumMiddle
-			albumRight = this.props.albumArt.albumRight === ''
-				? '../notPlaying.jpg' : this.props.albumArt.albumRight
-		}
-		else {
-			albumLeft = '../notPlaying.jpg';
-			albumMiddle = '../notPlaying.jpg';
-			albumRight = '../notPlaying.jpg';
-		}
-
-		return (
-			<div className='albumsOuter'>
-				<AlbumLeft albumSrc={albumLeft} />
-				<AlbumMiddle albumSrc={albumMiddle} />
-				<AlbumRight albumSrc={albumRight} />
-			</div>
-		);
-	}
-}
+export default (props) => (
+	<div className='albumsOuter'>
+		<img className='side' src={props.albumArt.albumLeft ?
+			props.albumArt.albumLeft : '../notPlaying.jpg'}
+			alt='Left Album' />
+		<img className='middle'
+			src={props.albumArt.albumMiddle ?
+				props.albumArt.albumMiddle : '../notPlaying.jpg'}
+			alt='Middle Album' />
+		<img className='side' src={props.albumArt.albumRight ?
+			props.albumArt.albumRight : '../notPlaying.jpg'}
+			alt='Right Album' />
+	</div>
+);
 

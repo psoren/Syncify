@@ -3,13 +3,39 @@ import ScreenTop from './screenTop/ScreenTop';
 import ScreenBottom from './screenBottom/ScreenBottom';
 import updateTokens from './functions/updateTokens.js';
 import querystring from 'querystring';
-
-const main = {
-	display: 'flex',
-	flexDirection: 'column'
-}
+import './roomSelect.scss';
 
 export default class extends React.Component {
+
+
+	render() {
+		if (this.state.loading) {
+			return (
+				<div className='roomSelectMain'>
+					<ScreenTop />
+					<ScreenBottom />
+				</div>
+			);
+		}
+		else {
+			return (
+				<div className='roomSelectMain'>
+					<ScreenTop
+						playing={this.state.playing}
+						songName={this.state.songName}
+						songArtists={this.state.songArtists}
+						albumArt={this.state.albumArt}
+						paused={this.state.paused}
+					/>
+					<ScreenBottom
+						currentRooms={this.state.currentRooms}
+					/>
+				</div>
+			);
+		}
+	}
+
+
 	//Note: all of the script stuff is getting attached to the window
 	appendScript = async () => {
 		//If this is the first time the user is logging in
@@ -58,14 +84,14 @@ export default class extends React.Component {
 	}
 
 	createPlayer = () => {
-		window.onSpotifyWebPlaybackSDKReady = async() => {
+		window.onSpotifyWebPlaybackSDKReady = async () => {
 			console.log('sdk is ready');
 			this.player = new window.Spotify.Player({
 				name: 'Syncify',
 				getOAuthToken: cb => { cb(localStorage.getItem('accessToken')) }
 			});
 			let playerConnected = await this.player.connect();
-			if(playerConnected){
+			if (playerConnected) {
 				console.log('PLAYER CONNECTED');
 
 				this.createErrorHandlers();
@@ -84,8 +110,8 @@ export default class extends React.Component {
 		this.player.on('authentication_error', e => console.error(e));
 		this.player.on('account_error', e => {
 			console.error(e);
-			alert('It looks like you do not have a premium Spotify account.\n' + 
-			'You will not be able to use Syncify.');
+			alert('It looks like you do not have a premium Spotify account.\n' +
+				'You will not be able to use Syncify.');
 		});
 		this.player.on('playback_error', e => console.error(e));
 	}
@@ -230,33 +256,6 @@ export default class extends React.Component {
 		clearInterval(this.checkForRoomIntervalId);
 		if (this.player) {
 			this.player.removeListener('player_state_changed');
-		}
-	}
-
-	render() {
-		if (this.state.loading) {
-			return (
-				<div style={main}>
-					<ScreenTop />
-					<ScreenBottom />
-				</div>
-			);
-		}
-		else {
-			return (
-				<div style={main}>
-					<ScreenTop
-						playing={this.state.playing}
-						songName={this.state.songName}
-						songArtists={this.state.songArtists}
-						albumArt={this.state.albumArt}
-						paused={this.state.paused}
-					/>
-					<ScreenBottom
-						currentRooms={this.state.currentRooms}
-					/>
-				</div>
-			);
 		}
 	}
 }

@@ -1,0 +1,47 @@
+@import "styling/variables.scss";
+
+.surround {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  bottom: 125px;
+  right: -25px;
+}
+
+.upNextBtn {
+  font: bold 18px "helvetica neue";
+  border-radius: 1em;
+  background: $accent;
+  color: white;
+  padding: 0.7em 1.5em;
+  width: 9em;
+  outline: 0;
+  cursor: pointer;
+  border: 1px solid red;
+}
+
+.upNextBtnClicked {
+  font: bold 18px "helvetica neue";
+  border-radius: 1em;
+  background: $accentDark;
+  color: white;
+  padding: 0.7em 1.5em;
+  width: 9em;
+  outline: 0;
+  cursor: pointer;
+}
+
+.upNextBtn:active {
+  background: $accentDark;
+}
+
+.upNextSongs {
+  position: absolute;
+  width: 180px;
+  overflow: auto;
+  bottom: 210px;
+  right: -10px;
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.65);
+}

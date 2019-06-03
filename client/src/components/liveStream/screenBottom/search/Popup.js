@@ -3,15 +3,8 @@ import Header from './Header';
 import Songs from './song/Songs';
 import Artists from './artist/Artists';
 import Playlists from './playlist/Playlists';
+import './popup.scss';
 
-let popup = {
-    position: 'absolute',
-    width: '80%',
-    height: '625px',
-    top: '75px',
-    borderRadius: '10px',
-    background: 'rgba(10,10,10,0.85)'
-}
 export default class extends React.Component {
 
     constructor(props) {
@@ -43,7 +36,7 @@ export default class extends React.Component {
                 searchParam={this.props.searchParam} />
         }
         return (
-            <div style={popup}>
+            <div className='popupMain'>
                 <Header changeOption={this.changeOption} />
                 {selectedComponent}
             </div>

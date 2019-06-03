@@ -1,0 +1,15 @@
+@import "styling/variables.scss";
+
+.homeButton {
+  font: 20px arial, sans-serif;
+  border-radius: 1em;
+  color: #fff;
+  background: $accent;
+  padding: 0.7em 1.5em;
+  width: 5em;
+  border: 1px solid white;
+}
+
+.homeButton:active {
+  background: $accentDark;
+}

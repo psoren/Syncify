@@ -1,6 +1,6 @@
 import React from 'react'
 import Listeners from './listener/Listeners';
-import PlaybackInformation from './playbackInformation/PlaybackInformation.js'
+import PlaybackInformation from './playbackInformation/PlaybackInformation';
 import UpNextSongs from './upNext/UpNextSongs';
 import './songInfoAndControls.scss';
 

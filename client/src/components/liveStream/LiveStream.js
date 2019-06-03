@@ -19,6 +19,32 @@ export const LiveStreamContext = React.createContext();
 
 export default class extends React.Component {
 
+	render() {
+		if (this.state.roomDeleted) {
+			return (<Redirect to='/roomselect' />);
+		}
+		return (
+			<LiveStreamContext.Provider value={{
+				socket: this.socket,
+				isPlaying: this.state.isPlaying
+			}}>
+				<div className='liveStreamOuter'>
+					<ScreenTop
+						percentDone={this.state.percentDone}
+						roomName={this.state.roomName} />
+					<ScreenMiddle
+						albumArt={this.state.albumArt}
+						playbackInfo={this.state.playbackInfo}
+						isCreator={this.state.isCreator}
+						player={this.state.player}
+						listeners={this.state.listeners}
+						upNext={this.state.upNext} />
+					<ScreenBottom />
+				</div>
+			</LiveStreamContext.Provider>
+		);
+	}
+
 	constructor(props) {
 		super(props);
 		let currentURL = new URL(window.location.href);
@@ -458,31 +484,5 @@ export default class extends React.Component {
 				}
 			});
 		}
-	}
-
-	render() {
-		if (this.state.roomDeleted) {
-			return (<Redirect to='/roomselect' />);
-		}
-		return (
-			<LiveStreamContext.Provider value={{
-				socket: this.socket,
-				isPlaying: this.state.isPlaying
-			}}>
-				<ScreenTop
-					percentDone={this.state.percentDone}
-					roomName={this.state.roomName} />
-				<ScreenMiddle
-					albumArt={this.state.albumArt}
-					playbackInfo={this.state.playbackInfo}
-					isCreator={this.state.isCreator}
-					player={this.state.player}
-					listeners={this.state.listeners}
-					upNext={this.state.upNext} />
-				<div className={'bottom'}>
-					<ScreenBottom />
-				</div>
-			</LiveStreamContext.Provider>
-		);
 	}
 }

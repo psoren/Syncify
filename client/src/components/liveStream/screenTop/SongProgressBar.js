@@ -1,12 +1,5 @@
 import React from 'react';
-
-const outer = {
-	width: '100%',
-	background: '#2e3192',
-	height: '10px',
-	margin: '20px',
-	borderRadius: '5px'
-};
+import './songProgressBar.scss';
 
 export default class SongProgressBar extends React.Component {
 
@@ -15,23 +8,17 @@ export default class SongProgressBar extends React.Component {
 		this.state = { percentDone: 0 };
 	}
 
-	componentWillReceiveProps({percentDone}) {
-		this.setState({...this.state,percentDone});
-	}
+	componentWillReceiveProps = (nextProps) =>
+		this.setState({ percentDone: nextProps.percentDone });
 
 	render() {
-		const inner = {
-			width: `${this.state.percentDone * 100}%`,
-			background: '#fff',
-			padding: '0px 0px',
-			height: '10px',
-			borderRadius: '5px'
-		};
-
 		return (
-			<div style={outer}>
-				<div style={inner}></div>
+			<div className='barOuter'>
+				<div className='barInner'
+					style={{ width: `${this.state.percentDone * 100}%` }}
+				>
+				</div>
 			</div>
-		)
+		);
 	}
 }

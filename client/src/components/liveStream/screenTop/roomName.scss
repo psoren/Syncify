@@ -1,0 +1,31 @@
+.roomNameForm {
+  text-align: center;
+}
+
+.roomNameInputFocus {
+  width: 60%;
+  text-align: center;
+  background: transparent;
+  color: #fff;
+  border: none;
+  border-bottom: 3px solid #fff;
+  font-size: 50px;
+  outline: 0;
+  margin-bottom: 5px;
+  cursor: pointer;
+  padding-top: 25px;
+}
+
+.roomNameInputBlur {
+  text-align: center;
+  background: transparent;
+  color: #fff;
+  border: none;
+  font-size: 50px;
+  outline: 0;
+  cursor: pointer;
+  padding-top: 25px;
+  width: 90%;
+  border-bottom: 5px solid #fff;
+  margin-bottom: 3px;
+}

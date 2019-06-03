@@ -1,60 +1,33 @@
 import React, { Component } from 'react';
 import UpNext from './UpNext';
-import UpNextBtn from './UpNextBtn';
-
-const surroundStyle = {
-  position: 'relative',
-  top: '-275px',
-}
-
-const listClicked = {
-  height: '300px',
-  overflow: 'auto',
-  width: '225px',
-  background: 'rgba(10,10,10,0.85)',
-  position: 'relative',
-  top: '-20px',
-  right: '40px',
-  borderRadius: '10px',
-  border: '2px solid #000',
-  margin: '0'
-}
-
-const listUnclicked = {
-  ...listClicked,
-  background: 'none',
-  border: 'none',
-  margin: '2px'
-}
+import './upNextSongs.scss';
 
 export default class extends Component {
   constructor(props) {
     super(props);
     this.state = {
       currentUpNext: [],
-      showMenu: false
+      clicked: false
     }
   }
 
-  showMenu = (e) => {
-    e.preventDefault();
-    this.setState({ showMenu: true }, () => {
-      document.addEventListener('click', this.closeMenu);
-    });
-  }
+  componentWillMount = () =>
+    document.addEventListener('mousedown', this.outsideClick);
 
-  closeMenu = (e) => {
-    if (!this.dropdownMenu.contains(e.target)) {
-      this.setState({ showMenu: false }, () => {
-        document.removeEventListener('click', this.closeMenu);
-      });
+  componentWillUnmount = () =>
+    document.removeEventListener('mousedown', this.outsideClick);
+
+  outsideClick = (e) => {
+    if (!this.upNextRef.contains(e.target)
+      && this.state.clicked
+      && !this.buttonRef.contains(e.target)
+    ) {
+      this.setState({ clicked: false });
     }
   }
-
-  componentWillUnmount = () => document.removeEventListener('click', this.closeMenu);
 
   componentWillReceiveProps = (nextProps) => {
-    const currentUpNext = [];
+    let currentUpNext = [];
     if (nextProps.upNext) {
       nextProps.upNext.forEach((track) => {
         let newSong = <UpNext
@@ -70,17 +43,21 @@ export default class extends Component {
 
   render() {
     return (
-      <div style={surroundStyle}>
-        <div style={this.state.showMenu ? listClicked : listUnclicked}> {
-          this.state.showMenu ? (
-            <div ref={(element) => { this.dropdownMenu = element; }}>
-              {this.state.currentUpNext}
-            </div>)
-            : (null)}
+      <div className='surround'>
+        <div
+          className='upNextSongs'
+          ref={upNextRef => this.upNextRef = upNextRef} >
+          {this.state.clicked ? this.state.currentUpNext : null}
         </div>
-        <UpNextBtn
-          onClick={this.showMenu}
-          clicked={this.state.showMenu} />
+        <button
+          ref={buttonRef => this.buttonRef = buttonRef}
+          className={this.state.clicked ?
+            'upNextBtnClicked' :
+            'UpNextBtn'}
+          onClick={this.toggleState}
+        >
+          Up Next
+        </button>
       </div>
     );
   }

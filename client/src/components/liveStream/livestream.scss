@@ -1,5 +1,6 @@
-.bottom {
+.liveStreamOuter {
   display: flex;
-  justify-content: center;
-  margin-top: -200px;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
 }

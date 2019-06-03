@@ -1,43 +1,30 @@
 import React from 'react';
 import SongProgressBar from './SongProgressBar.js';
 import HomeButton from './HomeButton.js';
-//import SavePlaylistButton from './SavePlaylistButton';
 import RoomName from './RoomName.js';
-
-const outerMain = {
-	display: 'flex',
-	flexDirection: 'column',
-	padding: '25px'
-}
-
-const bottom = {
-	display: 'flex',
-	flexDirection: 'row',
-	width: '90%',
-	textAlign: 'center'
-}
+import './screenTop.scss';
 
 export default class extends React.Component {
 
 	constructor(props) {
 		super(props);
-		this.state = {};
+		this.state = { percentDone: 0 };
 	}
 
-	componentWillReceiveProps({ percentDone }) {
-		this.setState({ ...this.state, percentDone });
-	}
+	componentWillReceiveProps = (nextProps) =>
+		this.setState({ percentDone: nextProps.percentDone });
 
 	render() {
 		return (
-			<div style={outerMain}>
+			<div className='screenTopOuter'>
 				<RoomName roomName={this.props.roomName} />
-				<br />
-				<div style={bottom}>
+				<div className='screenTopBottom'>
 					<HomeButton />
-					<SongProgressBar percentDone={this.state.percentDone} />
+					<SongProgressBar
+						percentDone={this.state.percentDone}
+					/>
 				</div>
 			</div>
-		)
+		);
 	}
 }
