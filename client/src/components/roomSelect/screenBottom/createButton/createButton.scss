@@ -1,6 +1,12 @@
 @import "styling/variables.scss";
 
-.createButton{
+.createButtonOuter {
+  border: 1px solid red;
+  margin: 0px;
+  padding: 0px;
+}
+
+.createButton {
   font: bold 36px "helvetica neue", helvetica, arial, sans-serif;
   border-radius: 4em;
   background: $accent;
@@ -9,16 +15,17 @@
   height: 6em;
   border: 1px solid white;
   outline: 0;
+  cursor: pointer;
 }
 
 .createButtonClicked {
-    font: bold 36px "helvetica neue", helvetica, arial, sans-serif;
-    border-radius: 4em;
-    background: $accentDark;
-    color: white;
-    width: 6em;
-    height: 6em;
-    border: 1px solid white;
-    outline: 0;
-  }
-  
+  font: bold 36px "helvetica neue", helvetica, arial, sans-serif;
+  border-radius: 4em;
+  background: $accentDark;
+  color: white;
+  width: 6em;
+  height: 6em;
+  border: 1px solid white;
+  outline: 0;
+  cursor: pointer;
+}

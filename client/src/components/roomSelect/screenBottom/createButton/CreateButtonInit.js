@@ -1,13 +1,28 @@
 import React from 'react';
 import './createButton.scss';
 
-export default (props) => (
-    <button
-        className='createButton'
-        style={props.style}
-        onClick={props.onClick}
-        onMouseDown={props.onMouseDown}
-        onMouseOut={props.onMouseOut}>
-        Create
-    </button>
-);
+export default class extends React.Component {
+
+    componentWillMount = () =>
+        document.addEventListener('mousedown', this.handleClick);
+
+    componentWillUnmount = () =>
+        document.removeEventListener('mousedown', this.handleClick);
+
+    handleClick = (e) => {
+        if (this.node.contains(e.target)) {
+            this.props.goToForm();
+        }
+    }
+
+    render() {
+        return (
+            <button
+                ref={node => this.node = node}
+                className='createButton'
+            >
+                Create
+            </button>
+        );
+    }
+}

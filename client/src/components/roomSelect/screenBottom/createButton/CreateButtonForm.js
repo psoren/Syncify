@@ -7,47 +7,6 @@ import './createButtonForm.scss';
 
 export default class extends React.Component {
 
-  //When we attempt to create a room, either it
-  //was created successfully and we should redirect or
-  //there is an error.  If neither of those is set, 
-  //then the user has not attempted to create a room yet.
-  render() {
-    if (this.state.roomIsCreated && !this.state.roomCreationError) {
-      return (<Redirect to={'/livestream?roomId=' + this.state.roomID} />);
-    }
-    else {
-      return (
-        <form
-          className='createButtonForm'
-          onSubmit={this.handleSubmit}>
-          <label className='createButtonLabel'>
-            <input type="radio" value="Public"
-              checked={this.state.selectedOption === 'Public'}
-              onChange={this.handleRadioChange} />
-            Public
-          </label>
-          <label className='createButtonLabel'>
-            <input type="radio" value="Private"
-              checked={this.state.selectedOption === 'Private'}
-              onChange={this.handleRadioChange} />
-            Private
-          </label>
-          <input
-            className='createButtonInput'
-            type="text"
-            value={this.state.value}
-            onChange={this.handleChange}
-            defaultValue={this.state.defValue} />
-          <input type="submit"
-            className='createButtonBtn'
-            value="Create Room"
-          />
-        </form>
-      );
-    }
-  }
-
-
   constructor(props) {
     super(props);
     let fullName = localStorage.getItem('name') ?
@@ -56,14 +15,13 @@ export default class extends React.Component {
     if (fullName !== '') {
       roomName = fullName.split(' ')[0] + "'s Room"
     }
-
     this.state = {
       roomName: '',
       selectedOption: 'Public',
       roomIsCreated: false,
       defValue: roomName,
       modified: false
-    }
+    };
   }
 
   handleChange = (e) => {
@@ -98,7 +56,7 @@ export default class extends React.Component {
       albumArtSrc: playbackInfoResJSON.item.album.images[0].url
     }
 
-    //For default value
+    //Default value
     let name = this.state.defValue;
     if (this.state.modified) {
       name = this.state.roomName
@@ -131,5 +89,57 @@ export default class extends React.Component {
 
   handleRadioChange = (e) => this.setState({ selectedOption: e.target.value });
 
+  componentWillMount = () =>
+    document.addEventListener('mousedown', this.handleClick);
 
+  componentWillUnmount = () =>
+    document.removeEventListener('mousedown', this.handleClick);
+
+  handleClick = (e) => {
+    if (!this.node.contains(e.target)) {
+      this.props.resetState();
+    }
+  }
+
+  //When we attempt to create a room, either it
+  //was created successfully and we should redirect or
+  //there is an error.  If neither of those is set, 
+  //then the user has not attempted to create a room yet.
+  render() {
+    if (this.state.roomIsCreated && !this.state.roomCreationError) {
+      return (<Redirect to={'/livestream?roomId=' + this.state.roomID} />);
+    }
+    else {
+      return (
+        <form
+          ref={node => this.node = node}
+          onClick={this.handleClick}
+          className='createButtonForm'
+          onSubmit={this.handleSubmit}>
+          <label className='createButtonLabel'>
+            <input type="radio" value="Public"
+              checked={this.state.selectedOption === 'Public'}
+              onChange={this.handleRadioChange} />
+            Public
+          </label>
+          <label className='createButtonLabel'>
+            <input type="radio" value="Private"
+              checked={this.state.selectedOption === 'Private'}
+              onChange={this.handleRadioChange} />
+            Private
+          </label>
+          <input
+            className='createButtonInput'
+            type="text"
+            value={this.state.value}
+            onChange={this.handleChange}
+            defaultValue={this.state.defValue} />
+          <input type="submit"
+            className='createButtonBtn'
+            value="Create Room"
+          />
+        </form>
+      );
+    }
+  }
 }

@@ -9,35 +9,15 @@ export default class extends React.Component {
         this.state = { clicked: false };
     }
 
-    componentWillMount = () => document.addEventListener('mousedown', this.handleClick);
-    componentWillUnmount = () => document.removeEventListener('mousedown', this.handleClick);
-
-    handleClick = (e) => {
-        if (!this.node.contains(e.target)) {
-            this.setState({ clicked: false });
-        }
-    }
-
-    onMouseDown = () => {
-        if (!this.state.clicked) {
-            this.setState({ clicked: true });
-        }
-    }
-
-    onMouseOut = () => this.setState({ clicked: false });
-
-    onClick = () => this.setState({ clicked: true });
+    changeState = () => this.setState({ clicked: !this.state.clicked });
 
     render() {
-        return (<div ref={node => this.node = node}
-            style={this.state.style}>
-            {this.state.clicked ?
-                <CreateButtonForm /> :
-                <CreateButtonInit
-                    onClick={this.onClick}
-                    onMouseOut={this.onMouseOut}
-                    onMouseDown={this.onMouseDown}
-                />
-            }</div>);
+        return this.state.clicked ?
+            <CreateButtonForm
+                resetState={this.changeState}
+            /> :
+            <CreateButtonInit
+                goToForm={this.changeState}
+            />;
     }
 }
