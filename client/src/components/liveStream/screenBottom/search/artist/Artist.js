@@ -14,8 +14,8 @@ class Artist extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = { socket: props.context.socket };
         this.state = {
+            socket: props.context.socket,
             name: 'Loading...',
             image: '/defaultPerson.png',
             selectedAlbumId: null

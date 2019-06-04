@@ -3,29 +3,28 @@ import { LiveStreamContext } from 'components/liveStream/LiveStream';
 import './togglePublic.scss';
 
 class TogglePublic extends React.Component {
-    
+
     constructor(props) {
         super(props);
-        this.state = {
-            socket: props.socket,
-            isPlaying: props.isPublic,
-            loading: true
-        };
+        this.state = { isPublic: true };
     }
 
-    componentWillReceiveProps = (nextProps) => this.setState({
-        loading: false,
-        socket: nextProps.socket,
-        isPlaying: nextProps.isPlaying
-    });
+    componentWillReceiveProps = (nextProps) => {
+        if (nextProps.context.socket) {
+            this.setState({
+                socket: nextProps.context.socket,
+                isPublic: nextProps.isPublic
+            });
+        }
+    }
 
-    togglePlayback = () => {
+    togglePublic = () => {
         if (!this.state.loading) {
             let currentURL = new URL(window.location.href);
-            this.state.socket.emit('togglePublic', {
-                roomId: currentURL.searchParams.get('roomId'),
-                isPublic: this.state.isPublic
-            });
+            if (this.state.socket) {
+                this.state.socket.emit('togglePublic',
+                    currentURL.searchParams.get('roomId'));
+            }
         }
     }
 

@@ -262,7 +262,7 @@ export default class extends React.Component {
 			this.setState({ isPublic: !this.state.isPublic }, () => {
 				if (this.state.isPublic) {
 					toaster.notify('The creator of the room has changed the room to public.' +
-						'  Anyone can join this room from the home screen', { duration: 3000 });
+						'  Anyone can join this room from the home screen.', { duration: 3000 });
 				}
 				else {
 					toaster.notify('The creator of the room has changed the room to private.' +
