@@ -1,65 +1,65 @@
-@import './variables.scss';
+@import "./variables.scss";
 
 body {
-	color: #fff;
-	background: radial-gradient(circle, $main1 0%, $main2 100%);
-	background-size: 300% 300%;
+  color: #fff;
+  background: radial-gradient(circle, $main1 0%, $main2 100%);
+  background-size: 300% 300%;
 }
 
 a {
-	text-decoration: none;
+  text-decoration: none;
 }
 
 .btn {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .mainBtn {
-    font: bold 12px "helvetica neue", "sans-serif";
-    border-radius: 1em;
-    background: $accent;
-    color: white;
-    padding: 2em 1.5em;
-    width: 8em;
-    height: 2.5em;
-    outline: 0;
-    cursor: pointer;
-    padding: 0px;
-    margin: 10px;
+  font: bold 12px "helvetica neue", "sans-serif";
+  border-radius: 1em;
+  background: $accent;
+  color: white;
+  padding: 2em 1.5em;
+  width: 8em;
+  height: 2.5em;
+  outline: 0;
+  cursor: pointer;
+  padding: 0px;
+  margin: 10px;
 }
 
 .mainBtnClicked {
-    font: bold 12px "helvetica neue", "sans-serif";
-    border-radius: 1em;
-    background: $accentDark;
-    color: white;
-    padding: 2em 1.5em;
-    width: 8em;
-    height: 2.5em;
-    outline: 0;
-    cursor: pointer;
-    padding: 0px;
-    margin: 10px;
+  font: bold 12px "helvetica neue", "sans-serif";
+  border-radius: 1em;
+  background: $accentDark;
+  color: white;
+  padding: 2em 1.5em;
+  width: 8em;
+  height: 2.5em;
+  outline: 0;
+  cursor: pointer;
+  padding: 0px;
+  margin: 10px;
 }
 
 .bigBtn {
-    font: bold 18px "helvetica neue";
-    border-radius: 1em;
-    background: $accent;
-    color: green;
-    padding: 0.7em 1.5em;
-    width: 9em;
-    outline: 0;
-    cursor: pointer;
+  font: bold 18px "helvetica neue";
+  border-radius: 1em;
+  background: $accent;
+  color: green;
+  padding: 0.7em 1.5em;
+  width: 9em;
+  outline: 0;
+  cursor: pointer;
 }
 
 .bigBtnClicked {
-    font: bold 18px "helvetica neue";
-    border-radius: 4em;
-    background: $accentDark;
-    color: white;
-    padding: 0.7em 1.5em;
-    width: 9em;
-    outline: 0;
-    cursor: pointer;
+  font: bold 18px "helvetica neue";
+  border-radius: 4em;
+  background: $accentDark;
+  color: white;
+  padding: 0.7em 1.5em;
+  width: 9em;
+  outline: 0;
+  cursor: pointer;
 }

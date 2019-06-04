@@ -2,7 +2,12 @@ import React from 'react';
 import SongProgressBar from './SongProgressBar.js';
 import HomeButton from './HomeButton.js';
 import RoomName from './RoomName.js';
+import RoomSettings from './RoomSettings';
 import './screenTop.scss';
+
+//only for spacing right now
+//we will add the gear to toggle public/private after
+import Lock from './Lock';
 
 export default class extends React.Component {
 
@@ -17,8 +22,12 @@ export default class extends React.Component {
 	render() {
 		return (
 			<div className='liveStreamTopOuter'>
-				<RoomName roomName={this.props.roomName} />
-				<HomeButton />
+				<div className='liveStreamTopInner'>
+					<HomeButton />
+					<RoomSettings />
+					<RoomName roomName={this.props.roomName} />
+					<Lock />
+				</div>
 				<SongProgressBar percentDone={this.state.percentDone} />
 			</div>
 		);
