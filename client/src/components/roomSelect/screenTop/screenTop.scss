@@ -1,15 +1,14 @@
 .screenTopMain {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-evenly;
+  align-content: center;
 }
 
 .screenTopBottom {
-  position: relative;
-  top: -50px;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
 }
 
@@ -18,5 +17,4 @@
   border: 2px solid white;
   margin: 20px 50px 0 50px;
   position: relative;
-  top: -50px;
 }

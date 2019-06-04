@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import './logoutButton.scss';
+import './logoutBtn.scss';
 
 export default class extends React.Component {
 
@@ -17,9 +17,12 @@ export default class extends React.Component {
 	render() {
 		return (
 			<NavLink
-				to='login'
-				className='logout'
-				onClick={this.submit}>
+				to='/login'
+				className='logoutBtn'
+				onClick={this.submit}
+				onMouseDown={() => this.setState({ background: '#10AC47' })}
+				onMouseUp={() => this.setState({ background: '#436ddf' })}
+				onMouseOut={() => this.setState({ background: '#436ddf' })}>
 				LOG OUT
 			</NavLink>
 		)
