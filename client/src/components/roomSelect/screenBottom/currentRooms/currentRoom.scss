@@ -1,0 +1,57 @@
+.currentRoomOuterMain {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.currentRoomTitle {
+  font-size: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+  border-bottom: 2px solid white;
+  padding: 0px;
+  margin: 0px;
+}
+
+.currentRoomLowerMain {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.currentRoomInnerLeft {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.currentRoomImg {
+  width: 75px;
+  height: 75px;
+  padding: 10px;
+  margin: 5px;
+  border-bottom: 1px solid white;
+}
+
+.currentRoomCreator {
+  font-size: 16px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 700;
+  padding: 0px;
+  margin: 0px;
+}
+
+.currentRoomInnerMiddle {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin: 5px;
+}
+
+.currentRoomInnerMiddleHr {
+    width: 100%;
+    border: none;
+}

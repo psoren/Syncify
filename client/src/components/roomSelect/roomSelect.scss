@@ -3,6 +3,7 @@
 .roomSelectMain {
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: space-around;
   align-items: center;
+  border: 1px solid red;
 }

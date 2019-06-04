@@ -1,26 +1,6 @@
 import React from 'react';
 import CurrentRoom from './CurrentRoom';
-
-const h2style = {
-    borderBottom: '3px solid white',
-    font: 'bold 32px "helvetica neue", helvetica, arial, sans-serif',
-    color: 'white',
-    textAlign: 'center'
-}
-
-const noRoomsStyle = {
-    font: 'bold 28px "helvetica neue", helvetica, arial, sans-serif',
-    color: 'white',
-    textAlign: 'center',
-    paddingLeft: '25px',
-    paddingRight: '25px',
-    maxWidth: '200px'
-}
-
-const divStyle = {
-    height: '400px',
-    overflow: 'auto'
-}
+import './currentRooms.scss';
 
 export default class extends React.Component {
 
@@ -49,30 +29,22 @@ export default class extends React.Component {
     }
 
     render() {
-        let comp;
-
-        //If there is at least one room playing
-        if (this.state.currentRooms.length > 0) {
-            comp = this.state.currentRooms;
-        }
-        else {
-            comp =
-                <React.Fragment>
-                    <div style={noRoomsStyle}>
-                        There are no rooms playing right now.
-                    </div>
-                    <br />
-                    <div style={noRoomsStyle}>
-                        Click Create to get started.
-                     </div>
-                </React.Fragment>
-        }
-
         return (
-            <div>
-                <h2 style={h2style}>Now Playing</h2>
-                <div style={divStyle}>
-                    {comp}
+            <div className='currentRoomsOuter'>
+                <h2 className='currentRoomsTitle'>
+                    Now Playing
+                </h2>
+                <div className='rooms'>
+                    {this.state.currentRooms.length > 0 ?
+                        this.state.currentRooms :
+                        <div className='noRoomsOuter'>
+                            <p className='noRoom'>
+                                There are no rooms playing right now.
+                            </p>
+                            <p className='noRoom'>
+                                Click Create to get started.
+                             </p>
+                        </div>}
                 </div>
             </div>
         );

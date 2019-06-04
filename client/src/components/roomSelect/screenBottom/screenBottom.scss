@@ -1,10 +1,10 @@
 @import "styling/variables.scss";
 
-.screenBottomMain {
+.roomSelectBottomMain {
   display: flex;
   flex-direction: row;
-  padding-top: 25px;
-  justify-content: space-around;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
 .roomSelectOuterBtn {

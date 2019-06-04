@@ -16,13 +16,11 @@ export default class extends React.Component {
 
 	render() {
 		return (
-			<div className='screenTopOuter'>
+			<div className=''>
 				<RoomName roomName={this.props.roomName} />
-				<div className='screenTopBottom'>
+				<div className='liveStreamScreenTopBottom'>
 					<HomeButton />
-					<SongProgressBar
-						percentDone={this.state.percentDone}
-					/>
+					<SongProgressBar percentDone={this.state.percentDone}/>
 				</div>
 			</div>
 		);

@@ -5,7 +5,7 @@ import CurrentRooms from './currentRooms/CurrentRooms';
 import './screenBottom.scss';
 
 export default (props) => (
-    <div className='screenBottomMain'>
+    <div className='roomSelectBottomMain'>
         <CreateButton />
         <CurrentRooms currentRooms={props.currentRooms} />
         <JoinButton />

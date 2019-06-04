@@ -1,3 +1,29 @@
-.currentRoomBtn {
-    cursor: pointer;
+.currentRoomsOuter {
+    margin: 25px;
+}
+
+.currentRoomsTitle {
+  border-bottom: 3px solid white;
+  font: bold 32px "helvetica neue", helvetica, sans-serif;
+  color: white;
+  text-align: center;
+}
+
+.noRoomsOuter {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.noRoom {
+  font: bold 28px "helvetica neue", helvetica, arial, sans-serif;
+  color: white;
+  text-align: center;
+  max-width: 200px;
+}
+
+.currentRooms {
+  height: 400px;
+  overflow: auto;
 }

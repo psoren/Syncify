@@ -2,26 +2,12 @@ import React from 'react';
 import { Redirect } from 'react-router-dom';
 import toaster from 'toasted-notes';
 import 'toasted-notes/src/styles.css';
-import 'styling/styles.scss';
-import './currentRooms.scss';
+import './joinCurrentRoomBtn.scss';
 
 export default class extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            style: {
-                textAlign: 'center',
-                font: 'bold 24px "helvetica neue", helvetica, arial, sans-serif',
-                borderRadius: '1.5em',
-                background: '#2e3192',
-                color: 'white',
-                width: '3em',
-                height: '3em',
-                border: '1px solid white',
-                outline: 0
-            },
-            roomFound: false
-        }
+        this.state = { roomFound: false };
     }
 
     handleSubmit = async (e) => {
@@ -36,7 +22,6 @@ export default class extends React.Component {
             })
         });
         let resJSON = await res.json();
-
         if (resJSON.success) {
             this.setState({ roomFound: true });
         }
@@ -45,8 +30,7 @@ export default class extends React.Component {
         }
     }
 
-    onClick = async (e) => {
-        this.setState({ style: { ...this.state.style, background: '#2e3192' } });
+    onClick = async () => {
         let res = await fetch('/joinRoom', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -65,22 +49,20 @@ export default class extends React.Component {
         }
     }
 
-    onMouseDown = () => this.setState({ style: { ...this.state.style, background: '#00005F' } });
-    onMouseOut = () => this.setState({ style: { ...this.state.style, background: '#2e3192' } });
-
     render() {
         if (this.state.roomFound) {
-            return (<Redirect to={'/livestream/?roomId=' + this.props.roomId} />);
+            return (
+                <Redirect to={'/livestream/?roomId=' + this.props.roomId} />
+            );
         }
         else {
-            return (<button
-                style={this.state.style}
-                className='currentRoomBtn'
-                onClick={this.onClick}
-                onMouseDown={this.onMouseDown}
-                onMouseOut={this.onMouseOut}>
-                Join
-            </button>);
+            return (
+                <button
+                    className='joinCurrentRoomBtn'
+                    onClick={this.onClick}>
+                    Join
+            </button>
+            );
         }
     }
 }
