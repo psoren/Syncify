@@ -14,17 +14,15 @@
 }
 
 .middleGrayBackground {
-  width: 90%;
-  height: 90%;
+  width: 99%;
+  height: 98.5%;
   position: absolute;
   z-index: 1;
-  top: 4%;
-  left: 4%;
-  margin: 0px;
+  top: 0%;
+  left: 0%;
+  margin: 1px;
   padding: 0px;
-  background-color: rgba(112, 112, 112, 0.856);
-  border-radius: 25px;
-  border: 2px solid white;
+  background-color: rgba(112, 112, 112, 0.548);
 }
 
 .middlePaused {

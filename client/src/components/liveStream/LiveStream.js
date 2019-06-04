@@ -77,7 +77,7 @@ export default class extends React.Component {
 		};
 	}
 
-	async componentDidMount() {
+	async componentWillMount() {
 		//1. Make sure that tokens are being refreshed
 		await updateTokens();
 		let refreshInterval = 1000 * 60 * 5;
@@ -124,7 +124,6 @@ export default class extends React.Component {
 	setupBeforeUnloadListener = () => {
 		window.addEventListener('beforeunload', (e) => {
 			e.preventDefault();
-
 			if (this.socket) {
 				this.socket.emit('leaveRoom', {
 					name: localStorage.getItem('name').split(' ')[0],
@@ -260,7 +259,6 @@ export default class extends React.Component {
 		});
 
 		this.socket.on('creatorLeft', newRoomData => {
-
 			//If we are now the creator
 			if (newRoomData.creator.refreshToken === localStorage.getItem('refreshToken')) {
 				this.setState({ isCreator: true });

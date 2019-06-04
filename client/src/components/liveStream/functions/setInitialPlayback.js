@@ -20,7 +20,7 @@ const setInitialPlayback = async (isCreator) => {
     }
 
     //If the user is not a creator, get the playback state of the room
-    //and set the current playbcak to be that song at that position
+    //and set the current playback to be that song at that position
     else {
         //1. Get creator playback state
         let currentURL = new URL(window.location.href);
@@ -38,10 +38,10 @@ const setInitialPlayback = async (isCreator) => {
             let isPlaying = creatorPlaybackInfoResJSON.isPlaying;
 
             //3. Set playback to same position as creator
-            if(!localStorage.getItem('accessToken')){
+            if (!localStorage.getItem('accessToken')) {
                 console.log('could not find access token');
             }
-         
+
             await fetch('https://api.spotify.com/v1/me/player/play', {
                 method: 'PUT',
                 headers: { 'Authorization': 'Bearer ' + localStorage.getItem('accessToken') },
@@ -57,7 +57,9 @@ const setInitialPlayback = async (isCreator) => {
                     method: 'PUT',
                     headers: { 'Authorization': 'Bearer ' + localStorage.getItem('accessToken') }
                 });
-                console.log('(setInitialPlayback)' + pauseRes.status);
+                if (pauseRes.status !== 204) {
+                    console.log('(setInitialPlayback) could not pause playback');
+                }
             }
         }
         else {

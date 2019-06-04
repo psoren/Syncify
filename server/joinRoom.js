@@ -15,10 +15,8 @@ module.exports = (app, io) => {
                     });
                     let infoResJSON = await infoRes.json();
 
-                    let pictureSrc = '../defaultPerson.png';
-                    if (infoResJSON.images.length > 0) {
-                        pictureSrc = infoResJSON.images[0].url;
-                    }
+                    let pictureSrc = infoResJSON.images.length > 0 ?
+                        infoResJSON.images[0].url : '../defaultPerson.png';
 
                     if (infoResJSON) {
                         let newListener = {
