@@ -13,7 +13,7 @@
   color: #fff;
   background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab, #fefb78);
   background-size: 400% 400%;
-  animation: bganimation 45s ease infinite;
+  animation: bganimation 120s ease infinite;
 }
 
 @keyframes bganimation {
@@ -33,6 +33,7 @@
   flex-direction: column;
   justify-content: center;
   position: relative;
+  flex-grow: 1;
 }
 
 .roomSettingsList {

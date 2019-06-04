@@ -3,11 +3,8 @@ import SongProgressBar from './SongProgressBar.js';
 import HomeButton from './HomeButton.js';
 import RoomName from './RoomName.js';
 import RoomSettings from './RoomSettings';
+import TogglePublic from './TogglePublic';
 import './screenTop.scss';
-
-//only for spacing right now
-//we will add the gear to toggle public/private after
-import Lock from './Lock';
 
 export default class extends React.Component {
 
@@ -19,6 +16,7 @@ export default class extends React.Component {
 	componentWillReceiveProps = (nextProps) =>
 		this.setState({ percentDone: nextProps.percentDone });
 
+	//Only show toggle public if the user is the creator
 	render() {
 		return (
 			<div className='liveStreamTopOuter'>
@@ -26,7 +24,9 @@ export default class extends React.Component {
 					<HomeButton />
 					<RoomSettings />
 					<RoomName roomName={this.props.roomName} />
-					<Lock />
+					{this.props.isCreator ?
+						<TogglePublic isPublic={this.props.isPublic} /> : null
+					}
 				</div>
 				<SongProgressBar percentDone={this.state.percentDone} />
 			</div>

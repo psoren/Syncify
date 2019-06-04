@@ -15,7 +15,8 @@ module.exports = (app) => {
                         creatorId: room.creator.spotifyURI,
                         accessToken: room.creator.accessToken,
                         pictureSrc: room.creator.pictureSrc,
-                        listeners: room.roomListeners
+                        listeners: room.roomListeners,
+                        isPublic: room.public
                     });
                 }
                 else {

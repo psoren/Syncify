@@ -1,5 +1,5 @@
 import React from 'react';
-import { LiveStreamContext } from '../../LiveStream';
+import { LiveStreamContext } from 'components/liveStream/LiveStream';
 import './albums.scss';
 
 class AlbumArt extends React.Component {

@@ -14,6 +14,7 @@ import updateTokens from './functions/updateTokens.js';
 import updateCreatorAccessToken from './functions/updateCreatorAccessToken.js';
 import checkIfCreator from './functions/checkIfCreator.js';
 import setInitialPlayback from './functions/setInitialPlayback.js';
+import getRoom from './functions/getRoom';
 
 export const LiveStreamContext = React.createContext();
 
@@ -31,7 +32,10 @@ export default class extends React.Component {
 				<div className='liveStreamOuter'>
 					<ScreenTop
 						percentDone={this.state.percentDone}
-						roomName={this.state.roomName} />
+						roomName={this.state.roomName}
+						isPublic={this.state.isPublic}
+						isCreator={this.state.isCreator}
+					/>
 					<ScreenMiddle
 						albumArt={this.state.albumArt}
 						playbackInfo={this.state.playbackInfo}
@@ -73,7 +77,8 @@ export default class extends React.Component {
 			currentSongDone: false,
 			isPlaying: true,
 			nextSongRequested: false,
-			roomDeleted: false
+			roomDeleted: false,
+			isPublic: true
 		};
 	}
 
@@ -92,10 +97,14 @@ export default class extends React.Component {
 		}
 		this.checkForRoomId = setInterval(this.checkForRoom, 5000);
 
+		//3. Check if the room is public
+		let initRoomInfo = await getRoom();
+		this.setState({ isPublic: initRoomInfo.isPublic });
+
 		//Display a message welcoming the user to the room
 		await this.showWelcomeMessage();
 
-		//3. If we are coming straight from the RoomSelect screen,
+		//4. If we are coming straight from the RoomSelect screen,
 		//set this.state.player to be the player that already was created
 		//If not, create a new player
 		//Also, setup the setInterval method for checking the percentDone of the song
@@ -246,6 +255,19 @@ export default class extends React.Component {
 			await fetch('https://api.spotify.com/v1/me/player/' + endpoint, {
 				method: 'PUT',
 				headers: { 'Authorization': 'Bearer ' + localStorage.getItem('accessToken') }
+			});
+		});
+
+		this.socket.on('togglePublic', () => {
+			this.setState({ isPublic: !this.state.isPublic }, () => {
+				if (this.state.isPublic) {
+					toaster.notify('The creator of the room has changed the room to public.' +
+						'  Anyone can join this room from the home screen', { duration: 3000 });
+				}
+				else {
+					toaster.notify('The creator of the room has changed the room to private.' +
+						'  Anyone who wants to join the room will need the room ID.', { duration: 3000 })
+				}
 			});
 		});
 
