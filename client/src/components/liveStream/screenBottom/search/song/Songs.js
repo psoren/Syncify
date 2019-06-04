@@ -4,6 +4,7 @@ import Btn from '../artist/Btn';
 import { LiveStreamContext } from '../../../LiveStream';
 import querystring from 'querystring';
 import 'styling/styles.scss';
+import './songs.scss';
 import toaster from 'toasted-notes';
 import 'toasted-notes/src/styles.css';
 
@@ -42,6 +43,7 @@ class Songs extends React.Component {
                         onClick={this.playAllSongs.bind(this, true)}
                     />
                 </div>
+                <p className='songsLabel'>{this.state.songsLabel}</p>
                 <div style={inner}>
                     {this.state.songs}
                 </div>
@@ -56,7 +58,8 @@ class Songs extends React.Component {
             loading: true,
             librarySongs: true,
             playAllNextClicked: false,
-            playAllLaterClicked: false
+            playAllLaterClicked: false,
+            songsLabel: 'Your Library'
         }
         this.setLibrarySongs();
     }
@@ -93,7 +96,10 @@ class Songs extends React.Component {
                     imgSrc={track.album.images[0].url}
                     uri={track.uri} />
                 songs.push(newSong);
-                this.setState({ songs: songs });
+                this.setState({
+                    songs: songs,
+                    songsLabel: 'Your Library'
+                });
             });
         }
         else {
@@ -127,7 +133,10 @@ class Songs extends React.Component {
                 imgSrc={imgSrc}
                 uri={track.uri} />
             songs.push(newSong);
-            this.setState({ songs: songs });
+            this.setState({
+                songs: songs,
+                songsLabel: 'Results'
+            });
         });
     }
 
