@@ -10,8 +10,9 @@ class AlbumArt extends React.Component {
 	}
 
 	componentWillReceiveProps(nextProps) {
-		if (nextProps.isPlaying !== this.state.isPlaying) {
-			this.setState({ isPlaying: !this.state.isPlaying });
+		if (nextProps.context &&
+			this.state.isPlaying !== nextProps.context.isPlaying) {
+			this.setState({ isPlaying: nextProps.context.isPlaying });
 		}
 	}
 
@@ -28,12 +29,12 @@ class AlbumArt extends React.Component {
 							this.props.albumArt.albumMiddle : '../notPlaying.jpg'}
 						alt='Middle Album'
 					/>
-					{this.state.isPlaying ?
+					{!this.state.isPlaying ?
 						<img className='middlePaused'
-							src='liveStreamPause.svg'
+							src='/liveStreamPause.svg'
 							alt='Paused'
 						/> : null}
-					{this.state.isPlaying ?
+					{!this.state.isPlaying ?
 						<div className='middleGrayBackground'
 						/> : null}
 				</div>
