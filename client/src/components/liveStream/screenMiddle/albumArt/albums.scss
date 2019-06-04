@@ -1,8 +1,41 @@
-.middle {
-  height: 30%;
-  width: 30%;
-  border: 1px solid white;
+.middleContainer {
+  position: relative;
   margin: 25px;
+  padding: 0px;
+}
+
+.middleImg {
+  height: 30vw;
+  width: 30vw;
+  border: 1px solid white;
+  margin: 0px;
+  position: relative;
+  z-index: 0;
+}
+
+.middleGrayBackground {
+  width: 90%;
+  height: 90%;
+  position: absolute;
+  z-index: 1;
+  top: 4%;
+  left: 4%;
+  margin: 0px;
+  padding: 0px;
+  background-color: rgba(112, 112, 112, 0.856);
+  border-radius: 25px;
+  border: 2px solid white;
+}
+
+.middlePaused {
+  height: 20vw;
+  width: 20vw;
+  position: absolute;
+  top: 17%;
+  left: 17%;
+  z-index: 2;
+  margin: 0px;
+  padding: 0px;
 }
 
 .side {
