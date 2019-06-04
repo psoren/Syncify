@@ -7,7 +7,6 @@ let roomSchema = new Schema({
 	_id: {type: String, 'default':shortestId.generate},
 	name: {type: String, required: false, max: 100},
 	public: {type: Boolean},
-	restricted: {type: Boolean},
 	creator: {
 		name: {type: String, required: true, max: 100},
 		spotifyURI: {type: String, required: true},

@@ -6,20 +6,24 @@ class TogglePublic extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = { isPublic: true };
+        this.state = {
+            isPublic: true,
+            isCreator: this.props.isCreator
+        };
     }
 
     componentWillReceiveProps = (nextProps) => {
         if (nextProps.context.socket) {
             this.setState({
                 socket: nextProps.context.socket,
-                isPublic: nextProps.isPublic
+                isPublic: nextProps.isPublic,
+                isCreator: nextProps.isCreator
             });
         }
     }
 
     togglePublic = () => {
-        if (!this.state.loading) {
+        if (!this.state.loading && this.state.isCreator) {
             let currentURL = new URL(window.location.href);
             if (this.state.socket) {
                 this.state.socket.emit('togglePublic',

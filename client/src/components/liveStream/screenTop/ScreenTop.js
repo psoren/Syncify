@@ -24,9 +24,10 @@ export default class extends React.Component {
 					<HomeButton />
 					<RoomSettings />
 					<RoomName roomName={this.props.roomName} />
-					{this.props.isCreator ?
-						<TogglePublic isPublic={this.props.isPublic} /> : null
-					}
+					<TogglePublic
+						isPublic={this.props.isPublic}
+						isCreator={this.props.isCreator}
+					/>
 				</div>
 				<SongProgressBar percentDone={this.state.percentDone} />
 			</div>
