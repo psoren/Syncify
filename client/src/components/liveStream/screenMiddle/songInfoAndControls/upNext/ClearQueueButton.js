@@ -1,5 +1,9 @@
 import React from 'react';
 import { LiveStreamContext } from 'components/liveStream/LiveStream';
+import { confirmAlert } from 'react-confirm-alert'; // Import
+import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
+
+
 import './clearQueueButton.scss';
 
 class ClearQueueButton extends React.Component {
@@ -19,11 +23,33 @@ class ClearQueueButton extends React.Component {
 	}
 
 	clearQueue = () => {
-		if (this.state.socket && this.state.isCreator) {
-			let currentURL = new URL(window.location.href);
-			this.state.socket.emit('clearQueue',
-				currentURL.searchParams.get('roomId'));
-		}
+		confirmAlert({
+			customUI: ({ onClose }) => {
+				return (
+					<div className='confirmDialogMain'>
+						<h1 className='confirmDialogPrompt'
+						>Are you sure you want to remove all upcoming songs?</h1>
+						<div className='confirmDialogInner'>
+							<button
+								className='confirmDialogBtn'
+								onClick={onClose}>No</button>
+							<button
+								className='confirmDialogBtn'
+								onClick={() => {
+									if (this.state.socket && this.state.isCreator) {
+										let currentURL = new URL(window.location.href);
+										this.state.socket.emit('clearQueue',
+											currentURL.searchParams.get('roomId'));
+									}
+									onClose();
+								}}>
+								Yes
+							  </button >
+						</div>
+					</div>
+				);
+			}
+		});
 	}
 
 	render() {

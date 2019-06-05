@@ -1,12 +1,55 @@
+@import "styling/variables.scss";
+
 .clearQueueBtn {
-    width: 30px;
-    height: 30px;
-    background-size: 100%;
-    margin: 4px 4px;
-    outline: 0;
-    cursor: pointer;
-    border: none;
-    position: absolute;
-    right: 165px;
-    bottom: 55px;
-  }
+  width: 30px;
+  height: 30px;
+  background-size: 100%;
+  margin: 4px 4px;
+  outline: 0;
+  cursor: pointer;
+  border: none;
+  position: absolute;
+  right: 170px;
+  bottom: 50px;
+}
+
+.confirmDialogMain {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  height: 20%;
+  color: white;
+  margin: auto;
+  border: 1px solid white;
+  border-radius: 10px;
+  padding: 10px;
+  background-image: radial-gradient(circle, $main1 0%, $main2 100%);
+  background-size: 400%;
+}
+
+.confirmDialogPrompt {
+  text-align: center;
+}
+
+.confirmDialogInner {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  border-top: 4px solid white;
+  margin: 5px 25px;
+}
+
+.confirmDialogBtn {
+  font: bold 16px "helvetica neue", "sans-serif";
+  border-radius: 1em;
+  background: $accent;
+  color: white;
+  padding: 2em 1.5em;
+  width: 8em;
+  height: 2.5em;
+  outline: 0;
+  cursor: pointer;
+  padding: 0px;
+  margin: 10px;
+}

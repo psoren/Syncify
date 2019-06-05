@@ -21,7 +21,6 @@ module.exports = (app) => {
                 }
                 else {
                     res.json({ success: false });
-                    console.log('(getCreatorId) Error finding room');
                 }
             }
         });
