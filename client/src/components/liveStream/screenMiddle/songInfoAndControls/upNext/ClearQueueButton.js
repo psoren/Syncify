@@ -2,8 +2,6 @@ import React from 'react';
 import { LiveStreamContext } from 'components/liveStream/LiveStream';
 import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
-
-
 import './clearQueueButton.scss';
 
 class ClearQueueButton extends React.Component {
@@ -56,8 +54,8 @@ class ClearQueueButton extends React.Component {
 		return (
 			<button
 				onClick={this.clearQueue}
-				style={{ background: 'url(clear.svg)' }}
 				className='clearQueueBtn'>
+				Clear Queue
 			</button>
 		);
 	}

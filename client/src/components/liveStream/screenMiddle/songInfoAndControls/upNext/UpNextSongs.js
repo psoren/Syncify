@@ -63,6 +63,13 @@ class UpNextSongs extends React.Component {
             } : { minHeight: '0px' }
           }
           ref={upNextRef => this.upNextRef = upNextRef} >
+          {this.state.isCreator
+            && this.state.clicked
+            && this.state.currentUpNext.length > 0
+            ? <ClearQueueButton
+              isCreator={this.state.isCreator}
+            /> : null
+            }
           {this.state.clicked ? this.state.currentUpNext : null}
           {this.state.clicked &&
             this.state.currentUpNext.length === 0
@@ -77,9 +84,6 @@ class UpNextSongs extends React.Component {
           onClick={this.toggleState}>
           Up Next
         </button>
-        {this.state.isCreator ? <ClearQueueButton
-          isCreator={this.state.isCreator}
-        /> : null}
       </div>
     );
   }
