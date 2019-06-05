@@ -266,7 +266,7 @@ export default class extends React.Component {
 				}
 				else {
 					toaster.notify('The creator of the room has changed the room to private.' +
-						'  Anyone who wants to join the room will need the room ID.', { duration: 3000 })
+						'  Anyone who wants to join the room will need the room ID.', { duration: 3000 });
 				}
 			});
 		});
@@ -279,6 +279,20 @@ export default class extends React.Component {
 			//Notification
 			toaster.notify(data.name + ' has left the room.', { duration: 3000 })
 		});
+
+		this.socket.on('clearUpcomingSongs', () => {
+
+			console.log('clearUpcomingSongs was called');
+			this.setState({
+				upNext: [],
+				albumArt: {
+					...this.state.albumArt,
+					albumRight: '/notPlaying.jpg'
+				}
+			});
+			toaster.notify('The creator of the room has cleared the queue.', { duration: 3000 });
+
+		})
 
 		this.socket.on('creatorLeft', newRoomData => {
 			//If we are now the creator

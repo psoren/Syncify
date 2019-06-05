@@ -42,6 +42,7 @@ require('./server/socketio/changeRoomName.js')(io);
 require('./server/socketio/leaveRoom.js')(io);
 require('./server/socketio/storeDate.js')(io);
 require('./server/socketio/togglePublic.js')(io);
+require('./server/socketio/clearQueue.js')(io);
 require('./server/getRooms')(app);
 require('./server/updateTokens')(app);
 require('./server/sendInitData')(app);

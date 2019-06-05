@@ -1,8 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { LiveStreamContext } from 'components/liveStream/LiveStream';
 import UpNext from './UpNext';
+import ClearQueueButton from './ClearQueueButton';
 import '../toggleSwitch.scss';
 
-export default class extends Component {
+class UpNextSongs extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -27,6 +29,12 @@ export default class extends Component {
   toggleState = () => this.setState({ clicked: !this.state.clicked });
 
   componentWillReceiveProps = (nextProps) => {
+    if (nextProps.context.socket) {
+      this.setState({
+        socket: nextProps.context.socket,
+        isCreator: nextProps.isCreator
+      });
+    }
     let currentUpNext = [];
     if (nextProps.upNext) {
       nextProps.upNext.forEach((track) => {
@@ -69,7 +77,14 @@ export default class extends Component {
           onClick={this.toggleState}>
           Up Next
         </button>
+        {this.state.isCreator ? <ClearQueueButton
+          isCreator={this.state.isCreator}
+        /> : null}
       </div>
     );
   }
 }
+
+export default props => (<LiveStreamContext.Consumer>
+  {context => { return <UpNextSongs {...props} context={context} /> }}
+</LiveStreamContext.Consumer>)

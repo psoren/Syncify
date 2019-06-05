@@ -12,6 +12,9 @@ export default (props) => (
 			isCreator={props.isCreator}
 			player={props.player}
 		/>
-		<UpNextSongs upNext={props.upNext} />
+		<UpNextSongs
+			upNext={props.upNext}
+			isCreator={props.isCreator}
+		/>
 	</div>
 );
