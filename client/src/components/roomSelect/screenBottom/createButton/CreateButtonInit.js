@@ -17,10 +17,7 @@ export default class extends React.Component {
 
     render() {
         return (
-            <button
-                ref={node => this.node = node}
-                className='roomSelectOuterBtn'
-            >
+            <button ref={node => this.node = node} className='roomSelectOuterBtn'>
                 Create
             </button>
         );

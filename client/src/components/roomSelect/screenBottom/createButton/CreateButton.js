@@ -12,11 +12,7 @@ export default class extends React.Component {
 
     render() {
         return this.state.clicked ?
-            <CreateButtonForm
-                resetState={this.changeState}
-            /> :
-            <CreateButtonInit
-                goToForm={this.changeState}
-            />;
+            <CreateButtonForm resetState={this.changeState} /> :
+            <CreateButtonInit goToForm={this.changeState} />;
     }
 }
