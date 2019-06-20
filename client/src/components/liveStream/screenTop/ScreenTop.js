@@ -20,8 +20,9 @@ export default class extends React.Component {
 	render() {
 		return (
 			<div className='liveStreamTopOuter'>
+				<HomeButton />
+
 				<div className='liveStreamTopInner'>
-					<HomeButton />
 					<RoomSettings />
 					<RoomName roomName={this.props.roomName} />
 					<TogglePublic
@@ -30,6 +31,7 @@ export default class extends React.Component {
 					/>
 				</div>
 				<SongProgressBar percentDone={this.state.percentDone} />
+
 			</div>
 		);
 	}

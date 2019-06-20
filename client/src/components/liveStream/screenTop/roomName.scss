@@ -1,10 +1,9 @@
 .roomNameForm {
   text-align: center;
-  flex-grow: 2;
+  transition: all 0.2s;
 }
 
 .roomNameInputFocus {
-  width: 60%;
   text-align: center;
   background: transparent;
   color: #fff;
@@ -14,7 +13,6 @@
   outline: 0;
   margin-bottom: 5px;
   cursor: pointer;
-  padding-top: 25px;
 }
 
 .roomNameInputBlur {
@@ -25,7 +23,6 @@
   font-size: 50px;
   outline: 0;
   cursor: pointer;
-  padding-top: 25px;
   width: 90%;
   border-bottom: 5px solid #fff;
   margin-bottom: 3px;

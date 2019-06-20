@@ -2,11 +2,13 @@
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  position: relative;
+  height: 25%;
+  margin: 25px;
 }
 
 .liveStreamTopInner {
   display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
 }
