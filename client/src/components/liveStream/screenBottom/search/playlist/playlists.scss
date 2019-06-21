@@ -2,7 +2,7 @@
   justify-items: center;
   padding: 10px;
   display: grid;
-  height: 525px;
+  height: 550px;
   width: 100%;
   overflow: auto;
   grid-template-columns: auto auto auto;
@@ -11,7 +11,6 @@
 }
 
 .playlistSelected {
-  border: 1px solid red;
   display: flex;
   flex-direction: column;
 }
