@@ -37,8 +37,19 @@ Using the search bar, you can browse your saved songs, view your top artists, an
 
 ## Make your room public for everyone to see
 
+If you do not want anyone to be able to view your room from the home screen, simply click the lock at the upper right hand of the screen to make your room either public or private.
 
+## Save songs you like to your Spotify library
 
+If you like the current song that you are listening to, click the plus button next to the song controls to add the current song to your library.
+
+## Invite your friends!
+
+Simply click the share button near the song controls to get the ID of your room.  You can then send the ID to your friends, and they will be able to join whether or not the room is public or private.
+
+## Automatic creator switching
+
+Anytime the creator leaves the room, if there are any other people in the room, they will be promoted to the creator.  The creator can toggle playback, as well as clear the upcoming queue.  Anyone can add songs to the queue.  Once there are no more people in a room, it is automatically deleted, so you know that any room you join will be active!
 
 ## Song Recommendations
 
