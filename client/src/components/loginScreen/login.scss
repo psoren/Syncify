@@ -1,4 +1,4 @@
-@import 'styling/variables.scss';
+@import "styling/variables.scss";
 
 .top {
   display: flex;
@@ -63,4 +63,33 @@
 
 .loginBtn:active {
   background: $accentDark;
+}
+
+.appStoreOuter {
+  flex-direction: column;
+  justify-content: space-around;
+  height: 250px;
+}
+
+.appStoreInner {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.appStoreCtoA {
+  font-size: 24px;
+  font-weight: bold;
+  padding: 15px;
+}
+
+.octaveLogo {
+  width: 100px;
+  height: 100px;
+  border-radius: 25px;
+}
+
+.appStore {
+  width: 200px;
 }
