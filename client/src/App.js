@@ -11,9 +11,6 @@ import Error from './components/Error';
  * set the state of the app to contain the player.  That way, we can control playback from all
  * screens of the application.  If player is already set in the state of the App, we will not create
  * another one. 
- */
-
-/**
  * We also need to check to make sure that the player of the App is not set
  * in the roomselect component.
  */
