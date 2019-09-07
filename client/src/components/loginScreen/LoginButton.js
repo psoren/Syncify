@@ -23,7 +23,7 @@ export default class extends React.Component {
 		let dev = process.env.NODE_ENV === 'development';
 		let redirect_uri = dev ?
 			'http://localhost:3000/roomselect' :
-			'https://syncify33.herokuapp.com/roomselect';
+			'https://octavemusic.herokuapp.com/roomselect';
 
 		let client_id = 'd76ab0506f804a148cd10e9671f0aab7';
 		let scope = 'user-read-private user-read-email user-modify-playback-state user-read-currently-playing user-read-playback-state user-read-birthdate streaming user-library-read playlist-read-private user-library-modify user-read-recently-played user-top-read';

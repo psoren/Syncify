@@ -223,7 +223,7 @@ export default class extends React.Component {
 		this.socket.on('newRoomInfo', data => {
 			//If the song was added by a Spotify recommendation
 			if (data.user === 'Syncify') {
-				let message = 'Syncify added ' + data.currentSong.name + ' by ' + data.currentSong.artist +
+				let message = 'Octave added ' + data.currentSong.name + ' by ' + data.currentSong.artist +
 					" based on what you've been listening to.";
 				toaster.notify(message, { duration: 4000 });
 			}
@@ -400,7 +400,7 @@ export default class extends React.Component {
 		window.onSpotifyWebPlaybackSDKReady = async () => {
 			this.setState({
 				player: new window.Spotify.Player({
-					name: 'Syncify',
+					name: 'Octave',
 					getOAuthToken: cb => { cb(localStorage.getItem('accessToken')) }
 				})
 			});

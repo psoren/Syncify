@@ -103,7 +103,7 @@ export default class extends React.Component {
 		this.player.on('account_error', e => {
 			console.error(e);
 			alert('It looks like you do not have a premium Spotify account.\n' +
-				'You will not be able to use Syncify.');
+				'You will not be able to use Octave.');
 		});
 		this.player.on('playback_error', e => console.error(e));
 	}
