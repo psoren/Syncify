@@ -93,3 +93,10 @@
 .appStore {
   width: 200px;
 }
+
+.loginInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

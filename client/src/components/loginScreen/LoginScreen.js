@@ -35,6 +35,11 @@ export default () => (
 					</a>
 				</div>
 			</div>
+			<div className='loginInfo'>
+				Use the following information to test out the application:
+				<span>Username: testingspot78@gmail.com</span>
+				<span>Password: okThenOakLand48$$</span>
+			</div>
 
 		</div>
 	</div >
