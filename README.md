@@ -2,6 +2,15 @@
 
 Octave is a MERN stack application that allows users to listen to songs together.  It uses the Spotify Web API on the server side for authentication, and uses the Spotify Web Playback SDK for client-side playback in the browser.
 
+The web app is located at https://octavemusic.herokuapp.com.  Feel free to use the following information to log into Spotify to test out the application:
+
+Username: testingspot78@gmail.com
+
+Password: okThenOakLand48$$
+
+
+
+
 ## Pick a room
 
 ![Live Stream Page](client/public/roomselectScreenshot.jpeg)
