@@ -81,7 +81,7 @@ export default class extends React.Component {
 	createPlayer = () => {
 		window.onSpotifyWebPlaybackSDKReady = async () => {
 			this.player = new window.Spotify.Player({
-				name: 'Syncify',
+				name: 'Octave',
 				getOAuthToken: cb => { cb(localStorage.getItem('accessToken')) }
 			});
 			let playerConnected = await this.player.connect();
