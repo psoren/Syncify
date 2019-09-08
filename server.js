@@ -9,7 +9,8 @@ let mongoURI = '';
 if (process.env.NODE_ENV === 'production') {
   const dbUsername = process.env.PROD_DB_USERNAME;
   const dbPassword = process.env.PROD_DB_PASSWORD;
-  mongoURI = `mongodb://${dbUsername}:${dbPassword}@ds263146.mlab.com:63146/heroku_7nkz6h4b`;
+  //mongoURI = `mongodb://${dbUsername}:${dbPassword}@ds263146.mlab.com:63146/heroku_7nkz6h4b`;
+  mongoURI = `mongodb://${dbUsername}:${dbPassword}@ds047448.mlab.com:47448/octaveweb`
 } else {
   const dbUsername = process.env.DEV_DB_USERNAME;
   const dbPassword = process.env.DEV_DB_PASSWORD;
