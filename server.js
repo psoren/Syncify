@@ -2,20 +2,18 @@ require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
-const morgan = require('morgan');
-let mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
-//Separate databases for development and production
+// Separate databases for development and production
 let mongoURI = '';
 if (process.env.NODE_ENV === 'production') {
-    let dbUsername = process.env.PROD_DB_USERNAME;
-    let dbPassword = process.env.PROD_DB_PASSWORD;
-    mongoURI = 'mongodb://' + dbUsername + ':' + dbPassword + '@ds263146.mlab.com:63146/heroku_7nkz6h4b';
-}
-else {
-    let dbUsername = process.env.DEV_DB_USERNAME;
-    let dbPassword = process.env.DEV_DB_PASSWORD;
-    mongoURI = 'mongodb+srv://' + dbUsername + ':' + dbPassword + '@cluster0-qrjhy.mongodb.net/test?retryWrites=true';
+  const dbUsername = process.env.PROD_DB_USERNAME;
+  const dbPassword = process.env.PROD_DB_PASSWORD;
+  mongoURI = `mongodb://${dbUsername}:${dbPassword}@ds263146.mlab.com:63146/heroku_7nkz6h4b`;
+} else {
+  const dbUsername = process.env.DEV_DB_USERNAME;
+  const dbPassword = process.env.DEV_DB_PASSWORD;
+  mongoURI = `mongodb+srv://${dbUsername}:${dbPassword}@cluster0-qrjhy.mongodb.net/test?retryWrites=true`;
 }
 
 mongoose.connect(mongoURI, { useNewUrlParser: true });
@@ -28,10 +26,7 @@ const io = require('socket.io')(server);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-//logging
-//app.use(morgan("tiny"));
-
-//Custom middleware
+// Custom middleware
 require('./server/joinRoom.js')(app, io);
 require('./server/socketio/setup')(io);
 require('./server/socketio/nextSong.js')(io);
@@ -55,15 +50,15 @@ require('./server/updateCreatorAccessToken')(app);
 require('./server/checkRoomsForDeletion')(app);
 require('./server/checkForRoom')(app);
 
-//Production
+// Production
 if (process.env.NODE_ENV === 'production') {
-    app.use(express.static(path.join(__dirname, 'client/build')));
-    app.get('*', (req, res) => res.sendFile(path.join(__dirname, 'client/build/index.html')));
+  app.use(express.static(path.join(__dirname, 'client/build')));
+  app.get('*', (req, res) => res.sendFile(path.join(__dirname, 'client/build/index.html')));
 }
-//Development
+// Development
 else {
-    app.use(express.static(path.join(__dirname, 'client/public')));
-    app.get('*', (req, res) => res.sendFile(path.join(__dirname, '/client/public/index.html')));
+  app.use(express.static(path.join(__dirname, 'client/public')));
+  app.get('*', (req, res) => res.sendFile(path.join(__dirname, '/client/public/index.html')));
 }
 
 server.listen(port, () => console.log(`Listening on port ${port}`));

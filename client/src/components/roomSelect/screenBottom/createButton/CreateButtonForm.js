@@ -34,7 +34,6 @@ export default class extends React.Component {
   //Create the room in the database
   handleSubmit = async (e) => {
     e.preventDefault();
-
     //Get the current song so we can add it to the database
     let playbackInfoRes = await fetch('https://api.spotify.com/v1/me/player', {
       headers: { 'Authorization': 'Bearer ' + localStorage.getItem('accessToken') }

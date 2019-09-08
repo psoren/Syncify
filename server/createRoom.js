@@ -1,30 +1,32 @@
-let fetch = require('node-fetch');
+const fetch = require('node-fetch');
 const Room = require('../models/room');
 
 module.exports = (app) => {
-  //The method to test if the database is connected
+  // The method to test if the database is connected
   app.post('/createRoom', async (req, res) => {
-    //Perform a request to Spotify to get
-    //the spotifyURI of this person and their name
-    const { isPublic, roomName, accessToken, refreshToken, currentSong } = req.body;
+    // Perform a request to Spotify to get
+    // the spotifyURI of this person and their name
+    const {
+      isPublic, roomName, accessToken, refreshToken, currentSong,
+    } = req.body;
 
-    let userRes = await fetch('https://api.spotify.com/v1/me', {
-      headers: { 'Authorization': 'Bearer ' + accessToken },
-      json: true
+    const userRes = await fetch('https://api.spotify.com/v1/me', {
+      headers: { Authorization: `Bearer ${accessToken}` },
+      json: true,
     });
 
-    let userResJson = await userRes.json();
-    let { display_name, id } = userResJson;
+    const userResJson = await userRes.json();
+    // eslint-disable-next-line camelcase
+    const { display_name, id } = userResJson;
 
     let pictureSrc = '';
     if (userResJson.images.length === 0) {
       pictureSrc = '../defaultPerson.png';
-    }
-    else {
+    } else {
       pictureSrc = userResJson.images[0].url;
     }
 
-    //Now we create the room
+    // Now we create the room
     let room = new Room({
       name: roomName,
       public: isPublic,
@@ -32,23 +34,24 @@ module.exports = (app) => {
       creator: {
         name: display_name,
         spotifyURI: id,
-        accessToken: accessToken,
-        refreshToken: refreshToken,
-        pictureSrc: pictureSrc
+        accessToken,
+        refreshToken,
+        pictureSrc,
       },
       roomListeners: [],
       upcomingSongs: [],
-      currentSong: currentSong,
-      recentSongs: []
+      currentSong,
+      recentSongs: [],
     });
 
-    //Make sure that we do not have any id collisions
-    //since we are creating our own ids
+    // Make sure that we do not have any id collisions
+    // since we are creating our own ids
     let roomIdCollision = true;
     while (roomIdCollision) {
       try {
+        // eslint-disable-next-line no-await-in-loop
         await Room.findById(room.id, (existingRoom) => {
-          //Collision
+          // Collision
           if (existingRoom) {
             room = new Room({
               name: roomName,
@@ -57,38 +60,35 @@ module.exports = (app) => {
               creator: {
                 name: display_name,
                 spotifyURI: id,
-                accessToken: accessToken,
-                refreshToken: refreshToken,
-                pictureSrc: pictureSrc
+                accessToken,
+                refreshToken,
+                pictureSrc,
               },
               roomListeners: [],
               upcomingSongs: [],
-              currentSong: currentSong,
-              recentSongs: []
+              currentSong,
+              recentSongs: [],
             });
-          }
-          else {
+          } else {
             roomIdCollision = false;
           }
         });
-      }
-      catch (e) {
+      } catch (e) {
         console.error(e);
         res.json({ success: false });
       }
     }
 
-    //Save the room in the database
+    // Save the room in the database
     room.save((err, room) => {
       if (err) {
         res.json({ success: false });
-      }
-      else {
+      } else {
         res.json({
           success: true,
-          roomID: room._id
+          roomID: room._id,
         });
       }
     });
   });
-}
+};
